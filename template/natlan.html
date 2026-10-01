@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Natlan | WaypointGO</title>
+  <link rel="icon" href="../assets/logo-mark.png">
+  <link rel="stylesheet" href="../design/natlan.css">
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <input class="menu-toggle" type="checkbox" id="menu-hero" aria-label="Open page menu">
+    <header class="chrome">
+      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+      <label class="chrome__paimon" for="menu-hero"><img src="../assets/paimon.png" alt="Menu"></label>
+      <label class="menu-backdrop" for="menu-hero"></label>
+      <nav class="menu" aria-label="Page menu">
+        <img class="menu__emblem" src="../assets/natlan/emblem.png" alt="">
+        <ul class="menu__list">
+          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+        </ul>
+        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+      </nav>
+    </header>
+    <div class="wrap">
+      <div class="hero__text">
+        <p class="hero__tag">The Land of Ash, Hot Springs, and Valor</p>
+        <h1 class="hero__title">Natlan</h1>
+        <p class="hero__desc">An energetic adventure featuring dramatic volcanic landscapes, natural hot springs, and the proud tribes of the land. Built for travelers who want spirited, high-energy days.</p>
+        <div class="trip-meta">
+          <p class="trip-meta__price"><span class="peso">₱</span>16,500<small>per person</small></p>
+          <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">4 Days / 3 Nights</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
+  <section class="spots" id="spots">
+    <input class="spots__radio" type="radio" name="spot-natlan" id="spot-r1" checked aria-label="Show Tepeacac Rise">
+    <input class="spots__radio" type="radio" name="spot-natlan" id="spot-r2" aria-label="Show Children of the Echoes Canyon">
+    <input class="spots__radio" type="radio" name="spot-natlan" id="spot-r3" aria-label="Show People of the Springs Basin">
+    <input class="menu-toggle" type="checkbox" id="menu-spots" aria-label="Open page menu">
+    <header class="chrome">
+      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+      <label class="chrome__paimon" for="menu-spots"><img src="../assets/paimon.png" alt="Menu"></label>
+      <label class="menu-backdrop" for="menu-spots"></label>
+      <nav class="menu" aria-label="Page menu">
+        <img class="menu__emblem" src="../assets/natlan/emblem.png" alt="">
+        <ul class="menu__list">
+          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+        </ul>
+        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+      </nav>
+    </header>
+    <div class="spots__stage">
+      <div class="spots__viewport">
+        <div class="spots__track">
+          <article class="spot" id="spot-1">
+            <h2 class="spot__title">Tepeacac Rise</h2>
+            <p class="spot__region">Natlan</p>
+            <img class="spot__photo" src="../assets/natlan/spot-1.jpg" alt="Tepeacac Rise, Natlan">
+            <p class="spot__caption">Red canyon walls and green terraces stretch out beneath a wide open sky.</p>
+          </article>
+          <article class="spot" id="spot-2">
+            <h2 class="spot__title">Children of the Echoes Canyon</h2>
+            <p class="spot__region">Natlan</p>
+            <img class="spot__photo" src="../assets/natlan/spot-2.jpg" alt="Children of the Echoes Canyon, Natlan">
+            <p class="spot__caption">A deep canyon crossed by rope bridges, lit by warm light from the cliffs below.</p>
+          </article>
+          <article class="spot" id="spot-3">
+            <h2 class="spot__title">People of the Springs Basin</h2>
+            <p class="spot__region">Natlan</p>
+            <img class="spot__photo" src="../assets/natlan/spot-3.jpg" alt="People of the Springs Basin, Natlan">
+            <p class="spot__caption">A coastal basin of hot springs and flowing waters, dotted with sail-like towers.</p>
+          </article>
+        </div>
+      </div>
+      <div class="spots__nav spots__nav--1"><span class="spot-arrow spot-arrow--prev is-off"><img src="../assets/arrow-prev.png" alt=""></span><label class="spot-arrow spot-arrow--next" for="spot-r2" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--2"><label class="spot-arrow spot-arrow--prev" for="spot-r1" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><label class="spot-arrow spot-arrow--next" for="spot-r3" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--3"><label class="spot-arrow spot-arrow--prev" for="spot-r2" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><span class="spot-arrow spot-arrow--next is-off"><img src="../assets/arrow-next.png" alt=""></span></div>
+    </div>
+  </section>
+
+  <!-- ============ ITINERARY ============ -->
+  <section class="itinerary" id="itinerary">
+    <input class="menu-toggle" type="checkbox" id="menu-itinerary" aria-label="Open page menu">
+    <header class="chrome">
+      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+      <label class="chrome__paimon" for="menu-itinerary"><img src="../assets/paimon.png" alt="Menu"></label>
+      <label class="menu-backdrop" for="menu-itinerary"></label>
+      <nav class="menu" aria-label="Page menu">
+        <img class="menu__emblem" src="../assets/natlan/emblem.png" alt="">
+        <ul class="menu__list">
+          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+        </ul>
+        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+      </nav>
+    </header>
+    <div class="wrap itinerary__grid">
+      <div class="itinerary__intro">
+        <p class="eyebrow">Your day-by-day journey</p>
+        <h2 class="section-title">Itinerary<em>at a glance.</em></h2>
+        <p class="itinerary__lead">Every day balances guided discovery with enough breathing room to enjoy the destination your way. Timing may adjust for weather and local events.</p>
+        <figure class="itinerary__photo">
+          <img src="../assets/natlan/itinerary.jpg" alt="Tepeacac Rise">
+          <figcaption><strong>Tepeacac Rise</strong><span>Natlan</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="itinerary__scroll" tabindex="0" aria-label="Day-by-day itinerary, scroll to see more">
+        <ol class="timeline">
+          <li class="day">
+            <span class="day__num">1</span>
+            <div class="day__card">
+              <h3>Arrival &amp; Tepeacac Rise</h3>
+              <p>Arrive in Natlan and head straight to Tepeacac Rise for a first look at the canyon country, with your guide on hand for a relaxed orientation.</p>
+            <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Natlan</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">2</span>
+            <div class="day__card">
+              <h3>Children of the Echoes Canyon</h3>
+              <p>Walk the canyon paths and rope bridges with a local guide, with stops for rest, photos, and a hearty trailside meal.</p>
+            <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Natlan</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">3</span>
+            <div class="day__card">
+              <h3>People of the Springs Basin</h3>
+              <p>Soak in the region's famous hot springs and explore the basin's waterside settlements at an easy pace.</p>
+            <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Natlan</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">4</span>
+            <div class="day__card">
+              <h3>Volcanic Panorama &amp; Farewell</h3>
+              <p>Take in one last sweeping view of the volcanic landscape before your transfer home.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCAL DELICACIES ============ -->
+  <section class="delicacies" id="delicacies">
+    <input class="menu-toggle" type="checkbox" id="menu-delicacies" aria-label="Open page menu">
+    <header class="chrome">
+      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+      <label class="chrome__paimon" for="menu-delicacies"><img src="../assets/paimon.png" alt="Menu"></label>
+      <label class="menu-backdrop" for="menu-delicacies"></label>
+      <nav class="menu" aria-label="Page menu">
+        <img class="menu__emblem" src="../assets/natlan/emblem.png" alt="">
+        <ul class="menu__list">
+          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+        </ul>
+        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+      </nav>
+    </header>
+    <div class="wrap delicacies__grid">
+      <div class="delicacies__chef-clip"><img class="delicacies__chef" src="../assets/chef.png" alt=""></div>
+      <div class="delicacies__intro">
+        <p class="eyebrow">Taste the culture</p>
+        <h2 class="section-title">Local<em>delicacies.</em></h2>
+      </div>
+      <div class="delicacies__scroll" tabindex="0" aria-label="Local delicacies, scroll to see more">
+        <ul class="dishes">
+          <li><img src="../assets/natlan/dish-1.png" alt="Saurus Crackers"></li>
+          <li><img src="../assets/natlan/dish-2.png" alt="Grainfruit Chips"></li>
+          <li><img src="../assets/natlan/dish-3.png" alt="Tatacos"></li>
+          <li><img src="../assets/natlan/dish-4.png" alt="Blazed Meat Stew"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALL TO ACTION ============ -->
+  <section class="cta" id="cta">
+    <input class="menu-toggle" type="checkbox" id="menu-cta" aria-label="Open page menu">
+    <header class="chrome">
+      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+      <label class="chrome__paimon" for="menu-cta"><img src="../assets/paimon.png" alt="Menu"></label>
+      <label class="menu-backdrop" for="menu-cta"></label>
+      <nav class="menu" aria-label="Page menu">
+        <img class="menu__emblem" src="../assets/natlan/emblem.png" alt="">
+        <ul class="menu__list">
+          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+        </ul>
+        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+      </nav>
+    </header>
+    <div class="wrap cta__inner">
+      <img class="cta__mark" src="../assets/logo-mark.png" alt="">
+      <p class="cta__kicker">Your waypoint is waiting</p>
+      <h2 class="cta__title">Make <em>Natlan</em><br>Your Next Stop</h2>
+      <div class="trip-meta trip-meta--center">
+        <p class="trip-meta__price"><span class="peso">₱</span>16,500<small>per person</small></p>
+        <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">4 Days / 3 Nights</p>
+      </div>
+      <a class="cta__btn" href="home.html#inquiry">Book Now</a>
+    </div>
+  </section>
+
+</body>
+</html>
