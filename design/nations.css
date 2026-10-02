@@ -142,10 +142,11 @@ section {
 
 .chrome--fixed {
   position: fixed;
-  backdrop-filter: blur(10px);
   height: auto;
-  padding: clamp(10px, 1.4vw, 20px) 0;
+  padding: clamp(110px, 1.4vw, 20px) 0;
+  background: linear-gradient(180deg, rgba(10, 16, 30, .55) 0%, rgba(10, 16, 30, 0) 100%);
 }
+
 
 .chrome a,
 .chrome label,
@@ -1412,4 +1413,4 @@ section {
   .cta__inner {
     padding: 60px 14px 60px;
   }
-}
+} 
