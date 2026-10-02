@@ -46,15 +46,28 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   background: url("../assets/button-blank.png") center / 100% 100% no-repeat;
   border: 0; cursor: pointer;
   font-family: var(--font-ui); font-weight: 700; font-size: 22px; color: #3b4a68;
+  transition: transform .25s ease, filter .25s ease, color .25s ease;
 }
-.btn:hover { filter: brightness(1.05); }
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-3px) scale(1.04);
+  color: #1e2a55;
+  /* drop-shadow follows the plate's shape, so the glow hugs the ornate edges */
+  filter: brightness(1.12) saturate(1.1) drop-shadow(0 0 10px rgba(220, 192, 138, .75)) drop-shadow(0 6px 14px rgba(0, 0, 0, .35));
+}
+.btn:active { transform: translateY(0) scale(.98); filter: brightness(.97) drop-shadow(0 0 6px rgba(220, 192, 138, .6)); transition-duration: .08s; }
+.btn:focus-visible { outline: 0; }
+@media (prefers-reduced-motion: reduce) { .btn, .btn:hover, .btn:active { transition: none; transform: none; } }
 
 /* ==========================================================
    HERO
    ========================================================== */
 .hero {
   position: relative;
-  height: 614px;
+  display: flex; flex-direction: column;
+  height: 100vh;
+  height: 100svh;          /* full screen, same as the nation pages */
+  min-height: 614px;
   background:
     linear-gradient(90deg, rgba(18, 12, 30, .55) 0%, rgba(18, 12, 30, .15) 55%, rgba(18, 12, 30, 0) 100%),
     linear-gradient(180deg, rgba(18, 12, 30, .45) 0%, rgba(18, 12, 30, 0) 30%),
@@ -70,7 +83,11 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .site-nav a { font-family: var(--font-ui); font-size: 20px; color: var(--gold); text-shadow: 0 1px 4px rgba(0, 0, 0, .5); }
 .site-nav a:hover { color: #fff; }
 
-.hero__content { max-width: var(--page); margin: 0 auto; padding: 191px 0 0 40px; }
+.hero__content {
+  flex: 1; width: 100%; max-width: var(--page); margin: 0 auto;
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  padding: 92px 0 0 40px;   /* 92px = header height, so the text centres in the visible area */
+}
 .hero__title { font-family: var(--font-ui); font-weight: 700; font-size: 64px; line-height: 79px; color: #fff; text-shadow: 0 2px 12px rgba(0, 0, 0, .35); }
 .hero__title span { color: var(--gold); }
 .hero__text { margin-top: 11px; font-family: var(--font-body); font-weight: 500; font-size: 18px; line-height: 25px; color: #fff; }
@@ -226,12 +243,12 @@ select.inquiry__field option { color: #13161b; }
    BELOW DESIGN WIDTH — stacked layout
    ========================================================== */
 @media (max-width: 1299px) {
-  .hero { height: auto; min-height: 560px; padding-bottom: 60px; }
+  .hero { height: 100vh; height: 100svh; min-height: 560px; }
   .site-header { position: relative; height: auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
   .brand, .site-nav { position: static; height: auto; }
   .brand img { width: 170px; }
   .site-nav { gap: 28px; }
-  .hero__content { padding: 60px 24px 0; }
+  .hero__content { padding: 24px 24px 60px; }
   .hero__title { font-size: 48px; line-height: 56px; }
 
   .about { height: auto; display: flex; flex-direction: column; align-items: center; padding: 40px 24px 260px; }
