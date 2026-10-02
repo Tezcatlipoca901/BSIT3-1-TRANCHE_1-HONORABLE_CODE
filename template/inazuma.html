@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inazuma | WaypointGO</title>
+  <link rel="icon" href="../assets/logo-mark.png">
+  <link rel="stylesheet" href="../design/inazuma.css">
+</head>
+<body>
+
+  <!-- ============ FIXED NAVBAR ============ -->
+  <input class="menu-toggle" type="checkbox" id="menu-main" aria-label="Open page menu">
+  <header class="chrome chrome--fixed">
+    <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+    <label class="chrome__paimon" for="menu-main"><img src="../assets/paimon.png" alt="Menu"></label>
+    <label class="menu-backdrop" for="menu-main"></label>
+    <nav class="menu" aria-label="Page menu">
+      <img class="menu__emblem" src="../assets/inazuma/emblem.png" alt="">
+      <ul class="menu__list">
+        <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+        <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+        <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+      </ul>
+      <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero__text">
+        <p class="hero__tag">The Realm of Eternal Thunder</p>
+        <h1 class="hero__title">Inazuma</h1>
+        <p class="hero__desc">Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.</p>
+        <div class="trip-meta">
+          <p class="trip-meta__price"><span class="peso">₱</span>18,000<small>per person</small></p>
+          <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">4 Days / 3 Nights</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
+  <section class="spots" id="spots">
+    <input class="spots__radio" type="radio" name="spot-inazuma" id="spot-r1" checked aria-label="Show Narukami Island Grand Shrine">
+    <input class="spots__radio" type="radio" name="spot-inazuma" id="spot-r2" aria-label="Show Ritou Trading Port">
+    <input class="spots__radio" type="radio" name="spot-inazuma" id="spot-r3" aria-label="Show Tenshukaku">
+    <div class="spots__stage">
+      <div class="spots__viewport">
+        <div class="spots__track">
+          <article class="spot" id="spot-1">
+            <h2 class="spot__title">Narukami Island Grand Shrine</h2>
+            <p class="spot__region">Mt. Yougou</p>
+            <img class="spot__photo" src="../assets/inazuma/spot-1.jpg" alt="Narukami Island Grand Shrine, Mt. Yougou">
+            <p class="spot__caption">A sacred sanctuary nestled among ancient sakura trees, where tradition and spirituality converge under purple skies.</p>
+          </article>
+          <article class="spot" id="spot-2">
+            <h2 class="spot__title">Ritou Trading Port</h2>
+            <p class="spot__region">Narukami Island</p>
+            <img class="spot__photo" src="../assets/inazuma/spot-2.jpg" alt="Ritou Trading Port, Narukami Island">
+            <p class="spot__caption">The gateway to Inazuma, a bustling port where merchants from across Teyvat gather beneath traditional lanterns.</p>
+          </article>
+          <article class="spot" id="spot-3">
+            <h2 class="spot__title">Tenshukaku</h2>
+            <p class="spot__region">Inazuma City</p>
+            <img class="spot__photo" src="../assets/inazuma/spot-3.jpg" alt="Tenshukaku, Inazuma City">
+            <p class="spot__caption">The grand castle that stands as a testament to Inazuma's eternal pursuit of eternity, with architecture that commands respect.</p>
+          </article>
+        </div>
+      </div>
+      <div class="spots__nav spots__nav--1"><span class="spot-arrow spot-arrow--prev is-off"><img src="../assets/arrow-prev.png" alt=""></span><label class="spot-arrow spot-arrow--next" for="spot-r2" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--2"><label class="spot-arrow spot-arrow--prev" for="spot-r1" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><label class="spot-arrow spot-arrow--next" for="spot-r3" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--3"><label class="spot-arrow spot-arrow--prev" for="spot-r2" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><span class="spot-arrow spot-arrow--next is-off"><img src="../assets/arrow-next.png" alt=""></span></div>
+    </div>
+  </section>
+
+  <!-- ============ ITINERARY ============ -->
+  <section class="itinerary" id="itinerary">
+    <div class="wrap itinerary__grid">
+      <div class="itinerary__intro">
+        <p class="eyebrow">Your day-by-day journey</p>
+        <h2 class="section-title">Itinerary<em>at a glance.</em></h2>
+        <p class="itinerary__lead">Every day balances guided discovery with enough breathing room to enjoy the destination your way. Timing may adjust for weather and local events.</p>
+        <figure class="itinerary__photo">
+          <img src="../assets/inazuma/itinerary.jpg" alt="Inazuma City">
+          <figcaption><strong>Inazuma City</strong><span>Your base for the expedition</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="itinerary__scroll" tabindex="0" aria-label="Day-by-day itinerary, scroll to see more">
+        <ol class="timeline">
+          <li class="day">
+            <span class="day__num">1</span>
+            <div class="day__card">
+              <h3>Arrival to Inazuma</h3>
+              <p>Arrive by boat at Ritou Trading Port and experience your first glimpse of the islands. Check in to your accommodation and enjoy an evening stroll through the lantern-lit streets, sampling local street food.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Inazuma City</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">2</span>
+            <div class="day__card">
+              <h3>Explore Inazuma Trading Port</h3>
+              <p>Discover the vibrant trading district where international merchants meet. Visit local shops, witness traditional crafts, and understand how Inazuma connects with the wider world.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Inazuma City</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">3</span>
+            <div class="day__card">
+              <h3>Explore Inazuma Trading Port</h3>
+              <p>Journey to the sacred Grand Shrine on Mt. Yougou, walking through paths lined with electro crystals and sacred sakura. Participate in traditional prayers and witness the eternal beauty of the shrine.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Inazuma City</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">4</span>
+            <div class="day__card">
+              <h3>Tenshukaku & Farewell</h3>
+              <p>Visit the magnificent Tenshukaku castle, exploring its grounds and learning about Inazuma's pursuit of eternity. Conclude with a farewell ceremony before your departure transfer.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCAL DELICACIES ============ -->
+  <section class="delicacies" id="delicacies">
+    <div class="wrap delicacies__grid">
+      <div class="delicacies__chef-clip"><img class="delicacies__chef" src="../assets/chef.png" alt=""></div>
+      <div class="delicacies__intro">
+        <p class="eyebrow">Taste the culture</p>
+        <h2 class="section-title">Local<em>delicacies.</em></h2>
+      </div>
+      <div class="delicacies__scroll" tabindex="0" aria-label="Local delicacies, scroll to see more">
+        <ul class="dishes">
+          <li><img src="../assets/inazuma/dish-1.png" alt="Bird Egg Sushi"></li>
+          <li><img src="../assets/inazuma/dish-2.png" alt="Onigiri"></li>
+          <li><img src="../assets/inazuma/dish-3.png" alt="Miso Soup"></li>
+          <li><img src="../assets/inazuma/dish-4.png" alt="Mitsubachi Bear"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALL TO ACTION ============ -->
+  <section class="cta" id="cta">
+    <div class="wrap cta__inner">
+      <img class="cta__mark" src="../assets/logo-mark.png" alt="">
+      <p class="cta__kicker">Your waypoint is waiting</p>
+      <h2 class="cta__title">Make <em>Inazuma</em><br>Your Next Stop</h2>
+      <div class="trip-meta trip-meta--center">
+        <p class="trip-meta__price"><span class="peso">₱</span>18,000<small>per person</small></p>
+        <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">4 Days / 3 Nights</p>
+      </div>
+      <a class="cta__btn" href="home.html#inquiry">Book Now</a>
+    </div>
+  </section>
+
+</body>
+</html>

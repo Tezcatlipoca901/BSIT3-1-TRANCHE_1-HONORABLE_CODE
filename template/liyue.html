@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liyue | WaypointGO</title>
+  <link rel="icon" href="../assets/logo-mark.png">
+  <link rel="stylesheet" href="../design/liyue.css">
+</head>
+<body>
+
+  <!-- ============ FIXED NAVBAR ============ -->
+  <input class="menu-toggle" type="checkbox" id="menu-main" aria-label="Open page menu">
+  <header class="chrome chrome--fixed">
+    <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+    <label class="chrome__paimon" for="menu-main"><img src="../assets/paimon.png" alt="Menu"></label>
+    <label class="menu-backdrop" for="menu-main"></label>
+    <nav class="menu" aria-label="Page menu">
+      <img class="menu__emblem" src="../assets/liyue/emblem.png" alt="">
+      <ul class="menu__list">
+        <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+        <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+        <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+      </ul>
+      <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero__text">
+        <p class="hero__tag">The Harbor of Stone and Commerce</p>
+        <h1 class="hero__title">Liyue</h1>
+        <p class="hero__desc">A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.</p>
+        <div class="trip-meta">
+          <p class="trip-meta__price"><span class="peso">₱</span>15,000<small>per person</small></p>
+          <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">4 Days / 3 Nights</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
+  <section class="spots" id="spots">
+    <input class="spots__radio" type="radio" name="spot-liyue" id="spot-r1" checked aria-label="Show Liyue Harbor">
+    <input class="spots__radio" type="radio" name="spot-liyue" id="spot-r2" aria-label="Show Mt. Aocang">
+    <input class="spots__radio" type="radio" name="spot-liyue" id="spot-r3" aria-label="Show Wangshu Inn">
+    <div class="spots__stage">
+      <div class="spots__viewport">
+        <div class="spots__track">
+          <article class="spot" id="spot-1">
+            <h2 class="spot__title">Liyue Harbor</h2>
+            <p class="spot__region">Harbor District</p>
+            <img class="spot__photo" src="../assets/liyue/spot-1.jpg" alt="Liyue Harbor, Harbor District">
+            <p class="spot__caption">A vibrant port where tradition meets commerce, with ornate buildings rising above the bustling docks and markets.</p>
+          </article>
+          <article class="spot" id="spot-2">
+            <h2 class="spot__title">Mt. Aocang</h2>
+            <p class="spot__region">Mountain Peak</p>
+            <img class="spot__photo" src="../assets/liyue/spot-2.jpg" alt="Mt. Aocang, Mountain Peak">
+            <p class="spot__caption">Towering peaks shrouded in mist, offering breathtaking views of the valley and ancient stone formations.</p>
+          </article>
+          <article class="spot" id="spot-3">
+            <h2 class="spot__title">Wangshu Inn</h2>
+            <p class="spot__region">Dihua Marsh</p>
+            <img class="spot__photo" src="../assets/liyue/spot-3.jpg" alt="Wangshu Inn, Dihua Marsh">
+            <p class="spot__caption">A tall timber structure standing alone in the wetlands, known for its spectacular sunset views and legendary cuisine.</p>
+          </article>
+        </div>
+      </div>
+      <div class="spots__nav spots__nav--1"><span class="spot-arrow spot-arrow--prev is-off"><img src="../assets/arrow-prev.png" alt=""></span><label class="spot-arrow spot-arrow--next" for="spot-r2" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--2"><label class="spot-arrow spot-arrow--prev" for="spot-r1" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><label class="spot-arrow spot-arrow--next" for="spot-r3" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--3"><label class="spot-arrow spot-arrow--prev" for="spot-r2" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><span class="spot-arrow spot-arrow--next is-off"><img src="../assets/arrow-next.png" alt=""></span></div>
+    </div>
+  </section>
+
+  <!-- ============ ITINERARY ============ -->
+  <section class="itinerary" id="itinerary">
+    <div class="wrap itinerary__grid">
+      <div class="itinerary__intro">
+        <p class="eyebrow">Your day-by-day journey</p>
+        <h2 class="section-title">Itinerary<em>at a glance.</em></h2>
+        <p class="itinerary__lead">Every day balances guided discovery with enough breathing room to enjoy the destination your way. Timing may adjust for weather and local events.</p>
+        <figure class="itinerary__photo">
+          <img src="../assets/liyue/itinerary.jpg" alt="Liyue Harbor">
+          <figcaption><strong>Liyue Harbor</strong><span>Your base for the expedition</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="itinerary__scroll" tabindex="0" aria-label="Day-by-day itinerary, scroll to see more">
+        <ol class="timeline">
+          <li class="day">
+            <span class="day__num">1</span>
+            <div class="day__card">
+              <h3>Explore Mt. Aocang</h3>
+              <p>Begin your journey with a morning ascent through terraced paths and stone steps, reaching viewpoints that reveal the full scope of Liyue's landscape. Return in the afternoon for rest and exploration of local markets.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Liyue Harbor</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">2</span>
+            <div class="day__card">
+              <h3>The Galloway by Liyue</h3>
+              <p>Spend the day discovering the harbor's historic districts, visiting the Yujing Terrace and witnessing the craftsmanship of local artisans. Evening brings a traditional tea ceremony and harbor-side dining.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Liyue Harbor</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">3</span>
+            <div class="day__card">
+              <h3>Ascending the Peaks of the Adepti</h3>
+              <p>Journey into the mountain wilderness with a guided trek through ancient trails. Visit sacred sites and hear tales of the Adepti before returning to the harbor for a farewell dinner.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Liyue Harbor</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">4</span>
+            <div class="day__card">
+              <h3>The Road of Prosperity</h3>
+              <p>Your final morning includes a visit to Wangshu Inn, where you'll enjoy panoramic views and signature dishes before your departure transfer with memories of stone and commerce.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCAL DELICACIES ============ -->
+  <section class="delicacies" id="delicacies">
+    <div class="wrap delicacies__grid">
+      <div class="delicacies__chef-clip"><img class="delicacies__chef" src="../assets/chef.png" alt=""></div>
+      <div class="delicacies__intro">
+        <p class="eyebrow">Taste the culture</p>
+        <h2 class="section-title">Local<em>delicacies.</em></h2>
+      </div>
+      <div class="delicacies__scroll" tabindex="0" aria-label="Local delicacies, scroll to see more">
+        <ul class="dishes">
+          <li><img src="../assets/liyue/dish-1.png" alt="Crystal Shrimp"></li>
+          <li><img src="../assets/liyue/dish-2.png" alt="Liyue-Soul and the Egg Flagcake"></li>
+          <li><img src="../assets/liyue/dish-3.png" alt="Mora Meat"></li>
+          <li><img src="../assets/liyue/dish-4.png" alt="Black-Back Perch Stewing"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALL TO ACTION ============ -->
+  <section class="cta" id="cta">
+    <div class="wrap cta__inner">
+      <img class="cta__mark" src="../assets/logo-mark.png" alt="">
+      <p class="cta__kicker">Your waypoint is waiting</p>
+      <h2 class="cta__title">Make <em>Liyue</em><br>Your Next Stop</h2>
+      <div class="trip-meta trip-meta--center">
+        <p class="trip-meta__price"><span class="peso">₱</span>15,000<small>per person</small></p>
+        <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">4 Days / 3 Nights</p>
+      </div>
+      <a class="cta__btn" href="home.html#inquiry">Book Now</a>
+    </div>
+  </section>
+
+</body>
+</html>
