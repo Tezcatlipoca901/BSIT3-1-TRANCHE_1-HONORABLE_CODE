@@ -1,5 +1,5 @@
 /* ==========================================================
-   WaypointGO — Snezhnaya page
+   WaypointGO — Nations Pages (Shared Styles)
    Design width: 1440px. Stacked layout below 1100px.
    ========================================================== */
 
@@ -21,7 +21,7 @@
   --font-serif: "Playfair Display", Georgia, serif;
   --font-body: "Montserrat", "Segoe UI", sans-serif;
   --page: 1440px;
-  --hero-overlay: rgba(45, 50, 63, 0.78);
+  --hero-overlay: rgba(47, 53, 65, 0.78);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -34,20 +34,26 @@ ol, ul { list-style: none; }
 section { position: relative; }
 .wrap { position: relative; max-width: var(--page); margin: 0 auto; }
 
-/* ---------- logo + Paimon: full-width and fluid, repeated at the top of every section as in the design ---------- */
+/* ---------- logo + Paimon: fixed navbar ---------- */
 .chrome {
   --pm: clamp(52px, 5.8vw, 84px);      /* Paimon size */
   --pr: clamp(14px, 3.05vw, 44px);     /* right inset */
   --pt: clamp(10px, 1.4vw, 20px);      /* top inset */
   position: absolute; z-index: 20; top: 0; left: 0; right: 0; height: 0; pointer-events: none;
 }
+.chrome--fixed {
+  position: fixed;
+  backdrop-filter: blur(10px);
+  height: auto;
+  padding: clamp(10px, 1.4vw, 20px) 0;
+}
 .chrome a, .chrome label, .chrome .menu { pointer-events: auto; }
 .chrome__brand { position: absolute; left: clamp(14px, 2.5vw, 36px); top: clamp(12px, 1.7vw, 24px); }
 .chrome__brand img { width: clamp(124px, 14.9vw, 215px); height: auto; }
-.chrome__paimon { position: absolute; right: var(--pr); top: var(--pt); width: var(--pm); cursor: pointer; }
+.chrome__paimon { position: absolute; right: var(--pr); top: var(--pt); width: var(--pm); cursor: pointer; display: block; }
 .chrome__paimon img { width: 100%; height: auto; transition: transform .2s; }
 .chrome__paimon:hover img { transform: scale(1.06); }
-.menu-toggle { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+.menu-toggle { position: fixed; opacity: 0; pointer-events: none; width: 1px; height: 1px; top: -9999px; left: -9999px; }
 .menu-toggle:focus-visible + .chrome .chrome__paimon img { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
 
 /* Paimon menu — appears when Paimon is pressed; the emblem changes per nation */
@@ -98,7 +104,7 @@ section { position: relative; }
    ========================================================== */
 .hero {
   height: 674px;
-  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url("../assets/snezhnaya/hero-pattern.png") center / cover no-repeat;
+  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), var(--hero-bg) center / cover no-repeat;
 }
 .hero .wrap { height: 100%; }
 .hero__text { position: absolute; left: 85px; top: 338px; width: 760px; }
@@ -111,10 +117,10 @@ section { position: relative; }
    MAP + SPOTS — the arrows move the photos (CSS-only carousel)
    ========================================================== */
 .spots {
-  height: 905px; background: #0f2a30 url("../assets/snezhnaya/map.jpg") center / cover no-repeat;
+  height: 905px; background: #0f2a30 var(--map-bg) center / contain no-repeat;
   --card: min(660px, calc(50vw - 60px)); --gap: 64px; --step: calc(var(--card) + var(--gap));
 }
-.spots__radio { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+.spots__radio { position: fixed; opacity: 0; pointer-events: none; width: 1px; height: 1px; top: -9999px; left: -9999px; }
 .spots__stage { position: absolute; left: 0; right: 0; top: 168px; height: 620px; }
 .spots__viewport { height: 100%; margin-left: calc(50% - 20px); overflow: hidden; }
 .spots__track { display: flex; gap: var(--gap); align-items: flex-start; padding-left: 10px; transition: transform .55s cubic-bezier(.22, .7, .2, 1); }
@@ -137,6 +143,8 @@ section { position: relative; }
 #spot-r1:checked ~ .spots__stage .spots__nav--1 { display: block; }
 #spot-r2:checked ~ .spots__stage .spots__track { transform: translateX(calc(var(--step) * -1)); }
 #spot-r2:checked ~ .spots__stage .spots__nav--2 { display: block; }
+#spot-r3:checked ~ .spots__stage .spots__track { transform: translateX(calc(var(--step) * -2)); }
+#spot-r3:checked ~ .spots__stage .spots__nav--3 { display: block; }
 
 /* ==========================================================
    ITINERARY — description (left) stays put, only the right side scrolls
@@ -185,10 +193,10 @@ section { position: relative; }
 /* ==========================================================
    LOCAL DELICACIES — description (left) stays put, only the right side scrolls
    ========================================================== */
-.delicacies { --rowgap: 110px; height: 833px; background: #fff; color: var(--navy); }
+.delicacies { --rowgap: 40px; height: 833px; background: #fff; color: var(--navy); }
 .delicacies__grid { height: 100%; display: grid; grid-template-columns: 495px minmax(0, 1fr); }
 .delicacies__chef-clip { position: absolute; z-index: 0; left: 0; top: 0; width: 640px; height: 100%; overflow: hidden; pointer-events: none; }
-.delicacies__chef { position: absolute; left: 22px; top: 410px; width: 580px; max-width: none; opacity: .17; filter: sepia(.45) saturate(.7); }
+.delicacies__chef { position: absolute; left: 22px; top: 410px; width: 580px; max-width: none; opacity: .35; filter: sepia(.45) saturate(.7); }
 .delicacies__intro { position: relative; z-index: 2; padding: 190px 0 0 75px; }
 .delicacies .section-title { font-size: 66px; line-height: 74px; }
 .delicacies .section-title em { font-size: 66px; line-height: 74px; }
@@ -200,7 +208,7 @@ section { position: relative; }
 .dishes li { position: relative; }
 .dishes img { width: auto; max-width: 100%; height: auto; }
 .dishes li:nth-child(3)::before {
-  content: ""; display: block; position: absolute; top: calc(var(--rowgap) / -2 - 20px); left: 0; width: calc(200% + 60px); height: 40px;
+  content: ""; display: none; position: absolute; top: calc(var(--rowgap) / -2 - 20px); left: 0; width: calc(200% + 60px); height: 40px;
   background: url("../assets/divider-part.png") center / 300px auto no-repeat; pointer-events: none;
 }
 
@@ -209,7 +217,7 @@ section { position: relative; }
    ========================================================== */
 .cta {
   height: 760px;
-  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url("../assets/snezhnaya/hero-pattern.png") center / cover no-repeat;
+  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), var(--hero-bg) center / cover no-repeat;
 }
 .cta__inner { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 170px; }
 .cta__mark { width: 54px; height: auto; }
@@ -234,15 +242,15 @@ section { position: relative; }
   .hero__text { position: static; width: auto; padding: 120px 24px 60px; }
   .hero__title { font-size: 48px; line-height: 56px; }
 
-  .spots { height: auto; padding-bottom: 40px; --card: min(80vw, 520px); --gap: 40px; }
+  .spots { height: auto; padding-bottom: 40px; background-size: cover; --card: min(90vw, 520px); --gap: 40px; }
   .spots__stage { position: relative; top: auto; height: auto; padding-top: 110px; }
   .spots__viewport { margin-left: 0; }
-  .spots__track { padding-left: 24px; }
+  .spots__track { padding-left: calc((100vw - var(--card)) / 2); }
   .spot__title { min-height: 64px; font-size: 24px; line-height: 32px; display: flex; align-items: flex-end; justify-content: center; }
   .spot-arrow { top: calc(110px + 112px + var(--card) * .3371 - 22px); width: 34px; }
   .spot-arrow img { width: 34px; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .6)); }
-  .spot-arrow--prev { left: 6px; }
-  .spot-arrow--next { left: calc(24px + var(--card) - 40px); }
+  .spot-arrow--prev { left: 10px; }
+  .spot-arrow--next { right: 10px; left: auto; }
 
   .itinerary, .delicacies { height: auto; }
   .itinerary__grid { height: auto; grid-template-columns: minmax(0, 1fr); padding: 100px 24px 50px; }
@@ -251,10 +259,13 @@ section { position: relative; }
   .itinerary__photo { width: 100%; height: auto; aspect-ratio: 16 / 9; }
   .itinerary__photo figcaption { width: min(318px, calc(100% - 32px)); left: 16px; bottom: 16px; }
   .itinerary__scroll { height: auto; overflow: visible; padding: 40px 0 0; }
-  .timeline { padding-left: 52px; }
+  .timeline { padding-left: 52px; max-width: 100%; }
+  .day { max-width: 100%; }
   .day__num { left: -30px; width: 38px; height: 38px; font-size: 16px; }
   .day:not(:last-child)::before { left: -30px; }
-  .day__card { padding: 22px 22px 18px; min-height: 0; }
+  .day__card { padding: 22px 22px 18px; min-height: 0; max-width: 100%; box-sizing: border-box; }
+  .day__card h3 { font-size: 18px; line-height: 24px; word-wrap: break-word; }
+  .day__card p { font-size: 13px; line-height: 20px; word-wrap: break-word; }
   .day:first-child h3 { padding-right: 0; }
 
   .delicacies__grid { height: auto; grid-template-columns: minmax(0, 1fr); padding: 100px 24px 60px; }
@@ -263,7 +274,7 @@ section { position: relative; }
   .delicacies__intro { padding: 0 0 30px; }
   .delicacies .section-title, .delicacies .section-title em { font-size: 48px; line-height: 56px; }
   .delicacies__scroll { height: auto; overflow: visible; padding: 0; }
-  .dishes { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .dishes { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .dishes img { width: 100%; }
   .dishes li::before { display: none !important; }
 
@@ -274,4 +285,16 @@ section { position: relative; }
   .section-title { font-size: 36px; line-height: 44px; } .section-title em { font-size: 40px; line-height: 48px; }
   .trip-meta { flex-wrap: wrap; gap: 10px 24px; }
   .hero__title { font-size: 40px; line-height: 48px; }
+  .hero__text { padding: 100px 20px 50px; }
+  
+  .spots { background-size: cover; }
+  .spots__track { padding-left: calc((100vw - var(--card)) / 2); }
+  
+  .delicacies__grid { padding: 80px 20px 50px; }
+  .delicacies .section-title, .delicacies .section-title em { font-size: 36px; line-height: 44px; }
+  
+  .itinerary__grid { padding: 80px 20px 40px; }
+  
+  .cta__inner { padding: 80px 20px 70px; }
+  .cta__title { font-size: 32px; line-height: 44px; }
 }
