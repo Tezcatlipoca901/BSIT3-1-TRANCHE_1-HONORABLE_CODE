@@ -15,23 +15,25 @@
 </head>
 <body>
 
+  <!-- ============ FIXED NAVBAR ============ -->
+  <input class="menu-toggle" type="checkbox" id="menu-main" aria-label="Open page menu">
+  <header class="chrome chrome--fixed">
+    <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+    <label class="chrome__paimon" for="menu-main"><img src="../assets/paimon.png" alt="Menu"></label>
+    <label class="menu-backdrop" for="menu-main"></label>
+    <nav class="menu" aria-label="Page menu">
+      <img class="menu__emblem" src="../assets/mondstadt/emblem.png" alt="">
+      <ul class="menu__list">
+        <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+        <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+        <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+      </ul>
+      <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+    </nav>
+  </header>
+
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
-    <input class="menu-toggle" type="checkbox" id="menu-hero" aria-label="Open page menu">
-    <header class="chrome">
-      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
-      <label class="chrome__paimon" for="menu-hero"><img src="../assets/paimon.png" alt="Menu"></label>
-      <label class="menu-backdrop" for="menu-hero"></label>
-      <nav class="menu" aria-label="Page menu">
-        <img class="menu__emblem" src="../assets/mondstadt/emblem.png" alt="">
-        <ul class="menu__list">
-          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
-          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
-          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
-        </ul>
-        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
-      </nav>
-    </header>
     <div class="wrap">
       <div class="hero__text">
         <p class="hero__tag">The City of Freedom Expedition</p>
@@ -50,21 +52,6 @@
     <input class="spots__radio" type="radio" name="spot-mondstadt" id="spot-r1" checked aria-label="Show Windswept Wilderness">
     <input class="spots__radio" type="radio" name="spot-mondstadt" id="spot-r2" aria-label="Show The City of Wind">
     <input class="spots__radio" type="radio" name="spot-mondstadt" id="spot-r3" aria-label="Show Favonius Cathedral">
-    <input class="menu-toggle" type="checkbox" id="menu-spots" aria-label="Open page menu">
-    <header class="chrome">
-      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
-      <label class="chrome__paimon" for="menu-spots"><img src="../assets/paimon.png" alt="Menu"></label>
-      <label class="menu-backdrop" for="menu-spots"></label>
-      <nav class="menu" aria-label="Page menu">
-        <img class="menu__emblem" src="../assets/mondstadt/emblem.png" alt="">
-        <ul class="menu__list">
-          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
-          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
-          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
-        </ul>
-        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
-      </nav>
-    </header>
     <div class="spots__stage">
       <div class="spots__viewport">
         <div class="spots__track">
@@ -96,21 +83,6 @@
 
   <!-- ============ ITINERARY ============ -->
   <section class="itinerary" id="itinerary">
-    <input class="menu-toggle" type="checkbox" id="menu-itinerary" aria-label="Open page menu">
-    <header class="chrome">
-      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
-      <label class="chrome__paimon" for="menu-itinerary"><img src="../assets/paimon.png" alt="Menu"></label>
-      <label class="menu-backdrop" for="menu-itinerary"></label>
-      <nav class="menu" aria-label="Page menu">
-        <img class="menu__emblem" src="../assets/mondstadt/emblem.png" alt="">
-        <ul class="menu__list">
-          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
-          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
-          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
-        </ul>
-        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
-      </nav>
-    </header>
     <div class="wrap itinerary__grid">
       <div class="itinerary__intro">
         <p class="eyebrow">Your day-by-day journey</p>
@@ -154,21 +126,6 @@
 
   <!-- ============ LOCAL DELICACIES ============ -->
   <section class="delicacies" id="delicacies">
-    <input class="menu-toggle" type="checkbox" id="menu-delicacies" aria-label="Open page menu">
-    <header class="chrome">
-      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
-      <label class="chrome__paimon" for="menu-delicacies"><img src="../assets/paimon.png" alt="Menu"></label>
-      <label class="menu-backdrop" for="menu-delicacies"></label>
-      <nav class="menu" aria-label="Page menu">
-        <img class="menu__emblem" src="../assets/mondstadt/emblem.png" alt="">
-        <ul class="menu__list">
-          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
-          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
-          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
-        </ul>
-        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
-      </nav>
-    </header>
     <div class="wrap delicacies__grid">
       <div class="delicacies__chef-clip"><img class="delicacies__chef" src="../assets/chef.png" alt=""></div>
       <div class="delicacies__intro">
@@ -188,21 +145,6 @@
 
   <!-- ============ CALL TO ACTION ============ -->
   <section class="cta" id="cta">
-    <input class="menu-toggle" type="checkbox" id="menu-cta" aria-label="Open page menu">
-    <header class="chrome">
-      <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
-      <label class="chrome__paimon" for="menu-cta"><img src="../assets/paimon.png" alt="Menu"></label>
-      <label class="menu-backdrop" for="menu-cta"></label>
-      <nav class="menu" aria-label="Page menu">
-        <img class="menu__emblem" src="../assets/mondstadt/emblem.png" alt="">
-        <ul class="menu__list">
-          <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
-          <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
-          <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
-        </ul>
-        <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
-      </nav>
-    </header>
     <div class="wrap cta__inner">
       <img class="cta__mark" src="../assets/logo-mark.png" alt="">
       <p class="cta__kicker">Your waypoint is waiting</p>
