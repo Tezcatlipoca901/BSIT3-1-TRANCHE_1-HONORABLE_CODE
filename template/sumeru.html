@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sumeru | WaypointGO</title>
+  <link rel="icon" href="../assets/logo-mark.png">
+  <link rel="stylesheet" href="../design/nations.css">
+  <style>
+    :root {
+      --hero-bg: url("../assets/sumeru/hero-pattern.png");
+      --map-bg: url("../assets/sumeru/map.jpg");
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ FIXED NAVBAR ============ -->
+  <input class="menu-toggle" type="checkbox" id="menu-main" aria-label="Open page menu">
+  <header class="chrome chrome--fixed">
+    <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+    <label class="chrome__paimon" for="menu-main"><img src="../assets/paimon.png" alt="Menu"></label>
+    <label class="menu-backdrop" for="menu-main"></label>
+    <nav class="menu" aria-label="Page menu">
+      <img class="menu__emblem" src="../assets/sumeru/emblem.png" alt="">
+      <ul class="menu__list">
+        <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+        <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+        <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+      </ul>
+      <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero__text">
+        <p class="hero__tag">The Nation of Wisdom and Verdure</p>
+        <h1 class="hero__title">Sumeru</h1>
+        <p class="hero__desc">A captivating expedition across lush rainforests and vast golden deserts, where ancient wisdom and natural wonders converge. Perfect for those seeking knowledge and adventure alike.</p>
+        <div class="trip-meta">
+          <p class="trip-meta__price"><span class="peso">₱</span>17,500<small>per person</small></p>
+          <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">5 Days / 4 Nights</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
+  <section class="spots" id="spots">
+    <input class="spots__radio" type="radio" name="spot-sumeru" id="spot-r1" checked aria-label="Show Sumeru City">
+    <input class="spots__radio" type="radio" name="spot-sumeru" id="spot-r2" aria-label="Show Vanarana">
+    <input class="spots__radio" type="radio" name="spot-sumeru" id="spot-r3" aria-label="Show Aaru Village">
+    <div class="spots__stage">
+      <div class="spots__viewport">
+        <div class="spots__track">
+          <article class="spot" id="spot-1">
+            <h2 class="spot__title">Sumeru City</h2>
+            <p class="spot__region">Dharma Forest</p>
+            <img class="spot__photo" src="../assets/sumeru/spot-1.jpg" alt="Sumeru City, Dharma Forest">
+            <p class="spot__caption">A city of scholars built into the canopy of a colossal tree, where knowledge flows as freely as the waterfalls around it.</p>
+          </article>
+          <article class="spot" id="spot-2">
+            <h2 class="spot__title">Vanarana</h2>
+            <p class="spot__region">Lost Nursery</p>
+            <img class="spot__photo" src="../assets/sumeru/spot-2.jpg" alt="Vanarana, Lost Nursery">
+            <p class="spot__caption">A hidden dreamlike sanctuary deep in the forest, where nature spirits tend gardens of glowing flora beneath ancient boughs.</p>
+          </article>
+          <article class="spot" id="spot-3">
+            <h2 class="spot__title">Aaru Village</h2>
+            <p class="spot__region">Great Red Sand</p>
+            <img class="spot__photo" src="../assets/sumeru/spot-3.jpg" alt="Aaru Village, Great Red Sand">
+            <p class="spot__caption">A resilient desert settlement at the edge of the sands, offering warm hospitality and stunning views of the golden dunes at sunset.</p>
+          </article>
+        </div>
+      </div>
+      <div class="spots__nav spots__nav--1"><span class="spot-arrow spot-arrow--prev is-off"><img src="../assets/arrow-prev.png" alt=""></span><label class="spot-arrow spot-arrow--next" for="spot-r2" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--2"><label class="spot-arrow spot-arrow--prev" for="spot-r1" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><label class="spot-arrow spot-arrow--next" for="spot-r3" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--3"><label class="spot-arrow spot-arrow--prev" for="spot-r2" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><span class="spot-arrow spot-arrow--next is-off"><img src="../assets/arrow-next.png" alt=""></span></div>
+    </div>
+  </section>
+
+  <!-- ============ ITINERARY ============ -->
+  <section class="itinerary" id="itinerary">
+    <div class="wrap itinerary__grid">
+      <div class="itinerary__intro">
+        <p class="eyebrow">Your day-by-day journey</p>
+        <h2 class="section-title">Itinerary<em>at a glance.</em></h2>
+        <p class="itinerary__lead">Every day balances guided discovery with enough breathing room to enjoy the destination your way. Timing may adjust for weather and local events.</p>
+        <figure class="itinerary__photo">
+          <img src="../assets/sumeru/itinerary.jpg" alt="Sumeru City">
+          <figcaption><strong>Sumeru City</strong><span>Your base for the expedition</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="itinerary__scroll" tabindex="0" aria-label="Day-by-day itinerary, scroll to see more">
+        <ol class="timeline">
+          <li class="day">
+            <span class="day__num">1</span>
+            <div class="day__card">
+              <h3>Arrival at Sumeru City</h3>
+              <p>Arrive at the foot of the great Sumeru tree and ascend through winding paths to your treetop accommodation. Spend the evening exploring the Akademiya district and savoring local street food in the lantern-lit bazaar.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Sumeru City</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">2</span>
+            <div class="day__card">
+              <h3>The Akademiya & Sanctuary of Surasthana</h3>
+              <p>Delve into the halls of the Akademiya, the greatest seat of learning in Teyvat. Visit the Sanctuary of Surasthana and its lush hanging gardens, followed by an afternoon at the Grand Bazaar.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Sumeru City</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">3</span>
+            <div class="day__card">
+              <h3>Vanarana & the Rainforest</h3>
+              <p>Trek deep into the Dharma Forest to the hidden sanctuary of Vanarana. Walk among glowing flora, listen to the songs of the Aranara, and enjoy a picnic beside crystalline forest pools.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Sumeru City</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">4</span>
+            <div class="day__card">
+              <h3>Desert Expedition to Aaru Village</h3>
+              <p>Cross from the lush forest into the Great Red Sand. Arrive at Aaru Village for an authentic desert experience — camel rides across the dunes, stargazing, and a traditional campfire feast.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Aaru Village</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">5</span>
+            <div class="day__card">
+              <h3>Desert Sunrise & Farewell</h3>
+              <p>Watch the sun rise over the golden dunes one last time before your transfer back through the forest, with memories of wisdom and wonder in tow.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCAL DELICACIES ============ -->
+  <section class="delicacies" id="delicacies">
+    <div class="wrap delicacies__grid">
+      <div class="delicacies__chef-clip"><img class="delicacies__chef" src="../assets/chef.png" alt=""></div>
+      <div class="delicacies__intro">
+        <p class="eyebrow">Taste the culture</p>
+        <h2 class="section-title">Local<em>delicacies.</em></h2>
+      </div>
+      <div class="delicacies__scroll" tabindex="0" aria-label="Local delicacies, scroll to see more">
+        <ul class="dishes">
+          <li><img src="../assets/sumeru/dish-1.png" alt="Tahchin"></li>
+          <li><img src="../assets/sumeru/dish-2.png" alt="Lambad Fish Roll"></li>
+          <li><img src="../assets/sumeru/dish-3.png" alt="Biryani"></li>
+          <li><img src="../assets/sumeru/dish-4.png" alt="Padisarah Pudding"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALL TO ACTION ============ -->
+  <section class="cta" id="cta">
+    <div class="wrap cta__inner">
+      <img class="cta__mark" src="../assets/logo-mark.png" alt="">
+      <p class="cta__kicker">Your waypoint is waiting</p>
+      <h2 class="cta__title">Make <em>Sumeru</em><br>Your Next Stop</h2>
+      <div class="trip-meta trip-meta--center">
+        <p class="trip-meta__price"><span class="peso">₱</span>17,500<small>per person</small></p>
+        <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">5 Days / 4 Nights</p>
+      </div>
+      <a class="cta__btn" href="home.html#inquiry">Book Now</a>
+    </div>
+  </section>
+
+</body>
+</html>

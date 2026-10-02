@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fontaine | WaypointGO</title>
+  <link rel="icon" href="../assets/logo-mark.png">
+  <link rel="stylesheet" href="../design/nations.css">
+  <style>
+    :root {
+      --hero-bg: url("../assets/fontaine/hero-pattern.png");
+      --map-bg: url("../assets/fontaine/map.jpg");
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ FIXED NAVBAR ============ -->
+  <input class="menu-toggle" type="checkbox" id="menu-main" aria-label="Open page menu">
+  <header class="chrome chrome--fixed">
+    <a class="chrome__brand" href="home.html"><img src="../assets/logo.png" alt="waypointgo. home"></a>
+    <label class="chrome__paimon" for="menu-main"><img src="../assets/paimon.png" alt="Menu"></label>
+    <label class="menu-backdrop" for="menu-main"></label>
+    <nav class="menu" aria-label="Page menu">
+      <img class="menu__emblem" src="../assets/fontaine/emblem.png" alt="">
+      <ul class="menu__list">
+        <li><a href="#spots"><img src="../assets/menu-waypoints.png" alt=""><span>Waypoints</span></a></li>
+        <li><a href="#itinerary"><img src="../assets/menu-itinerary.png" alt=""><span>Itinerary</span></a></li>
+        <li><a href="#delicacies"><img src="../assets/menu-delicacies.png" alt=""><span>Delicacies</span></a></li>
+      </ul>
+      <a class="menu__cta" href="home.html#nations">Go to Expedition</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero__text">
+        <p class="hero__tag">The Nation of Justice and Water</p>
+        <h1 class="hero__title">Fontaine</h1>
+        <p class="hero__desc">An elegant journey through grand aquatic architecture, underwater wonders, and theatrical culture. Ideal for travelers drawn to art, justice, and the beauty of water.</p>
+        <div class="trip-meta">
+          <p class="trip-meta__price"><span class="peso">₱</span>20,000<small>per person</small></p>
+          <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">5 Days / 4 Nights</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
+  <section class="spots" id="spots">
+    <input class="spots__radio" type="radio" name="spot-fontaine" id="spot-r1" checked aria-label="Show Court of Fontaine">
+    <input class="spots__radio" type="radio" name="spot-fontaine" id="spot-r2" aria-label="Show Romaritime Harbor">
+    <input class="spots__radio" type="radio" name="spot-fontaine" id="spot-r3" aria-label="Show Erinnyes Forest">
+    <div class="spots__stage">
+      <div class="spots__viewport">
+        <div class="spots__track">
+          <article class="spot" id="spot-1">
+            <h2 class="spot__title">Court of Fontaine</h2>
+            <p class="spot__region">Central Fontaine</p>
+            <img class="spot__photo" src="../assets/fontaine/spot-1.jpg" alt="Court of Fontaine, Central Fontaine">
+            <p class="spot__caption">The grand courthouse and opera house at the heart of the nation, where elegance and justice flow together like water.</p>
+          </article>
+          <article class="spot" id="spot-2">
+            <h2 class="spot__title">Romaritime Harbor</h2>
+            <p class="spot__region">Fontaine Coast</p>
+            <img class="spot__photo" src="../assets/fontaine/spot-2.jpg" alt="Romaritime Harbor, Fontaine Coast">
+            <p class="spot__caption">A bustling seaside harbor lined with ornate lampposts and cafés, where travelers first set foot in the nation of water.</p>
+          </article>
+          <article class="spot" id="spot-3">
+            <h2 class="spot__title">Erinnyes Forest</h2>
+            <p class="spot__region">Western Fontaine</p>
+            <img class="spot__photo" src="../assets/fontaine/spot-3.jpg" alt="Erinnyes Forest, Western Fontaine">
+            <p class="spot__caption">A misty woodland threaded with streams and waterfalls, where ancient ruins sleep beneath canopies of silver leaves.</p>
+          </article>
+        </div>
+      </div>
+      <div class="spots__nav spots__nav--1"><span class="spot-arrow spot-arrow--prev is-off"><img src="../assets/arrow-prev.png" alt=""></span><label class="spot-arrow spot-arrow--next" for="spot-r2" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--2"><label class="spot-arrow spot-arrow--prev" for="spot-r1" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><label class="spot-arrow spot-arrow--next" for="spot-r3" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--3"><label class="spot-arrow spot-arrow--prev" for="spot-r2" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><span class="spot-arrow spot-arrow--next is-off"><img src="../assets/arrow-next.png" alt=""></span></div>
+    </div>
+  </section>
+
+  <!-- ============ ITINERARY ============ -->
+  <section class="itinerary" id="itinerary">
+    <div class="wrap itinerary__grid">
+      <div class="itinerary__intro">
+        <p class="eyebrow">Your day-by-day journey</p>
+        <h2 class="section-title">Itinerary<em>at a glance.</em></h2>
+        <p class="itinerary__lead">Every day balances guided discovery with enough breathing room to enjoy the destination your way. Timing may adjust for weather and local events.</p>
+        <figure class="itinerary__photo">
+          <img src="../assets/fontaine/itinerary.jpg" alt="Court of Fontaine">
+          <figcaption><strong>Court of Fontaine</strong><span>Your base for the expedition</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="itinerary__scroll" tabindex="0" aria-label="Day-by-day itinerary, scroll to see more">
+        <ol class="timeline">
+          <li class="day">
+            <span class="day__num">1</span>
+            <div class="day__card">
+              <h3>Arrival at Romaritime Harbor</h3>
+              <p>Arrive by steamship at the scenic Romaritime Harbor and take in the elegant waterfront. Check in to your canal-side accommodation and enjoy an evening stroll through gas-lit boulevards, sampling Fontainian pastries.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Court of Fontaine</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">2</span>
+            <div class="day__card">
+              <h3>Court of Fontaine & Opera Epiclese</h3>
+              <p>Explore the grand courthouse and attend a matinee at the Opera Epiclese. Witness the famous Fontaine trial system and wander through the galleries displaying masterworks of Fontainian art.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Court of Fontaine</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">3</span>
+            <div class="day__card">
+              <h3>Erinnyes Forest & Waterfalls</h3>
+              <p>Journey into the misty Erinnyes Forest for a guided nature walk past cascading waterfalls, ancient ruins, and crystalline pools. Return for an evening of fine Fontainian dining.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Court of Fontaine</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">4</span>
+            <div class="day__card">
+              <h3>Underwater Exploration</h3>
+              <p>Descend beneath Fontaine's waters for a guided tour of the subaquatic landscapes, discovering the unique underwater ecosystems and architecture that make Fontaine truly one of a kind.</p>
+              <p class="day__stay"><img src="../assets/hotel-icon.png" alt="">Overnight at Court of Fontaine</p>
+            </div>
+          </li>
+          <li class="day">
+            <span class="day__num">5</span>
+            <div class="day__card">
+              <h3>Canal Cruise & Farewell</h3>
+              <p>Enjoy a final morning canal cruise through the city's waterways, passing beneath ornate bridges and along flower-lined banks before your departure transfer.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCAL DELICACIES ============ -->
+  <section class="delicacies" id="delicacies">
+    <div class="wrap delicacies__grid">
+      <div class="delicacies__chef-clip"><img class="delicacies__chef" src="../assets/chef.png" alt=""></div>
+      <div class="delicacies__intro">
+        <p class="eyebrow">Taste the culture</p>
+        <h2 class="section-title">Local<em>delicacies.</em></h2>
+      </div>
+      <div class="delicacies__scroll" tabindex="0" aria-label="Local delicacies, scroll to see more">
+        <ul class="dishes">
+          <li><img src="../assets/fontaine/dish-1.png" alt="Fontaine Croissant"></li>
+          <li><img src="../assets/fontaine/dish-2.png" alt="Poisson Seafood Soup"></li>
+          <li><img src="../assets/fontaine/dish-3.png" alt="Gardes Pâté"></li>
+          <li><img src="../assets/fontaine/dish-4.png" alt="Crème de la Crème"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALL TO ACTION ============ -->
+  <section class="cta" id="cta">
+    <div class="wrap cta__inner">
+      <img class="cta__mark" src="../assets/logo-mark.png" alt="">
+      <p class="cta__kicker">Your waypoint is waiting</p>
+      <h2 class="cta__title">Make <em>Fontaine</em><br>Your Next Stop</h2>
+      <div class="trip-meta trip-meta--center">
+        <p class="trip-meta__price"><span class="peso">₱</span>20,000<small>per person</small></p>
+        <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">5 Days / 4 Nights</p>
+      </div>
+      <a class="cta__btn" href="home.html#inquiry">Book Now</a>
+    </div>
+  </section>
+
+</body>
+</html>
