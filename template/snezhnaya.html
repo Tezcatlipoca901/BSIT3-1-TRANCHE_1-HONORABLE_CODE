@@ -9,7 +9,10 @@
   <style>
     :root {
       --hero-bg: url("../assets/snezhnaya/hero-pattern.png");
-      --map-bg: url("../assets/snezhnaya/map.jpg");
+      --map-bg: url("../assets/snezhnaya/map.png");
+      --map-w: 2287;    
+      --map-h: 1286;
+      --pin-w: 1.75%;
     }
   </style>
 </head>
@@ -48,10 +51,17 @@
   </section>
 
   <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
-  <section class="spots" id="spots">
+  <section class="spots" id="spots" style="--p1x:0.5595; --p1y:0.1291; --p2x:0.1078; --p2y:0.4891; --p3x:0.2858; --p3y:0.9199;">
     <input class="spots__radio" type="radio" name="spot-snezhnaya" id="spot-r1" checked aria-label="Show Zapolyarny Palace">
     <input class="spots__radio" type="radio" name="spot-snezhnaya" id="spot-r2" aria-label="Show Frost-Bound Valleys">
     <input class="spots__radio" type="radio" name="spot-snezhnaya" id="spot-r3" aria-label="Show Glacial Outposts">
+    <div class="spots__map" aria-hidden="true">
+      <div class="spots__zoom">
+        <img class="spots__pin spots__pin--1" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--2" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--3" src="../assets/Waypoint.png" alt="">
+      </div>
+    </div>
     <div class="spots__stage">
       <div class="spots__viewport">
         <div class="spots__track">
@@ -62,15 +72,22 @@
             <p class="spot__caption">A palace of ice and starlight, glowing against the long polar night.</p>
           </article>
           <article class="spot" id="spot-2">
-            <h2 class="spot__title">Frost-Bound Valleys</h2>
+            <h2 class="spot__title">Flamefeather Valley</h2>
             <p class="spot__region">Snezhnaya</p>
-            <img class="spot__photo" src="../assets/snezhnaya/spot-2.jpg" alt="Frost-Bound Valleys, Snezhnaya">
-            <p class="spot__caption">Snow-covered settlements tucked between frozen ridges, reached by rail and sled.</p>
+            <img class="spot__photo" src="../assets/snezhnaya/spot-2.png" alt="Flamefeather Valley, Snezhnaya">
+            <p class="spot__caption">A startling contrast to the frozen tundra above, this hidden subterranean valley boasts vibrant crimson foliage. However, travelers often find that its unusual, lingering warmth feels strangely unnerving.</p>
+          </article>
+          <article class="spot" id="spot-3">
+            <h2 class="spot__title">Sretomorozsk</h2>
+            <p class="spot__region">Snezhnaya</p>
+            <img class="spot__photo" src="../assets/snezhnaya/spot-3.jpg" alt="Sretomorozsk, Snezhnaya">
+            <p class="spot__caption">A snow-covered settlement tucked between frozen ridges. Travelers braving the harsh Snezhnayan winters can reach this quiet, resilient village by navigating the icy railways. </p>  
           </article>
         </div>
       </div>
       <div class="spots__nav spots__nav--1"><span class="spot-arrow spot-arrow--prev is-off"><img src="../assets/arrow-prev.png" alt=""></span><label class="spot-arrow spot-arrow--next" for="spot-r2" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
-      <div class="spots__nav spots__nav--2"><label class="spot-arrow spot-arrow--prev" for="spot-r1" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><span class="spot-arrow spot-arrow--next is-off"><img src="../assets/arrow-next.png" alt=""></span></div>
+      <div class="spots__nav spots__nav--2"><label class="spot-arrow spot-arrow--prev" for="spot-r1" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><label class="spot-arrow spot-arrow--next" for="spot-r3" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>
+      <div class="spots__nav spots__nav--3"> <label class="spot-arrow spot-arrow--prev" for="spot-r2" aria-label="Previous spot"><img src="../assets/arrow-prev.png" alt=""></label><span class="spot-arrow spot-arrow--next is-off"><img src="../assets/arrow-next.png" alt=""></span></div>
     </div>
   </section>
 
