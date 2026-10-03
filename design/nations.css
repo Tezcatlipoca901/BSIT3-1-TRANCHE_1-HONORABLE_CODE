@@ -645,16 +645,16 @@ section {
 }
 
 /* ==========================================================
-   ITINERARY — description (left) stays put, only the right side scrolls
+   ITINERARY — description (left) stays put, full content always visible
    ========================================================== */
 .itinerary {
-  height: 833px;
+  height: auto;
   background: #fff;
   color: var(--navy);
 }
 
 .itinerary__grid {
-  height: 100%;
+  height: auto;
   display: grid;
   grid-template-columns: minmax(0, 565px) minmax(0, 1fr);
   padding-left: 90px;
@@ -719,11 +719,8 @@ section {
 }
 
 .itinerary__scroll {
-  height: 833px;
-  overflow-y: auto;
-  overscroll-behavior: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  height: auto;
+  overflow-y: visible;
   padding: 49px 92px 49px 0;
 }
 
@@ -828,17 +825,17 @@ section {
 }
 
 /* ==========================================================
-   LOCAL DELICACIES — description (left) stays put, only the right side scrolls
+   LOCAL DELICACIES — description (left) stays put, full content always visible
    ========================================================== */
 .delicacies {
   --rowgap: 40px;
-  height: 833px;
+  height: auto;
   background: #fff;
   color: var(--navy);
 }
 
 .delicacies__grid {
-  height: 100%;
+  height: auto;
   display: grid;
   grid-template-columns: 495px minmax(0, 1fr);
 }
@@ -883,11 +880,8 @@ section {
 .delicacies__scroll {
   position: relative;
   z-index: 2;
-  height: 833px;
-  overflow-y: auto;
-  overscroll-behavior: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  height: auto;
+  overflow-y: visible;
   padding: 85px 40px 85px 0;
 }
 
