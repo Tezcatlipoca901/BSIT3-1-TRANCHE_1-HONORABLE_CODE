@@ -9,7 +9,10 @@
   <style>
     :root {
       --hero-bg: url("../assets/inazuma/hero-pattern.png");
-      --map-bg: url("../assets/inazuma/map.jpg");
+      --map-bg: url("../assets/inazuma/map.png");
+      --map-w: 2287;     /* map.jpg size */
+      --map-h: 1287;
+      --pin-w: 1.78%;    /* pin width as a share of the map */
     }
   </style>
 </head>
@@ -48,29 +51,36 @@
   </section>
 
   <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
-  <section class="spots" id="spots">
+  <section class="spots" id="spots" style="--p1x:0.4199; --p1y:0.1678; --p2x:0.2055; --p2y:0.2269; --p3x:0.4719; --p3y:0.7156;">
     <input class="spots__radio" type="radio" name="spot-inazuma" id="spot-r1" checked aria-label="Show Narukami Island Grand Shrine">
     <input class="spots__radio" type="radio" name="spot-inazuma" id="spot-r2" aria-label="Show Ritou Trading Port">
     <input class="spots__radio" type="radio" name="spot-inazuma" id="spot-r3" aria-label="Show Tenshukaku">
+    <div class="spots__map" aria-hidden="true">
+      <div class="spots__zoom">
+        <img class="spots__pin spots__pin--1" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--2" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--3" src="../assets/Waypoint.png" alt="">
+      </div>
+    </div>
     <div class="spots__stage">
       <div class="spots__viewport">
         <div class="spots__track">
           <article class="spot" id="spot-1">
             <h2 class="spot__title">Narukami Island Grand Shrine</h2>
             <p class="spot__region">Mt. Yougou</p>
-            <img class="spot__photo" src="../assets/inazuma/spot-1.jpg" alt="Narukami Island Grand Shrine, Mt. Yougou">
+            <img class="spot__photo" src="../assets/inazuma/spot-3.png" alt="Narukami Island Grand Shrine, Mt. Yougou">
             <p class="spot__caption">A sacred sanctuary nestled among ancient sakura trees, where tradition and spirituality converge under purple skies.</p>
           </article>
           <article class="spot" id="spot-2">
             <h2 class="spot__title">Ritou Trading Port</h2>
             <p class="spot__region">Narukami Island</p>
-            <img class="spot__photo" src="../assets/inazuma/spot-2.jpg" alt="Ritou Trading Port, Narukami Island">
+            <img class="spot__photo" src="../assets/inazuma/spot-1.jpg" alt="Ritou Trading Port, Narukami Island">
             <p class="spot__caption">The gateway to Inazuma, a bustling port where merchants from across Teyvat gather beneath traditional lanterns.</p>
           </article>
           <article class="spot" id="spot-3">
             <h2 class="spot__title">Tenshukaku</h2>
             <p class="spot__region">Inazuma City</p>
-            <img class="spot__photo" src="../assets/inazuma/spot-3.jpg" alt="Tenshukaku, Inazuma City">
+            <img class="spot__photo" src="../assets/inazuma/spot-2.jpg" alt="Tenshukaku, Inazuma City">
             <p class="spot__caption">The grand castle that stands as a testament to Inazuma's eternal pursuit of eternity, with architecture that commands respect.</p>
           </article>
         </div>

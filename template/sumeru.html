@@ -9,7 +9,11 @@
   <style>
     :root {
       --hero-bg: url("../assets/sumeru/hero-pattern.png");
-      --map-bg: url("../assets/sumeru/map.jpg");
+      --map-bg: url("../assets/sumeru/map.png");
+      --map-w: 2263;     
+      --map-h: 1337;
+      --pin-w: 2.83%;    
+      --pin-scale: 1.9;
     }
   </style>
 </head>
@@ -48,10 +52,17 @@
   </section>
 
   <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
-  <section class="spots" id="spots">
+  <section class="spots" id="spots" style="--p1x:0.4865; --p1y:0.2977; --p2x:0.5603; --p2y:0.4413; --p3x:0.2475; --p3y:0.7315;">
     <input class="spots__radio" type="radio" name="spot-sumeru" id="spot-r1" checked aria-label="Show Sumeru City">
     <input class="spots__radio" type="radio" name="spot-sumeru" id="spot-r2" aria-label="Show Vanarana">
     <input class="spots__radio" type="radio" name="spot-sumeru" id="spot-r3" aria-label="Show Aaru Village">
+    <div class="spots__map" aria-hidden="true">
+      <div class="spots__zoom">
+        <img class="spots__pin spots__pin--1" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--2" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--3" src="../assets/Waypoint.png" alt="">
+      </div>
+    </div>
     <div class="spots__stage">
       <div class="spots__viewport">
         <div class="spots__track">
@@ -62,17 +73,16 @@
             <p class="spot__caption">A city of scholars built into the canopy of a colossal tree, where knowledge flows as freely as the waterfalls around it.</p>
           </article>
           <article class="spot" id="spot-2">
-            <h2 class="spot__title">Vanarana</h2>
-            <p class="spot__region">Lost Nursery</p>
-            <img class="spot__photo" src="../assets/sumeru/spot-2.jpg" alt="Vanarana, Lost Nursery">
-            <p class="spot__caption">A hidden dreamlike sanctuary deep in the forest, where nature spirits tend gardens of glowing flora beneath ancient boughs.</p>
+            <h2 class="spot__title">Gandharva Ville</h2>
+            <p class="spot__region">Forest Ranger Outpost</p>
+            <img class="spot__photo" src="../assets/sumeru/spot-2.jpg" alt="Gandharva Ville, Forest Ranger Outpost">
+            <p class="spot__caption">A vital settlement located on the periphery of Sumeru's deep rainforest. Here, vigilant Forest Rangers watch over the local ecosystem and guide travelers venturing in from Sumeru City, ensuring their safety within the wild.</p>
           </article>
           <article class="spot" id="spot-3">
-            <h2 class="spot__title">Aaru Village</h2>
-            <p class="spot__region">Great Red Sand</p>
-            <img class="spot__photo" src="../assets/sumeru/spot-3.jpg" alt="Aaru Village, Great Red Sand">
-            <p class="spot__caption">A resilient desert settlement at the edge of the sands, offering warm hospitality and stunning views of the golden dunes at sunset.</p>
-          </article>
+            <h2 class="spot__title">Caravan Ribat</h2>
+            <p class="spot__region">Ashavan Realm, Sumeru</p>
+            <img class="spot__photo" src="../assets/sumeru/spot-3.jpg" alt="Caravan Ribat, Ashavan Realm, Sumeru">
+            <p class="spot__caption">A lively desert-edge hub frequented by traveling merchants, Akademiya researchers, and Eremite mercenaries stocking up on supplies before braving the Great Red Sand. </p>
         </div>
       </div>
       <div class="spots__nav spots__nav--1"><span class="spot-arrow spot-arrow--prev is-off"><img src="../assets/arrow-prev.png" alt=""></span><label class="spot-arrow spot-arrow--next" for="spot-r2" aria-label="Next spot"><img src="../assets/arrow-next.png" alt=""></label></div>

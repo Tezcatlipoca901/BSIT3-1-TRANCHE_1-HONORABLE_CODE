@@ -9,7 +9,10 @@
   <style>
     :root {
       --hero-bg: url("../assets/natlan/hero-pattern.png");
-      --map-bg: url("../assets/natlan/map.jpg");
+      --map-bg: url("../assets/natlan/map.png");
+      --map-w: 2287;
+      --map-h: 1286;
+      --pin-w: 1.75%;
     }
   </style>
 </head>
@@ -48,18 +51,25 @@
   </section>
 
   <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
-  <section class="spots" id="spots">
+  <section class="spots" id="spots" style="--p1x:0.3277; --p1y:0.4044; --p2x:0.6402; --p2y:0.1952; --p3x:0.3276; --p3y:0.7519;">
     <input class="spots__radio" type="radio" name="spot-natlan" id="spot-r1" checked aria-label="Show Tepeacac Rise">
     <input class="spots__radio" type="radio" name="spot-natlan" id="spot-r2" aria-label="Show Children of the Echoes Canyon">
     <input class="spots__radio" type="radio" name="spot-natlan" id="spot-r3" aria-label="Show People of the Springs Basin">
+    <div class="spots__map" aria-hidden="true">
+      <div class="spots__zoom">
+        <img class="spots__pin spots__pin--1" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--2" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--3" src="../assets/Waypoint.png" alt="">
+      </div>
+    </div>
     <div class="spots__stage">
       <div class="spots__viewport">
         <div class="spots__track">
           <article class="spot" id="spot-1">
-            <h2 class="spot__title">Tepeacac Rise</h2>
-            <p class="spot__region">Natlan</p>
-            <img class="spot__photo" src="../assets/natlan/spot-1.jpg" alt="Tepeacac Rise, Natlan">
-            <p class="spot__caption">Red canyon walls and green terraces stretch out beneath a wide open sky.</p>
+            <h2 class="spot__title">Stadium of the Sacred Flame</h2>
+            <p class="spot__region">Basin of Unnumbered Flames, Natlan</p>
+            <img class="spot__photo" src="../assets/natlan/spot-1.jpg" alt="Stadium of the Sacred Flame, Basin of Unnumbered Flames, Natlan">
+            <p class="spot__caption">The bustling heart of the nation of war, where warriors from all six tribes gather to compete for glory in the Pilgrimage of the Return of the Sacred Flame.</p>
           </article>
           <article class="spot" id="spot-2">
             <h2 class="spot__title">Children of the Echoes Canyon</h2>

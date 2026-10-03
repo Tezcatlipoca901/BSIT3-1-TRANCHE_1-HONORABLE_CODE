@@ -9,7 +9,10 @@
   <style>
     :root {
       --hero-bg: url("../assets/mondstadt/hero-pattern.png");
-      --map-bg: url("../assets/mondstadt/map.jpg");
+      --map-bg: url("../assets/mondstadt/map.png");
+      --map-w: 2287;     /* map.png size */
+      --map-h: 1352;
+      --pin-w: 1.75%;    /* pin width as a share of the map */
     }
   </style>
 </head>
@@ -48,10 +51,17 @@
   </section>
 
   <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
-  <section class="spots" id="spots">
+  <section class="spots" id="spots" style="--p1x:0.4256; --p1y:0.5717; --p2x:0.3172; --p2y:0.3395; --p3x:0.3098; --p3y:0.4245;">
     <input class="spots__radio" type="radio" name="spot-mondstadt" id="spot-r1" checked aria-label="Show Windswept Wilderness">
     <input class="spots__radio" type="radio" name="spot-mondstadt" id="spot-r2" aria-label="Show The City of Wind">
     <input class="spots__radio" type="radio" name="spot-mondstadt" id="spot-r3" aria-label="Show Favonius Cathedral">
+    <div class="spots__map" aria-hidden="true">
+      <div class="spots__zoom">
+        <img class="spots__pin spots__pin--1" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--2" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--3" src="../assets/Waypoint.png" alt="">
+      </div>
+    </div>
     <div class="spots__stage">
       <div class="spots__viewport">
         <div class="spots__track">

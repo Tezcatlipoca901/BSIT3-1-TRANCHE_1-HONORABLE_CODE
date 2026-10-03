@@ -142,11 +142,10 @@ section {
 
 .chrome--fixed {
   position: fixed;
-  height: auto;
-  padding: clamp(110px, 1.4vw, 20px) 0;
   background: linear-gradient(180deg, rgba(10, 16, 30, .55) 0%, rgba(10, 16, 30, 0) 100%);
+  height: clamp(110px, 12vw, 170px);   /* gradient bar height */
+  padding: 0;
 }
-
 
 .chrome a,
 .chrome label,
@@ -435,9 +434,68 @@ section {
 /* ==========================================================
    MAP + SPOTS — the arrows move the photos (CSS-only carousel)
    ========================================================== */
+/* ---- Map layer + waypoint pins ----
+   The map is drawn inside .spots__zoom, a box shaped like the map image, so
+   each pin can sit on it in % and always stays on its real spot.
+   The pin of the spot that is on screen grows; the others hide behind the
+   (smaller) pins already printed on the map image.
+   Per page, put the tip of each pin (fraction 0-1 of the image) on the section:
+   style="--p1x:.16; --p1y:.48; --p2x:.38; --p2y:.56; --p3x:.42; --p3y:.49"  */
+.spots__map {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+/* The map pans + zooms to the active spot (desktop: pin sits in the left half,
+   beside the photo; phones override --mw/--fx/--fy below).
+   Per page, set the image size so the shape/pin sizes follow it:
+   :root { --map-w: 2263; --map-h: 1337; --pin-w: 2.83%; } */
+.spots__zoom {
+  --mw: max(3000px, 175vw);                         /* map width (bigger = more zoomed in) */
+  --ar: calc(var(--map-h, 905) / var(--map-w, 1440)); /* map height / width */
+  --fx: 25%;                                        /* where the active pin sits, from the left */
+  --fy: 50%;                                        /* ...and from the top */
+  --px: var(--p1x, .5);
+  --py: var(--p1y, .5);
+  position: absolute;
+  width: var(--mw);
+  aspect-ratio: var(--map-w, 1440) / var(--map-h, 905);
+  background: var(--map-bg) center / 100% 100% no-repeat;
+  left: clamp(calc(100% - var(--mw)), calc(var(--fx) - var(--px) * var(--mw)), 0px);
+  top: clamp(calc(100% - var(--mw) * var(--ar)), calc(var(--fy) - var(--py) * var(--mw) * var(--ar)), 0px);
+  transition: left .45s ease, top .45s ease;
+}
+.spots__pin {
+  position: absolute;
+  left: calc(var(--x) * 100%);
+  top: calc(var(--y) * 100%);
+  width: var(--pin-w, 6.4%);        /* same size as the pins printed on the map */
+  height: auto;
+  transform-origin: 49% 94%;        /* the pin's tip */
+  transform: translate(-49%, -94%) scale(.7);
+  opacity: 0;
+  transition: transform .45s cubic-bezier(.34, 2.56, .64, 1), opacity .25s ease;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .5));
+}
+.spots__pin--1 { --x: var(--p1x, .5); --y: var(--p1y, .5); }
+.spots__pin--2 { --x: var(--p2x, .5); --y: var(--p2y, .5); }
+.spots__pin--3 { --x: var(--p3x, .5); --y: var(--p3y, .5); }
+
+/* active spot -> its pin grows (change --pin-scale for a bigger/smaller pin) */
+#spot-r1:checked~.spots__map .spots__pin--1,
+#spot-r2:checked~.spots__map .spots__pin--2,
+#spot-r3:checked~.spots__map .spots__pin--3 {
+  opacity: 1;
+  transform: translate(-49%, -94%) scale(var(--pin-scale, 3 ));
+}
+#spot-r2:checked~.spots__map .spots__zoom { --px: var(--p2x, .5); --py: var(--p2y, .5); }
+#spot-r3:checked~.spots__map .spots__zoom { --px: var(--p3x, .5); --py: var(--p3y, .5); }
+
 .spots {
   height: 905px;
-  background: #0f2a30 var(--map-bg) center / contain no-repeat;
+  background: #0f2a30;
   --card: min(660px, calc(50vw - 60px));
   --gap: 64px;
   --step: calc(var(--card) + var(--gap));
@@ -802,7 +860,7 @@ section {
   top: 410px;
   width: 580px;
   max-width: none;
-  opacity: .35;
+  opacity: 1;
   filter: sepia(.45) saturate(.7);
 }
 
@@ -1007,10 +1065,18 @@ section {
   .spots {
     height: 851px;
     padding-bottom: 0;
-    background: #0f2a30 var(--map-bg) top center / cover no-repeat;
+    background: #0f2a30;   /* map is now drawn by .spots__map below */
     --card: 100vw;
     --gap: 0px;
     --step: 100vw;
+  }
+
+  /* ---- Map follows the active spot: it pans so that spot's pin is centred ---- */
+  .spots__zoom {
+    --mw: 2200px;                    /* map width on phones (bigger = more zoomed in) */
+    --fx: 50%;                       /* active pin sits in the middle... */
+    --fy: 30%;                       /* ...and this far down the screen */
+    --pin-scale: 2;
   }
 
   /* Dark overlay at bottom of map section */
@@ -1413,4 +1479,4 @@ section {
   .cta__inner {
     padding: 60px 14px 60px;
   }
-} 
+}

@@ -9,7 +9,10 @@
   <style>
     :root {
       --hero-bg: url("../assets/fontaine/hero-pattern.png");
-      --map-bg: url("../assets/fontaine/map.jpg");
+      --map-bg: url("../assets/fontaine/map.png");
+        --map-w: 2287;
+        --map-h: 1286;
+        --pin-w: 1.8%;
     }
   </style>
 </head>
@@ -48,10 +51,17 @@
   </section>
 
   <!-- ============ MAP / SPOTS (arrows move the photos) ============ -->
-  <section class="spots" id="spots">
+  <section class="spots" id="spots" style="  --p1x:0.2307; --p1y:0.3390; --p2x:0.3868; --p2y:0.4121; --p3x:0.4184; --p3y:0.3561;">
     <input class="spots__radio" type="radio" name="spot-fontaine" id="spot-r1" checked aria-label="Show Court of Fontaine">
     <input class="spots__radio" type="radio" name="spot-fontaine" id="spot-r2" aria-label="Show Romaritime Harbor">
     <input class="spots__radio" type="radio" name="spot-fontaine" id="spot-r3" aria-label="Show Erinnyes Forest">
+    <div class="spots__map" aria-hidden="true">
+      <div class="spots__zoom">
+        <img class="spots__pin spots__pin--1" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--2" src="../assets/Waypoint.png" alt="">
+        <img class="spots__pin spots__pin--3" src="../assets/Waypoint.png" alt="">
+      </div>
+    </div>
     <div class="spots__stage">
       <div class="spots__viewport">
         <div class="spots__track">
@@ -62,16 +72,16 @@
             <p class="spot__caption">The grand courthouse and opera house at the heart of the nation, where elegance and justice flow together like water.</p>
           </article>
           <article class="spot" id="spot-2">
-            <h2 class="spot__title">Romaritime Harbor</h2>
-            <p class="spot__region">Fontaine Coast</p>
-            <img class="spot__photo" src="../assets/fontaine/spot-2.jpg" alt="Romaritime Harbor, Fontaine Coast">
-            <p class="spot__caption">A bustling seaside harbor lined with ornate lampposts and cafés, where travelers first set foot in the nation of water.</p>
+            <h2 class="spot__title">Opera Epiclese</h2>
+            <p class="spot__region">Erinnyes, Fontaine</p>
+            <img class="spot__photo" src="../assets/fontaine/spot-2.jpg" alt="Opera Epiclese, Erinnyes, Fontaine">
+            <p class="spot__caption">A grand, magnificent opera house where the people of Fontaine gather. It serves as both a stage for captivating theatrical performances and the highest court of law in the nation of justice.</p>
           </article>
           <article class="spot" id="spot-3">
-            <h2 class="spot__title">Erinnyes Forest</h2>
-            <p class="spot__region">Western Fontaine</p>
-            <img class="spot__photo" src="../assets/fontaine/spot-3.jpg" alt="Erinnyes Forest, Western Fontaine">
-            <p class="spot__caption">A misty woodland threaded with streams and waterfalls, where ancient ruins sleep beneath canopies of silver leaves.</p>
+            <h2 class="spot__title">Fountain of Lucine</h2>
+            <p class="spot__region">Marcotte Station Plaza</p>
+            <img class="spot__photo" src="../assets/fontaine/spot-3.jpg" alt="Fountain of Lucine, Marcotte Station Plaza">
+            <p class="spot__caption">A magnificent grand fountain situated just outside the Opera Epiclese. Travelers and locals alike gather at its edge to toss a coin into the shimmering waters and make a wish before attending a performance./p>
           </article>
         </div>
       </div>
@@ -172,6 +182,5 @@
       <a class="cta__btn" href="home.html#inquiry">Book Now</a>
     </div>
   </section>
-
 </body>
 </html>
