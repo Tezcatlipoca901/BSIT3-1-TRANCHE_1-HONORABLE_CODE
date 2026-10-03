@@ -901,6 +901,77 @@ section {
 
 .dishes li {
   position: relative;
+  perspective: 600px;
+  cursor: pointer;
+}
+
+/* ---- dish flip container ---- */
+.dish-flip {
+  position: relative;
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(.4, .2, .2, 1);
+  transform-style: preserve-3d;
+}
+
+.dishes li:hover .dish-flip {
+  transform: rotateY(180deg);
+}
+
+/* both faces */
+.dish-flip__front,
+.dish-flip__back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.dish-flip__front {
+  display: block;
+  position: relative;
+}
+
+.dish-flip__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: radial-gradient(circle at 50% 50%, rgba(220, 192, 138, .18) 0%, transparent 70%);
+}
+
+.dish-flip__back img {
+  max-width: 72%;
+  max-height: 80%;
+  height: auto;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .35));
+  animation: dishPulse 2s ease-in-out infinite;
+}
+
+@keyframes dishPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .35)); }
+  50%      { transform: scale(1.06); filter: drop-shadow(0 8px 24px rgba(220, 192, 138, .5)); }
+}
+
+/* ---- food name label ---- */
+.dish-flip__label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  background: rgba(244, 239, 228, .88);
+  padding: 4px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  letter-spacing: .02em;
 }
 
 .dishes img {
