@@ -96,7 +96,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .site-header {
   position: absolute; inset: 0 0 auto 0; height: 92px;
   max-width: var(--page); margin: 0 auto;
-  z-index: 2;
+  z-index: 3;   /* above .hero__content (z-index 2), which now spans the whole hero and was covering the nav */
 }
 .brand { position: absolute; left: 66px; top: 8px; }
 .brand img { width: 215px; height: auto; }
