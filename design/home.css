@@ -101,8 +101,22 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .brand { position: absolute; left: 66px; top: 8px; }
 .brand img { width: 215px; height: auto; }
 .site-nav { position: absolute; left: 452px; top: 0; height: 92px; display: flex; align-items: center; gap: 135px; }
-.site-nav a { font-family: var(--font-ui); font-size: 20px; color: var(--gold); text-shadow: 0 1px 4px rgba(0, 0, 0, .5); }
-.site-nav a:hover { color: #fff; }
+.site-nav a {
+  display: inline-block; font-family: var(--font-ui); font-size: 20px; color: var(--gold); text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+  transition: transform .25s ease, filter .25s ease, color .25s ease, text-shadow .25s ease;
+}
+/* same hover as the buttons: lift + grow, gold glow, brighter; press = dip */
+.site-nav a:focus-visible {
+  outline: 0; transform: translateY(-3px) scale(1.06); color: #f3dfb0; filter: brightness(1.12);
+  text-shadow: 0 0 10px rgba(220, 192, 138, .85), 0 6px 14px rgba(0, 0, 0, .4);
+}
+@media (hover: hover) {
+  .site-nav a:hover {
+    transform: translateY(-3px) scale(1.06); color: #f3dfb0; filter: brightness(1.12);
+    text-shadow: 0 0 10px rgba(220, 192, 138, .85), 0 6px 14px rgba(0, 0, 0, .4);
+  }
+}
+.site-nav a:active { transform: translateY(0) scale(.98); filter: brightness(.97); transition-duration: .08s; }
 
 .hero__content {
   position: relative;
@@ -133,14 +147,14 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .about__aether { position: absolute; left: 50px; top: 110px; width: 622px; height: 798px; max-width: none; }
 .about__body { position: absolute; left: calc(50% + 17px); top: 116px; width: 517px; }
 .about__body p:not(.about__eyebrow) { max-width: 490px; }
-.about__eyebrow { font-family: var(--font-ui); font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: #dcc08a; line-height: 18px; }
+.about__eyebrow { font-family: var(--font-ui); font-size: 17px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #dcc08a; line-height: 22px; }
 .about__title { margin-top: 20px; font-family: var(--font-serif); font-weight: 700; font-size: 40px; line-height: 50px; color: var(--navy); }
 .about__title em { display: block; font-weight: 400; font-style: italic; font-size: 56px; line-height: 62px; }
 .about__body p:not(.about__eyebrow) { margin-top: 20px; font-size: 16px; line-height: 24px; color: #1a2340; }
 .about__title + p { margin-top: 28px !important; }
 .about__signature { margin-top: 32px; padding-top: 22px; border-top: 1px solid #5d6a8e; }
-.about__signature strong { display: block; font-family: var(--font-serif); font-size: 20px; line-height: 26px; color: var(--navy); }
-.about__signature span { display: block; margin-top: 2px; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; color: #3a4568; }
+.about__signature strong { display: block; font-family: var(--font-serif); font-size: 24px; line-height: 30px; color: var(--navy); }
+.about__signature span { display: block; margin-top: 4px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #2a3558; }
 .about__wind { position: absolute; right: -20px; bottom: 0; width: 640px; max-width: none; pointer-events: none; }
 
 /* ==========================================================
@@ -149,10 +163,14 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nations {
   position: relative; display: flex; overflow: hidden;
   height: 834px;
-  background: #3a78c4 url("../assets/nations-bg.png") center / cover no-repeat;
+  background:
+    /* Figma look: deep navy behind the intro text, easing into the bright blue + swirls on the right */
+    linear-gradient(90deg, rgba(8, 17, 40, .98) 0%, rgba(11, 24, 56, .96) 30%, rgba(16, 38, 84, .8) 50%, rgba(28, 66, 135, .4) 70%, rgba(45, 98, 178, .1) 88%, rgba(58, 120, 196, 0) 100%),
+    linear-gradient(180deg, rgba(6, 14, 36, .5) 0%, rgba(6, 14, 36, 0) 30%, rgba(6, 14, 36, 0) 68%, rgba(6, 14, 36, .45) 100%),
+    #3a78c4 url("../assets/nations-bg.png") center / cover no-repeat;
 }
 .nations__intro { flex: 0 0 718px; padding: 270px 0 0 48px; z-index: 1; }
-.nations__eyebrow { font-family: var(--font-ui); font-size: 20px; line-height: 24px; color: var(--cream); }
+.nations__eyebrow { font-family: var(--font-ui); font-size: 20px; line-height: 24px; color: var(--gold); }
 .nations__title { margin-top: 10px; font-family: var(--font-serif); font-weight: 700; font-size: 60px; line-height: 66px; color: #fff; }
 .nations__title em { display: block; font-weight: 400; font-style: italic; font-size: 64px; line-height: 74px; }
 .nations__text { margin-top: 14px; max-width: 470px; font-weight: 500; font-size: 18px; line-height: 28px; color: #e6ecf5; }
@@ -175,7 +193,9 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   filter: brightness(1.08) saturate(1.1) drop-shadow(0 18px 20px rgba(10, 24, 60, .5)) drop-shadow(0 0 16px rgba(220, 192, 138, .8));
 }
 .nation-card:hover h3,
-.nation-card:focus-within h3 { color: var(--gold); }
+.nation-card:focus-within h3,
+.nation-card:hover .nation-card__price,
+.nation-card:focus-within .nation-card__price { color: var(--gold); }
 @media (min-width: 1300px) {
   /* border ring that sits exactly on the visible artwork.
      The art drifts inside the sprite cells (0px -> 9px from the left, ~433-436px wide),
@@ -213,16 +233,17 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nation-card__meta img { width: 14px; height: 14px; }
 .nation-card h3 { margin-top: 8px; font-family: var(--font-ui); font-weight: 700; font-size: 30px; line-height: 40px; }
 .nation-card__desc { margin-top: 3px; height: 52px; overflow: hidden; font-size: 15px; line-height: 26px; color: #e3e8f0; }
-.nation-card__price { margin-top: 7px; display: flex; align-items: baseline; gap: 6px; font-family: var(--font-ui); font-weight: 700; font-size: 26px; line-height: 40px; }
+.nation-card__price { margin-top: 7px; display: flex; align-items: baseline; gap: 6px; font-family: var(--font-ui); font-weight: 700; font-size: 26px; line-height: 40px; transition: color .3s ease; }
 .nation-card__tag { display: none; }
 .nation-card__price span { color: var(--gold); font-size: 22px; }
-.nation-card__price small { font-family: var(--font-body); font-weight: 400; font-size: 11px; color: #d5dbe6; }
+.nation-card__price small { font-family: var(--font-body); font-weight: 500; font-size: 14px; color: #d5dbe6; }
 
 /* ==========================================================
    FAQs + INQUIRY — one section, one Katheryne
    ========================================================== */
 .contact {
-  position: relative; overflow: hidden; height: 1410px;
+  position: relative; overflow: hidden; height: 1500px;   /* room for the form title + one open FAQ answer */
+ 
   background:
     linear-gradient(180deg, rgba(51, 64, 77, 0) 0, rgba(51, 64, 77, 0) 470px, var(--slate) 686px),
     url("../assets/section-bg.png") center top / 1440px auto no-repeat,
@@ -246,7 +267,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .faq { margin-bottom: 26px; }
 .faq:first-of-type { margin-top: 36px; }
 .faq summary {
-  display: flex; align-items: center; height: 59px; padding-left: 73px; cursor: pointer; list-style: none;
+  display: flex; align-items: center; height: 59px; padding-left: 88px; cursor: pointer; list-style: none;
   background: url("../assets/faq-bar.png") left center / auto 100% no-repeat;
   font-family: var(--font-ui); font-weight: 700; font-size: 18px; color: #fff;
   transition: transform .25s ease, filter .25s ease, color .25s ease;
@@ -259,14 +280,17 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   .faq summary:hover { transform: translateX(6px); filter: brightness(1.2) drop-shadow(0 0 8px rgba(220, 192, 138, .45)); }
 }
 .faq summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 30px; }
-.faq[open] p { margin: 30px 0 9px 73px; max-width: 470px; font-size: 16px; line-height: 26px; color: #e5e7ec; animation: faq-in .3s ease; }
+.faq[open] p { margin: 30px 0 9px 88px; max-width: 470px; font-size: 16px; line-height: 26px; color: #e5e7ec; animation: faq-in .3s ease; }
 @keyframes faq-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .nation-card, .nation-card h3, .faq summary { transition: none; }
+  .nation-card, .nation-card h3, .nation-card__price, .site-nav a, .faq summary { transition: none; }
   .faq[open] p { animation: none; }
 }
 
 /* ---------- Inquiry form ---------- */
+.inquiry__head { margin: 40px 0 0 52px; width: 640px; }
+.inquiry__title { font-family: var(--font-ui); font-weight: 700; font-size: 28px; line-height: 40px; color: var(--gold); }
+.inquiry__sub { margin-top: 4px; max-width: 520px; font-size: 16px; line-height: 24px; color: #e5e7ec; }
 .inquiry__form { position: relative; margin-top: 14px; width: 793px; height: 640px; }
 .inquiry__box { position: relative; width: 793px; height: 598px; background: url("../assets/inquiry-box.png") 0 0 / 793px 598px no-repeat; }
 .inquiry__field {
@@ -293,7 +317,7 @@ select.inquiry__field option { color: #13161b; }
   position: absolute; left: 50%; top: 96px; width: var(--page); transform: translateX(-50%);
   display: grid; grid-template-columns: 477px 193px 374px 1fr; padding-left: 45px;
 }
-.footer__brand img { width: 215px; height: auto; margin-top: 0; }
+.footer__brand img { position: relative; top: -18px; width: 215px; height: auto; margin-top: 0; }   /* wordmark centre (38px) -> title centre (20px) */
 .footer__brand p { margin: 8px 0 0 73px; width: 333px; font-size: 18px; line-height: 31px; color: #f1f1f1; }
 .footer__col h4 { margin-top: 6px; font-family: var(--font-ui); font-weight: 400; font-size: 20px; line-height: 28px; letter-spacing: .03em; text-transform: uppercase; color: var(--cream); }
 .footer__col ul { margin-top: 15px; }
@@ -360,7 +384,7 @@ select.inquiry__field option { color: #13161b; }
     z-index: 1;
     text-align: center;
   }
-  .about__eyebrow { text-align: center; font-size: 11px; letter-spacing: .05em; }
+  .about__eyebrow { text-align: center; font-size: 13px; line-height: 18px; letter-spacing: .05em; }
   .about__title { text-align: center; max-width: none; margin-top: 8px; font-size: 26px; line-height: 34px; }
   .about__title em { display: block; font-size: 34px; line-height: 42px; }
   .about__title em br { display: none; }   /* keep "A wayfinder always." on one line */
@@ -381,6 +405,8 @@ select.inquiry__field option { color: #13161b; }
     border-top: 1px solid #5d6a8e;
     width: 62%;
   }
+  .about__signature strong { font-size: 20px; line-height: 26px; }
+  .about__signature span { font-size: 11px; letter-spacing: .04em; }
 
   /* wind: bottom-right, over Aether's feet */
   .about__wind {
@@ -439,7 +465,7 @@ select.inquiry__field option { color: #13161b; }
   .nation-card__tag { display: block; grid-column: 1; grid-row: 2; font-family: var(--font-ui); font-size: 8.5px; line-height: 16px; white-space: nowrap; color: #fff; }
   .nation-card__price { grid-column: 2; grid-row: 1; justify-self: end; margin: 0; gap: 2px; font-size: 18px; line-height: 32px; color: var(--gold); }
   .nation-card__price span { font-size: 16px; }
-  .nation-card__price small { font-size: 10px; color: #fff; }
+  .nation-card__price small { font-size: 11px; color: #fff; }
   .nation-card__meta { grid-column: 2; grid-row: 2; justify-self: end; height: auto; font-size: 9px; line-height: 16px; font-weight: 700; }
   .nation-card__meta img { width: 11px; height: 11px; }
   .nation-card__desc { display: none; }
@@ -454,6 +480,7 @@ select.inquiry__field option { color: #13161b; }
   .guide { height: 760px; }
   .contact__main { position: static; width: 100%; display: flex; flex-direction: column; align-items: center; }
   .faqs__list { margin: 20px 0 0; width: 100%; max-width: 640px; }
+  .inquiry__head { margin: 32px 0 0; width: 100%; max-width: 640px; }
   .inquiry__form { width: 793px; margin-top: 40px; zoom: .8; }
   .footer { height: auto; padding: 40px 24px 60px; }
   .footer__divider, .footer__copy, .footer__grid { position: static; transform: none; }
@@ -461,6 +488,7 @@ select.inquiry__field option { color: #13161b; }
   .footer__grid { width: auto; padding-left: 0; grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer__brand { grid-column: 1 / -1; }
   .footer__brand p { margin-left: 0; }
+  .footer__brand img { top: 0; }
   .footer__copy { margin-top: 32px; }
 }
 
@@ -473,6 +501,8 @@ select.inquiry__field option { color: #13161b; }
   .guide__quote { top: 548px; font-size: 18px; line-height: 34px; }
   /* FAQ on phones: long questions wrap, so the bar can't be a fixed-height / fixed-width image box */
   .faqs__title { height: auto; margin-left: 0; font-size: 22px; line-height: 30px; }
+  .inquiry__title { font-size: 22px; line-height: 30px; }
+  .inquiry__sub { font-size: 14px; line-height: 22px; }
   .faq { margin-bottom: 20px; }
   .faq:first-of-type { margin-top: 24px; }
   .faq summary {
