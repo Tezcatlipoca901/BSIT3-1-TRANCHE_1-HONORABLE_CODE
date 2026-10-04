@@ -252,9 +252,12 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   transition: transform .25s ease, filter .25s ease, color .25s ease;
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary:hover,
+.faq summary { -webkit-tap-highlight-color: transparent; }
 .faq[open] summary { color: var(--gold); }
-.faq summary:hover { transform: translateX(6px); filter: brightness(1.2) drop-shadow(0 0 8px rgba(220, 192, 138, .45)); }
+@media (hover: hover) {
+  .faq summary:hover { color: var(--gold); }   /* only on real hover devices: touch screens keep :hover stuck after a tap */
+  .faq summary:hover { transform: translateX(6px); filter: brightness(1.2) drop-shadow(0 0 8px rgba(220, 192, 138, .45)); }
+}
 .faq summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 30px; }
 .faq[open] p { margin: 30px 0 9px 73px; max-width: 470px; font-size: 16px; line-height: 26px; color: #e5e7ec; animation: faq-in .3s ease; }
 @keyframes faq-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
@@ -468,7 +471,24 @@ select.inquiry__field option { color: #13161b; }
   .guide__name { top: 470px; }
   .guide__role { top: 510px; }
   .guide__quote { top: 548px; font-size: 18px; line-height: 34px; }
-  .faq summary { font-size: 15px; }
+  /* FAQ on phones: long questions wrap, so the bar can't be a fixed-height / fixed-width image box */
+  .faqs__title { height: auto; margin-left: 0; font-size: 22px; line-height: 30px; }
+  .faq { margin-bottom: 20px; }
+  .faq:first-of-type { margin-top: 24px; }
+  .faq summary {
+    position: relative; height: auto; min-height: 62px; box-sizing: border-box;
+    padding: 12px 20px 12px 92px; font-size: 14px; line-height: 22px;   /* 92px clears the chat icon with a proper gap */
+    background: none;
+  }
+  /* bar art lives on a pseudo-element so it can fade out at the right edge instead of being cut off */
+  .faq summary::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: url("../assets/faq-bar.png") left center / auto 62px no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+            mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+  }
+  .faq { isolation: isolate; }
+  .faq[open] p { margin: 16px 8px 4px 28px; max-width: none; font-size: 15px; line-height: 24px; }
   .inquiry__form { zoom: .42; }
   .site-nav { gap: 18px; }
   .site-nav a { font-size: 16px; }
