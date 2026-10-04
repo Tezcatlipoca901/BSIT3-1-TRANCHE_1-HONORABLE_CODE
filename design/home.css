@@ -162,10 +162,44 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   padding: 131px 0 0; overflow-x: auto; overflow-y: hidden; z-index: 1;
   scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, .35) transparent;
 }
+.nations__track::after { content: ""; flex: 0 0 28px; }   /* breathing space after the last card (+20px gap = 48px, same as the left margin) */
 .nation-card {
   position: relative; flex: 0 0 445px; height: 574px;
   background: url("../assets/nations-cards.png") 0 0 / 3235px 574px no-repeat;
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1), filter .35s ease;
 }
+.nation-card h3 { transition: color .3s ease; }
+.nation-card:hover,
+.nation-card:focus-within {
+  transform: translateY(-12px);
+  filter: brightness(1.08) saturate(1.1) drop-shadow(0 18px 20px rgba(10, 24, 60, .5)) drop-shadow(0 0 16px rgba(220, 192, 138, .8));
+}
+.nation-card:hover h3,
+.nation-card:focus-within h3 { color: var(--gold); }
+@media (min-width: 1300px) {
+  /* border ring that sits exactly on the visible artwork.
+     The art drifts inside the sprite cells (0px -> 9px from the left, ~433-436px wide),
+     so each card gets its own left/right inset: --l = empty px on the left, --r = empty px on the right */
+  .nation-card--1 { --l: 0px; --r: 9px; }
+  .nation-card--2 { --l: 0px; --r: 10px; }
+  .nation-card--3 { --l: 0px; --r: 11px; }
+  .nation-card--4 { --l: 0px; --r: 12px; }
+  .nation-card--5 { --l: 1px; --r: 8px; }
+  .nation-card--6 { --l: 5px; --r: 4px; }
+  .nation-card--7 { --l: 9px; --r: 0px; }
+  .nation-card::after {
+    content: ""; position: absolute; inset: 0 var(--r) 0 var(--l); pointer-events: none;
+    box-shadow: inset 0 0 0 0 rgba(220, 192, 138, 0);
+    transition: box-shadow .35s ease;
+  }
+  .nation-card:hover::after,
+  .nation-card:focus-within::after {
+    box-shadow:
+      inset 0 0 0 2px var(--gold),
+      inset 0 0 18px 2px rgba(220, 192, 138, .55);
+  }
+}
+.nation-card__link:focus-visible { outline: 2px solid var(--gold); outline-offset: -6px; }
 .nation-card--1 { background-position: 0 0; }
 .nation-card--2 { background-position: -465px 0; }
 .nation-card--3 { background-position: -930px 0; }
@@ -211,14 +245,26 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .faqs__title { height: 40px; margin-left: 5px; font-family: var(--font-ui); font-weight: 700; font-size: 28px; line-height: 40px; color: var(--gold); }
 .faq { margin-bottom: 26px; }
 .faq:first-of-type { margin-top: 36px; }
-.faq:nth-of-type(3) { margin-top: 35px; }
 .faq summary {
   display: flex; align-items: center; height: 59px; padding-left: 73px; cursor: pointer; list-style: none;
   background: url("../assets/faq-bar.png") left center / auto 100% no-repeat;
   font-family: var(--font-ui); font-weight: 700; font-size: 18px; color: #fff;
+  transition: transform .25s ease, filter .25s ease, color .25s ease;
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq[open] p { margin: 30px 0 9px 73px; max-width: 470px; font-size: 16px; line-height: 26px; color: #e5e7ec; }
+.faq summary { -webkit-tap-highlight-color: transparent; }
+.faq[open] summary { color: var(--gold); }
+@media (hover: hover) {
+  .faq summary:hover { color: var(--gold); }   /* only on real hover devices: touch screens keep :hover stuck after a tap */
+  .faq summary:hover { transform: translateX(6px); filter: brightness(1.2) drop-shadow(0 0 8px rgba(220, 192, 138, .45)); }
+}
+.faq summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 30px; }
+.faq[open] p { margin: 30px 0 9px 73px; max-width: 470px; font-size: 16px; line-height: 26px; color: #e5e7ec; animation: faq-in .3s ease; }
+@keyframes faq-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .nation-card, .nation-card h3, .faq summary { transition: none; }
+  .faq[open] p { animation: none; }
+}
 
 /* ---------- Inquiry form ---------- */
 .inquiry__form { position: relative; margin-top: 14px; width: 793px; height: 640px; }
@@ -359,6 +405,8 @@ select.inquiry__field option { color: #13161b; }
   .nations__text { margin-top: 12px; max-width: none; font-size: 14px; line-height: 20px; }
 
   .nations__track { flex: none; flex-direction: column; gap: 16px; padding: 0 22px; overflow: visible; }
+  .nations__track::after { display: none; }
+  .nation-card:hover, .nation-card:focus-within { transform: translateY(-4px); }
   .nation-card {
     flex: none; width: 100%; height: 100px;
     container-type: inline-size;
@@ -423,11 +471,28 @@ select.inquiry__field option { color: #13161b; }
   .guide__name { top: 470px; }
   .guide__role { top: 510px; }
   .guide__quote { top: 548px; font-size: 18px; line-height: 34px; }
-  .faq summary { font-size: 15px; }
+  /* FAQ on phones: long questions wrap, so the bar can't be a fixed-height / fixed-width image box */
+  .faqs__title { height: auto; margin-left: 0; font-size: 22px; line-height: 30px; }
+  .faq { margin-bottom: 20px; }
+  .faq:first-of-type { margin-top: 24px; }
+  .faq summary {
+    position: relative; height: auto; min-height: 62px; box-sizing: border-box;
+    padding: 12px 20px 12px 92px; font-size: 14px; line-height: 22px;   /* 92px clears the chat icon with a proper gap */
+    background: none;
+  }
+  /* bar art lives on a pseudo-element so it can fade out at the right edge instead of being cut off */
+  .faq summary::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: url("../assets/faq-bar.png") left center / auto 62px no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+            mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+  }
+  .faq { isolation: isolate; }
+  .faq[open] p { margin: 16px 8px 4px 28px; max-width: none; font-size: 15px; line-height: 24px; }
   .inquiry__form { zoom: .42; }
   .site-nav { gap: 18px; }
   .site-nav a { font-size: 16px; }
   .hero__title { font-size: 36px; line-height: 44px; }
   .btn { width: 280px; height: 58px; font-size: 18px; }
   .footer__grid { grid-template-columns: 1fr; }
-} 
+}
