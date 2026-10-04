@@ -1410,15 +1410,46 @@ section {
     align-items: center;
   }
 
+  /* li fills the full column width and acts as the centring anchor */
   .dishes li {
-    display: flex;
-    justify-content: center;
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
+  /* flip container: portrait size matching the info-card images, centred */
+  .dishes .dish-flip {
+    width: 280px;
+    height: 340px;
+    margin: 0 auto;
+  }
+
+  /* both faces: absolutely stacked inside the fixed container */
+  .dishes .dish-flip__front,
+  .dishes .dish-flip__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* front face (info card): fill the box */
+  .dishes .dish-flip__front {
+    object-fit: contain;
+    display: block;
+  }
+
+  /* dish art in back face */
+  .dishes .dish-flip__back img {
+    max-width: 88%;
+    max-height: 88%;
   }
 
   .dishes img {
     width: auto;
-    max-width: 306px;
-    max-height: 237px;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   /* Divider ornaments between dishes on mobile */
@@ -1545,4 +1576,30 @@ section {
   .cta__inner {
     padding: 60px 14px 60px;
   }
+}
+
+.dishes li {
+  display: flex;
+  justify-content: center;
+}
+
+.dishes .dish-flip {
+  width: 340px;              /* same box on desktop and mobile */
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 450 / 340;   /* set to your dish-2.png's real width / height */
+  margin: 0 auto;
+}
+
+.dishes .dish-flip__front,
+.dishes .dish-flip__back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dishes .dish-flip__front {
+  object-fit: contain;
+  object-position: center;
 }
