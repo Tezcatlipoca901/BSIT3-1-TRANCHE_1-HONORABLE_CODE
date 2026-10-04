@@ -167,7 +167,11 @@
         <p>Absolutely. Every journey is led by a local guide, with gentle pacing and 24/7 support, so first-time travelers can explore each nation without worrying about the details.</p>
       </details>
     </div>
-    <form class="inquiry__form" id="inquiry" action="#" method="post">
+    <div class="inquiry__head">
+      <h2 class="inquiry__title" id="inquiry-title">Plan your journey with Katheryne</h2>
+      <p class="inquiry__sub">Tell us who you are, which nation you want to visit, and what you have in mind. We'll reply with a tailored itinerary and quote.</p>
+    </div>
+    <form class="inquiry__form" id="inquiry" action="#" method="post" aria-labelledby="inquiry-title">
       <div class="inquiry__box">
         <label class="visually-hidden" for="inq-name">Name</label>
         <input class="inquiry__field inquiry__field--name" id="inq-name" name="name" type="text" placeholder="Name">
