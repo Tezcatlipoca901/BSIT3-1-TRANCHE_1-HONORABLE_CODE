@@ -1584,10 +1584,10 @@ section {
 }
 
 .dishes .dish-flip {
-  width: 340px;              /* same box on desktop and mobile */
-  max-width: 100%;
+  width: 450px;              /* the PNG's natural width */
+  max-width: 100%;           /* still shrinks on small screens */
   height: auto;
-  aspect-ratio: 450 / 340;   /* set to your dish-2.png's real width / height */
+  aspect-ratio: 450 / 340;   /* natural width / height */
   margin: 0 auto;
 }
 
