@@ -1050,20 +1050,38 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 212px;
-  height: 62px;
-  border-radius: 999px;
-  background: var(--cream);
-  border: 3px solid #e5dcc6;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+  width: 228px;
+  height: 74px;
+  background: url("../assets/button.png") center / 100% 100% no-repeat;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   font-family: var(--font-ui);
-  font-weight: 700;
+  font-weight: 400;
   font-size: 20px;
-  color: var(--navy);
+  color: #49556A;
+  transition: transform .25s ease, filter .25s ease, color .25s ease;
 }
 
-.cta__btn:hover {
-  filter: brightness(1.05);
+.cta__btn:hover,
+.cta__btn:focus-visible {
+  transform: translateY(-3px) scale(1.04);
+  color: #1e2a55;
+  filter: brightness(1.12) saturate(1.1) drop-shadow(0 0 10px rgba(220, 192, 138, .75)) drop-shadow(0 6px 14px rgba(0, 0, 0, .35));
+}
+
+.cta__btn:active {
+  transform: translateY(0) scale(.98);
+  filter: brightness(.97) drop-shadow(0 0 6px rgba(220, 192, 138, .6));
+  transition-duration: .08s;
+}
+
+.cta__btn:focus-visible { outline: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cta__btn,
+  .cta__btn:hover,
+  .cta__btn:active { transition: none; transform: none; }
 }
 
 /* ==========================================================
