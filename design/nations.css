@@ -308,7 +308,7 @@ section {
 /* ---------- shared bits ---------- */
 .eyebrow {
   font-family: var(--font-ui);
-  font-size: 14px;
+  font-size: 19px;
   letter-spacing: .04em;
   text-transform: uppercase;
   color: var(--gold);
@@ -361,7 +361,7 @@ section {
 .trip-meta small {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 11px;
+  font-size: 15px;
   color: #dfe4ec;
   align-self: flex-end;
   padding-bottom: 4px;
@@ -424,6 +424,7 @@ section {
   font-family: var(--font-serif);
   font-size: 22px;
   line-height: 30px;
+  font-weight: 600;
   color: var(--gold);
 }
 
@@ -752,8 +753,10 @@ section {
 .day__card {
   display: flex;
   flex-direction: column;
-  min-height: 241px;
-  padding: 30px 38px 24px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 30px 48px 24px;
   background: url("../assets/card-parchment.png") 0 0 / 100% 100% no-repeat;
 }
 
@@ -763,6 +766,8 @@ section {
   font-size: 22px;
   line-height: 28px;
   color: var(--navy);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .day:first-child h3 {
@@ -771,17 +776,21 @@ section {
 
 .day__card p {
   margin-top: 12px;
-  font-size: 13.5px;
+  font-size: 15.5px;
   line-height: 21px;
   color: #2b3356;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .day__card .day__stay {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: auto;
-  padding-top: 14px;
+  margin-top: 20px;       /* gap below the <p> */
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 28px;   /* space above the card's bottom edge */
   font-size: 12.5px;
   line-height: 18px;
   font-weight: 500;
@@ -791,6 +800,7 @@ section {
 .day__stay img {
   width: 18px;
   height: auto;
+  transform: translateY(-1px);
 }
 
 .day__num {
@@ -958,7 +968,7 @@ section {
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--navy);
   background: rgba(244, 239, 228, .88);
@@ -1114,7 +1124,7 @@ section {
   }
 
   .trip-meta small {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .trip-meta__dur {
@@ -1260,7 +1270,7 @@ section {
   }
 
   .itinerary .eyebrow {
-    font-size: 15px;
+    font-size: 19px;
     line-height: 17px;
   }
 
@@ -1333,12 +1343,11 @@ section {
   }
 
   .day__card {
-    padding: 20px 18px 16px;
-    min-height: 0;
-    max-width: 100%;
-    box-sizing: border-box;
+  padding: 22px 40px 20px;
+  min-height: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   }
-
   .day__card h3 {
     font-size: 18px;
     line-height: 24px;
@@ -1346,7 +1355,7 @@ section {
   }
 
   .day__card p {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 20px;
     word-wrap: break-word;
   }
@@ -1383,7 +1392,7 @@ section {
   }
 
   .delicacies .eyebrow {
-    font-size: 15px;
+    font-size: 19px;
     line-height: 17px;
   }
 
@@ -1525,7 +1534,9 @@ section {
 }
 
 @media (max-width: 560px) {
-
+  .day__card {
+  padding: 20px 34px 18px;
+  }
   .hero__title {
     font-size: 44px;
     line-height: 54px;
@@ -1592,7 +1603,7 @@ section {
 }
 
 .dishes .dish-flip__front,
-.dishes .dish-flip__back {
+.dishes .dish-flip__back {  
   position: absolute;
   inset: 0;
   width: 100%;
