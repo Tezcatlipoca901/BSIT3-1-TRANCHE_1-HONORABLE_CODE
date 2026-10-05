@@ -20,7 +20,7 @@
     <header class="site-header">
       <a class="brand" href="#home"><img src="../assets/logo.png" alt="waypointgo."></a>
       <nav class="site-nav" aria-label="Primary">
-        <a href="#about">About Us</a>
+        <a href="#company">About Us</a>
         <a href="#nations">Nations</a>
         <a href="#faqs">FAQs</a>
       </nav>
@@ -29,7 +29,7 @@
       <nav class="menu" aria-label="Page menu">
         <img class="menu__emblem" src="../assets/logo-mark.png" alt="">
         <ul class="menu__list">
-          <li><a href="#about"><img src="../assets/menu-itinerary.png" alt=""><span>About Us</span></a></li>
+          <li><a href="#company"><img src="../assets/menu-itinerary.png" alt=""><span>About Us</span></a></li>
           <li><a href="#nations"><img src="../assets/menu-waypoints.png" alt=""><span>Nations</span></a></li>
           <li><a href="#faqs"><img src="../assets/menu-delicacies.png" alt=""><span>FAQs</span></a></li>
         </ul>
@@ -45,6 +45,19 @@
   </section>
 
   <!-- ============ ABOUT / FORMER TRAVELER ============ -->
+  <section class="company" id="company">
+    <div class="company__inner">
+      <p class="company__eyebrow">About our company</p>
+      <h2 class="company__title">We build pages<em>worth landing on.</em></h2>
+      <p class="company__text">We are a creative web studio that designs and builds polished, high-quality landing pages for our customers. Every project begins with listening to your goals, your audience, and the story your brand wants to tell, and ends with a page that looks refined, loads quickly, and works beautifully on every screen.</p>
+      <p class="company__text">From the first sketch to the final launch, we shape layout, typography, color, and motion into one clear, cohesive experience, so visitors understand your offer at a glance and know exactly where to go next. The page you are reading is our proof: crafted with the same care we bring to every client.</p>
+      <div class="company__signature">
+        <strong>Our promise</strong>
+        <span>Clean design. Clear message. Ready to launch.</span>
+      </div>
+    </div>
+  </section>
+
   <section class="about" id="about">
     <div class="about__portrait">
       <div class="about__panel"></div>
@@ -154,7 +167,7 @@
         <figcaption>
           <span class="guide__name">Katheryne</span>
           <span class="guide__role">Traveler's Guide</span>
-          <span class="guide__quote">Ad astra abyssosque!<br>Where do you want to go next?</span>
+          <span class="guide__quote">Ad astra abyssosque!<br><span class="q-desktop">Where do you want to go next?</span><span class="q-mobile">Wondering something? Check our FAQs.</span></span>
         </figcaption>
     </figure>
 
@@ -179,6 +192,12 @@
         <p>Absolutely. Every journey is led by a local guide, with gentle pacing and 24/7 support, so first-time travelers can explore each nation without worrying about the details.</p>
       </details>
     </div>
+    <div class="guide-repeat" aria-hidden="true">
+      <span class="guide-repeat__name">Katheryne</span>
+      <span class="guide-repeat__role">Traveler's Guide</span>
+      <span class="guide-repeat__quote">Ad astra abyssosque!<br>Where do you want to go next?</span>
+    </div>
+
     <div class="inquiry__head">
       <h2 class="inquiry__title" id="inquiry-title">Plan your journey with Katheryne</h2>
       <p class="inquiry__sub">Tell us who you are, which nation you want to visit, and what you have in mind. We'll reply with a tailored itinerary and quote.</p>
@@ -222,7 +241,7 @@
         <h4>Navigate</h4>
         <ul>
           <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Us</a></li>
+          <li><a href="#company">About Us</a></li>
           <li><a href="#nations">Nations</a></li>
           <li><a href="#faqs">FAQs</a></li>
           <li><a href="#inquiry">Inquiry</a></li>
