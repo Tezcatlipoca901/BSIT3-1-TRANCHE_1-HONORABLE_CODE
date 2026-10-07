@@ -11,6 +11,22 @@
 }
 
 @font-face {
+  font-family: "Farsan";
+  src: url("../assets/fonts/Farsan-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Huninn";
+  src: url("../assets/fonts/Huninn-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Playfair Display";
   src: url("../assets/fonts/playfair-display-latin-400-normal.woff2") format("woff2");
   font-weight: 400;
@@ -64,6 +80,8 @@
   --font-ui: "HYWenHei", "Segoe UI", sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
   --font-body: "Montserrat", "Segoe UI", sans-serif;
+  --font-peso: "Farsan", var(--font-ui);
+  --font-eyebrow: "Huninn", var(--font-ui);
   --page: 1440px;
   --hero-overlay: rgba(47, 53, 65, 0.78);
 }
@@ -307,8 +325,8 @@ section {
 
 /* ---------- shared bits ---------- */
 .eyebrow {
-  font-family: var(--font-ui);
-  font-size: 19px;
+  font-family: var(--font-eyebrow);
+  font-size: 21px;
   letter-spacing: .04em;
   text-transform: uppercase;
   color: var(--gold);
@@ -317,14 +335,15 @@ section {
 
 .section-title {
   margin-top: 12px;
-  font-family: var(--font-serif);
+  font-family: var(--font-ui);
   font-weight: 700;
   font-size: 46px;
   line-height: 54px;
   color: var(--navy);
-}
+} 
 
 .section-title em {
+  font-family: var(--font-serif);
   display: block;
   font-weight: 400;
   font-style: italic;
@@ -350,12 +369,14 @@ section {
   font-weight: 700;
   font-size: 24px;
   line-height: 32px;
-  color: #fff;
+  color: var(--gold); 
 }
 
 .peso {
+  font-family: var(--font-peso);
+  font-weight: 400;
   color: var(--gold);
-  font-size: 22px;
+  font-size: 50px;
 }
 
 .trip-meta small {
@@ -370,11 +391,13 @@ section {
 .trip-meta__dur {
   font-size: 18px;
   color: #fff;
+  gap: 0;
 }
 
 .trip-meta__dur img {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
+  margin-right: -10px;
 }
 
 .trip-meta--center {
@@ -421,7 +444,7 @@ section {
 }
 
 .hero__tag {
-  font-family: var(--font-serif);
+  font-family: var(--font-ui);
   font-size: 22px;
   line-height: 30px;
   font-weight: 600;
@@ -540,7 +563,7 @@ section {
 }
 
 .spot__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-ui);
   font-weight: 400;
   font-size: 30px;
   line-height: 40px;
@@ -1030,7 +1053,7 @@ section {
 
 .cta__kicker {
   margin-top: 14px;
-  font-family: var(--font-serif);
+  font-family: var(--font-ui);
   font-size: 22px;
   line-height: 30px;
   color: var(--gold);
@@ -1147,12 +1170,17 @@ section {
   }
 
   .peso {
-    font-size: 54px;
-    line-height: 65px;
+    font-family: var(--font-peso);
+    font-weight: 400;
+    font-size: 40px;      
+    line-height: 1;       
+    margin: -14px 0;      
   }
 
   .trip-meta small {
     font-size: 14px;
+    align-self: center;   /* was flex-end */
+    padding-bottom: 0;
   }
 
   .trip-meta__dur {
@@ -1298,23 +1326,27 @@ section {
   }
 
   .itinerary .eyebrow {
-    font-size: 19px;
+    font-size: 25px;
     line-height: 17px;
   }
 
   .itinerary .section-title {
     margin-top: 17px;
     font-family: var(--font-ui);
-    font-size: 30px;
+    font-size: 25px;
     line-height: 47px;
     color: var(--navy);
   }
 
   .itinerary .section-title em {
-    font-family: var(--font-ui);
-    font-size: 30px;
+    font-family: var(--font-serif);
+    font-size: 35px;
     line-height: 47px;
     font-style: italic;
+  }
+
+  .itinerary .section-title em {
+    margin-top: -14px;
   }
 
   .itinerary__lead {
@@ -1420,15 +1452,27 @@ section {
   }
 
   .delicacies .eyebrow {
-    font-size: 19px;
+    font-size: 23px;
     line-height: 17px;
   }
 
   .delicacies .section-title,
   .delicacies .section-title em {
-    font-family: var(--font-ui);
-    font-size: 30px;
+    font-family: var(--font-serif);
+    font-size: 60px;
     line-height: 17px;
+    color: var(--navy);
+  }
+
+  .delicacies .section-title em {
+    margin-top: 50px;
+  }
+
+  .delicacies .section-title {
+    margin-top: 17px;
+    font-family: var(--font-ui);
+    font-size: 50px;
+    line-height: 47px;
     color: var(--navy);
   }
 
@@ -1563,8 +1607,9 @@ section {
 
 @media (max-width: 560px) {
   .day__card {
-  padding: 20px 34px 18px;
+    padding: 20px 34px 18px;
   }
+
   .hero__title {
     font-size: 44px;
     line-height: 54px;
@@ -1595,16 +1640,34 @@ section {
     top: 540px;
   }
 
+  /* ---- Itinerary title ---- */
   .itinerary .section-title,
   .itinerary .section-title em {
-    font-size: 26px;
-    line-height: 40px;
+    font-size: 30;
+    line-height: 36px;
   }
 
+  .itinerary .section-title {
+    margin-top: 17px;   /* keeps "Itinerary" clear of the eyebrow */
+  }
+
+  .itinerary .section-title em {
+    margin-top: -6px;   /* pulls "at a glance." toward "Itinerary" */
+  }
+
+  /* ---- Delicacies title ---- */
   .delicacies .section-title,
   .delicacies .section-title em {
-    font-size: 26px;
-    line-height: 17px;
+    font-size: 30px;
+    line-height: 32px;
+  }
+
+  .delicacies .section-title {
+    margin-top: 12px;
+  }
+
+  .delicacies .section-title em {
+    margin-top: -4px;
   }
 
   .cta__title {
