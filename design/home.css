@@ -303,9 +303,15 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   }
   .guide {
     position: relative; flex: none;
-    top: clamp(-100px, calc(100svh - 960px), 0px);   /* shorter screens: nudge up so her name + quote stay visible */
+    top: 0;
     left: auto; margin-left: max(0px, calc(50% - 720px));
+    transform-origin: top center;
   }
+  /* shrink her a little on shorter screens so the quote keeps ~50px of space under it (her block is ~960px tall) */
+  @media (max-height: 1000px) { .guide { transform: scale(.92); } }
+  @media (max-height: 900px)  { .guide { transform: scale(.82); } }
+  @media (max-height: 800px)  { .guide { transform: scale(.72); } }
+  @media (max-height: 700px)  { .guide { transform: scale(.62); } }
   .contact__main {
     position: relative; left: auto; top: auto; flex: none;
     width: 880px;   /* a bit wider than the 793px form so long FAQ questions (nowrap) aren't cut off */
@@ -390,7 +396,7 @@ select.inquiry__field option { color: #13161b; }
 }
 .footer__brand img { position: relative; top: -18px; width: 215px; height: auto; margin-top: 0; }   /* wordmark centre (38px) -> title centre (20px) */
 .footer__brand p { margin: -25px 0 0 73px; width: 333px; font-size: 17px; line-height: 29px; color: #f1f1f1; }   /* -25px pulls the first line level with "Home" / the email in the other columns; 17px/29px matches their rows */
-.footer__col h4 { margin-top: 6px; font-family: var(--font-ui); font-weight: 400; font-size: 20px; line-height: 28px; letter-spacing: .03em; text-transform: uppercase; color: var(--cream); }
+.footer__col h4 { margin-top: 6px; font-family: var(--font-body); font-weight: 600; font-size: 20px; line-height: 28px; letter-spacing: .03em; text-transform: uppercase; color: var(--gold); }
 .footer__col ul { margin-top: 15px; }
 .footer__col li { font-size: 17px; line-height: 29px; color: #fff; }
 .footer__col a:hover { color: var(--gold); }
