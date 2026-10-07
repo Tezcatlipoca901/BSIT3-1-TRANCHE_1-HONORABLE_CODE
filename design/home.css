@@ -192,7 +192,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
     linear-gradient(180deg, rgba(6, 14, 36, .5) 0%, rgba(6, 14, 36, 0) 30%, rgba(6, 14, 36, 0) 68%, rgba(6, 14, 36, .45) 100%),
     #3a78c4 url("../assets/nations-bg.png") center / cover no-repeat;
 }
-.nations__intro { flex: 0 0 718px; padding: 0 0 0 48px; z-index: 1; }
+.nations__intro { flex: 0 0 694px; padding: 0 0 0 48px; z-index: 1; }
 .nations__eyebrow { font-family: var(--font-ui); font-size: 22px; line-height: 26px; color: var(--gold); }
 .nations__title { margin-top: 10px; font-family: var(--font-ui); font-weight: 700; font-size: 64px; line-height: 70px; color: #fff; }
 .nations__title em { display: block; font-family: var(--font-serif); font-weight: 400; font-style: italic; font-size: 90px; line-height: 92px; }
@@ -200,7 +200,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 
 .nations__track {
   flex: 1; display: flex; gap: 20px; align-items: flex-start;
-  padding: 20px 0; overflow-x: auto; overflow-y: hidden; z-index: 1;
+  padding: 48px 24px 48px 24px; overflow-x: auto; overflow-y: hidden; z-index: 1;   /* room so the hover lift, gold ring and glow aren't clipped */
   scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, .35) transparent;
 }
 .nations__track::after { content: ""; flex: 0 0 28px; }   /* breathing space after the last card (+20px gap = 48px, same as the left margin) */
