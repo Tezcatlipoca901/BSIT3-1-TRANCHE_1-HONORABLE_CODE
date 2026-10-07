@@ -414,6 +414,34 @@ section {
   background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), var(--hero-bg) center / cover no-repeat;
 }
 
+.hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  height: 52px;
+  margin-top: 22px;
+  background: url("../assets/button-blank.png") center / 100% 100% no-repeat;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 17px;
+  color: #3b4a68;
+  white-space: nowrap;
+  transition: transform .25s ease, filter .25s ease, color .25s ease;
+}
+
+.hero__btn:hover,
+.hero__btn:focus-visible {
+  transform: translateY(-3px) scale(1.04);
+  color: #1e2a55;
+  filter: brightness(1.12) saturate(1.1) drop-shadow(0 0 10px rgba(220, 192, 138, .75)) drop-shadow(0 6px 14px rgba(0, 0, 0, .35));
+  outline: 0;
+}
+
+.hero__btn:active {
+  transform: translateY(0) scale(.98);
+}
+
 .hero .wrap {
   height: 100%;
 }
@@ -1129,6 +1157,12 @@ section {
     min-height: 680px;
   }
 
+  .hero__btn {
+    width: 200px;
+    height: 44px;
+    margin-top: 14px;
+    font-size: 14px;
+  }
   .hero .wrap {
     height: 100%;
   }
@@ -1584,8 +1618,8 @@ section {
   }
 
   .cta__title em {
-    font-family: var(--font-ui);
-    font-style: normal;
+    font-family: var(--font-serif);
+    font-style: italic;
   }
 
   .cta .trip-meta {
@@ -1692,6 +1726,12 @@ section {
     font-size: 18px;
     line-height: 22px;
   }
+
+  .trip-meta__dur img {
+  width: 30px;
+  height: 30px;
+  margin-right: -10px;
+}
 }
 
 .dishes li {
