@@ -882,6 +882,7 @@ section {
   font-size: 17px;
   line-height: 27px;
   color: #1a2340;
+  font-family: var(--font-eyebrow);
 }
 
 .itinerary .section-title {
@@ -979,19 +980,27 @@ section {
   color: var(--navy);
   min-width: 0;
   overflow-wrap: anywhere;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 12px;
 }
 
 .day:first-child h3 {
   padding-right: 70px;
+
 }
 
 .day__card p {
   margin-top: 12px;
-  font-size: 15.5px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-size: 20.5px;
   line-height: 21px;
   color: #2b3356;
   min-width: 0;
   overflow-wrap: anywhere;
+  font-family: var(--font-eyebrow);
 }
 
 .day__card .day__stay {
@@ -1004,7 +1013,7 @@ section {
   padding-bottom: 28px;   /* space above the card's bottom edge */
   font-size: 12.5px;
   line-height: 18px;
-  font-weight: 500;
+  font-weight: 900;
   color: var(--navy);
 }
 
