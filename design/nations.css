@@ -792,12 +792,12 @@ section {
   position: relative;
 }
 
-.gallery__photo:nth-child(1) { transform: rotate(3.53deg);  }
-.gallery__photo:nth-child(2) { transform: rotate(-1.76deg); }
-.gallery__photo:nth-child(3) { transform: rotate(-5.18deg); }
-.gallery__photo:nth-child(4) { transform: rotate(3.53deg);  }
-.gallery__photo:nth-child(5) { transform: rotate(-1.76deg); }
-.gallery__photo:nth-child(6) { transform: rotate(-5.18deg); }
+.gallery__photo:nth-child(2) { transform: rotate(3.53deg);  }
+.gallery__photo:nth-child(3) { transform: rotate(-1.76deg); }
+.gallery__photo:nth-child(4) { transform: rotate(-5.18deg); }
+.gallery__photo:nth-child(5) { transform: rotate(3.53deg);  }
+.gallery__photo:nth-child(6) { transform: rotate(-1.76deg); }
+.gallery__photo:nth-child(7) { transform: rotate(-5.18deg); }
 
 .gallery__photo img {
   display: block;
