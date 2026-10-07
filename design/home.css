@@ -260,7 +260,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nation-card__link { position: absolute; inset: 0; z-index: 2; }
 .nation-card__info { position: absolute; left: 26px; right: 22px; top: 384px; color: #fff; }
 .nation-card__meta { display: flex; align-items: center; gap: 6px; height: 20px; font-family: var(--font-ui); font-size: 13px; }
-.nation-card__meta img { width: 18px; height: 18px; flex: none; }
+.nation-card__meta img { width: 22px; height: 22px; flex: none; }
 .nation-card h3 { margin-top: 8px; font-family: var(--font-ui); font-weight: 700; font-size: 30px; line-height: 40px; }
 .nation-card__desc { margin-top: 3px; height: 52px; overflow: hidden; font-size: 15px; line-height: 26px; color: #e3e8f0; }
 .nation-card__price { margin-top: 7px; display: flex; align-items: baseline; gap: 6px; font-family: var(--font-ui); font-weight: 700; font-size: 26px; line-height: 40px; transition: color .3s ease; }
@@ -294,22 +294,27 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .contact__main { position: absolute; left: calc(50% - 720px + 608px); top: 163px; width: 793px; }
 .faqs__list { margin-left: 47px; width: 632px; }
 @media (min-width: 1300px) {
-  /* Desktop: ONE Katheryne stays pinned on the left while the right side (FAQs, then the inquiry form) scrolls past.
-     Her portrait/caption styles are untouched; only the section layout changed (flex + sticky instead of absolute). */
+  /* Desktop: the panel is exactly one screen. Katheryne stays put on the left; only the right side
+     (FAQs, then the inquiry form) scrolls inside the panel, with the scrollbar hidden. */
   .contact {
     display: flex; align-items: flex-start;
-    height: auto; min-height: 100svh; padding-bottom: 100px;
-    overflow: clip;            /* clip (not hidden) so sticky keeps working */
+    height: max(100svh, 640px); min-height: 0; padding-bottom: 0;
+    overflow: hidden;
   }
   .guide {
-    position: sticky; flex: none;
-    top: clamp(-100px, calc(100vh - 960px), 0px);   /* shorter screens: nudge up so her name + quote stay visible */
+    position: relative; flex: none;
+    top: clamp(-100px, calc(100svh - 960px), 0px);   /* shorter screens: nudge up so her name + quote stay visible */
     left: auto; margin-left: max(0px, calc(50% - 720px));
   }
   .contact__main {
     position: relative; left: auto; top: auto; flex: none;
-    margin: 163px 0 0 calc(-52px + min(0px, 50% - 720px));   /* same x-position as before */
+    width: 880px;   /* a bit wider than the 793px form so long FAQ questions (nowrap) aren't cut off */
+    height: 100%; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;   /* vertical scroll only */
+    margin: 0 0 0 calc(-52px + min(0px, 50% - 720px));   /* same x-position as before */
+    padding: 163px 0 100px;                               /* the old top margin lives inside the scroller now */
+    scrollbar-width: none; -ms-overflow-style: none;       /* invisible scrollbar (Firefox / old Edge) */
   }
+  .contact__main::-webkit-scrollbar { display: none; width: 0; height: 0; }   /* invisible scrollbar (Chrome / Safari) */
 
 }
 .q-mobile, .guide-repeat { display: none; }   /* mobile-only: second Katheryne caption + FAQ quote line */
@@ -384,7 +389,7 @@ select.inquiry__field option { color: #13161b; }
   display: grid; grid-template-columns: 477px 193px 374px 1fr; padding-left: 45px;
 }
 .footer__brand img { position: relative; top: -18px; width: 215px; height: auto; margin-top: 0; }   /* wordmark centre (38px) -> title centre (20px) */
-.footer__brand p { margin: 8px 0 0 73px; width: 333px; font-size: 18px; line-height: 31px; color: #f1f1f1; }
+.footer__brand p { margin: -25px 0 0 73px; width: 333px; font-size: 17px; line-height: 29px; color: #f1f1f1; }   /* -25px pulls the first line level with "Home" / the email in the other columns; 17px/29px matches their rows */
 .footer__col h4 { margin-top: 6px; font-family: var(--font-ui); font-weight: 400; font-size: 20px; line-height: 28px; letter-spacing: .03em; text-transform: uppercase; color: var(--cream); }
 .footer__col ul { margin-top: 15px; }
 .footer__col li { font-size: 17px; line-height: 29px; color: #fff; }
@@ -554,7 +559,7 @@ select.inquiry__field option { color: #13161b; }
   .nation-card__price span { font-size: 16px; }
   .nation-card__price small { font-size: 11px; color: #fff; }
   .nation-card__meta { grid-column: 2; grid-row: 2; justify-self: end; height: auto; font-size: 9px; line-height: 16px; font-weight: 700; }
-  .nation-card__meta img { width: 13px; height: 13px; }
+  .nation-card__meta img { width: 15px; height: 15px; }
   .nation-card__desc { display: none; }
 
   /* ---- KATHERYNE panel, mobile: caption on top, FAQs over a faded portrait, second caption, then the form ---- */
@@ -591,7 +596,7 @@ select.inquiry__field option { color: #13161b; }
   .footer__divider { margin: 0 auto 32px; }
   .footer__grid { width: auto; padding-left: 0; grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer__brand { grid-column: 1 / -1; }
-  .footer__brand p { margin-left: 0; }
+  .footer__brand p { margin: 8px 0 0; }
   .footer__brand img { top: 0; }
   .footer__copy { margin-top: 32px; }
 }
