@@ -7,6 +7,7 @@
 @font-face { font-family: "Playfair Display"; src: url("../assets/fonts/playfair-display-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Playfair Display"; src: url("../assets/fonts/playfair-display-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: "Playfair Display"; src: url("../assets/fonts/playfair-display-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Farsan"; src: url("../assets/fonts/Farsan-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Montserrat"; src: url("../assets/fonts/montserrat-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Montserrat"; src: url("../assets/fonts/montserrat-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 @font-face { font-family: "Montserrat"; src: url("../assets/fonts/montserrat-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
@@ -21,6 +22,7 @@
   --font-ui: "HYWenHei", "Segoe UI", sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
   --font-body: "Montserrat", "Segoe UI", sans-serif;
+  --font-peso: "Farsan", var(--font-ui);   /* same peso sign as the nation pages */
   --page: 1440px;
 }
 
@@ -265,7 +267,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nation-card__desc { margin-top: 3px; height: 52px; overflow: hidden; font-size: 15px; line-height: 26px; color: #e3e8f0; }
 .nation-card__price { margin-top: 7px; display: flex; align-items: baseline; gap: 6px; font-family: var(--font-ui); font-weight: 700; font-size: 26px; line-height: 40px; transition: color .3s ease; }
 .nation-card__tag { display: none; }
-.nation-card__price span { color: var(--gold); font-size: 22px; }
+.nation-card__price span { font-family: var(--font-peso); font-weight: 400; color: var(--gold); font-size: 30px; line-height: 1; margin: -8px 0; }   /* same ₱ as the nation pages (Farsan, gold), same size ratio to the price (50px vs 24px there) */
 .nation-card__price small { font-family: var(--font-body); font-weight: 500; font-size: 14px; color: #d5dbe6; }
 
 /* ==========================================================
@@ -308,7 +310,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
     transform-origin: top center;
   }
   /* shrink her a little on shorter screens so the quote keeps ~50px of space under it (her block is ~960px tall) */
-  @media (max-height: 1000px) { .guide { transform: scale(.92); } }
+  @media (max-height: 1100px) { .guide { transform: scale(.92); } }
   @media (max-height: 900px)  { .guide { transform: scale(.82); } }
   @media (max-height: 800px)  { .guide { transform: scale(.72); } }
   @media (max-height: 700px)  { .guide { transform: scale(.62); } }
@@ -562,7 +564,7 @@ select.inquiry__field option { color: #13161b; }
   .nation-card h3 { grid-column: 1; grid-row: 1; margin: 0; font-family: var(--font-ui); font-weight: 700; font-size: 19px; line-height: 32px; }
   .nation-card__tag { display: block; grid-column: 1; grid-row: 2; font-family: var(--font-ui); font-size: 8.5px; line-height: 16px; white-space: nowrap; color: #fff; }
   .nation-card__price { grid-column: 2; grid-row: 1; justify-self: end; margin: 0; gap: 2px; font-size: 18px; line-height: 32px; color: var(--gold); }
-  .nation-card__price span { font-size: 16px; }
+  .nation-card__price span { font-size: 36px; margin: -10px 0; }
   .nation-card__price small { font-size: 11px; color: #fff; }
   .nation-card__meta { grid-column: 2; grid-row: 2; justify-self: end; height: auto; font-size: 9px; line-height: 16px; font-weight: 700; }
   .nation-card__meta img { width: 15px; height: 15px; }
