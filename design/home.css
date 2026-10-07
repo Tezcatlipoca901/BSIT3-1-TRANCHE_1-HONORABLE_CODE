@@ -98,6 +98,13 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   max-width: var(--page); margin: 0 auto;
   z-index: 100;   /* above everything, incl. .hero__content */
 }
+/* black shadow behind the navbar: full-width dark fade from the top edge, sits under the logo + links */
+.site-header::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  left: 50%; width: 100vw; transform: translateX(-50%);
+  top: 0; bottom: -36px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, .45) 55%, rgba(0, 0, 0, 0) 100%);
+}
 /* Paimon + its menu are phone-only (styles live in the max-width: 640px block) */
 .paimon-btn, .menu, .menu-backdrop { display: none; }
 .brand { position: absolute; left: 66px; top: 8px; }
