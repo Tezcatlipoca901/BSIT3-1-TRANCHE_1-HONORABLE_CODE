@@ -1759,3 +1759,43 @@ section {
   object-fit: contain;
   object-position: center;
 }
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.footer { position: relative; height: 407px; background: var(--ink); color: #fff; }
+.footer__divider { position: absolute; left: 50%; top: 41px; width: 300px; height: auto; transform: translateX(-50%); }
+.footer__grid {
+  position: absolute; left: 50%; top: 96px; width: var(--page); transform: translateX(-50%);
+  display: grid; grid-template-columns: 477px 193px 374px 1fr; padding-left: 45px;
+}
+.footer__brand img { position: relative; top: -18px; width: 215px; height: auto; margin-top: 0; }
+.footer__brand p { margin: -25px 0 0 73px; width: 333px; font-size: 17px; line-height: 29px; color: #f1f1f1; }
+.footer__col h4 { margin-top: 6px; font-family: var(--font-body); font-weight: 600; font-size: 20px; line-height: 28px; letter-spacing: .03em; text-transform: uppercase; color: var(--gold); }
+.footer__col ul { margin-top: 15px; }
+.footer__col li { font-size: 17px; line-height: 29px; color: #fff; }
+.footer__col a:hover { color: var(--gold); }
+.footer__col:nth-child(3) li { font-size: 17px; }
+.socials { display: flex; gap: 12px; }
+.socials svg { width: 32px; height: 32px; fill: #c7cad1; stroke: none; }
+.socials svg.line { fill: none; stroke: #c7cad1; stroke-width: 2; stroke-linecap: round; }
+.socials .cut { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.socials .cut.fill { fill: var(--ink); stroke: none; }
+.socials a:hover svg { fill: var(--gold); }
+.socials a:hover svg.line { fill: none; stroke: var(--gold); }
+.footer__copy { position: absolute; left: 0; right: 0; top: 356px; text-align: center; font-size: 18px; color: #8d929c; }
+
+@media (max-width: 1299px) {
+  .footer { height: auto; padding: 40px 24px 60px; }
+  .footer__divider, .footer__copy, .footer__grid { position: static; transform: none; }
+  .footer__divider { margin: 0 auto 32px; }
+  .footer__grid { width: auto; padding-left: 0; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer__brand { grid-column: 1 / -1; }
+  .footer__brand p { margin: 8px 0 0; }
+  .footer__brand img { top: 0; }
+  .footer__copy { margin-top: 32px; }
+}
+
+@media (max-width: 640px) {
+  .footer__grid { grid-template-columns: 1fr; }
+}
