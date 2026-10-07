@@ -564,7 +564,7 @@ select.inquiry__field option { color: #13161b; }
   .nation-card h3 { grid-column: 1; grid-row: 1; margin: 0; font-family: var(--font-ui); font-weight: 700; font-size: 19px; line-height: 32px; }
   .nation-card__tag { display: block; grid-column: 1; grid-row: 2; font-family: var(--font-ui); font-size: 8.5px; line-height: 16px; white-space: nowrap; color: #fff; }
   .nation-card__price { grid-column: 2; grid-row: 1; justify-self: end; margin: 0; gap: 2px; font-size: 18px; line-height: 32px; color: var(--gold); }
-  .nation-card__price span { font-size: 36px; margin: -10px 0; }
+  .nation-card__price span { font-size: 20px; margin: -10px 0; }
   .nation-card__price small { font-size: 11px; color: #fff; }
   .nation-card__meta { grid-column: 2; grid-row: 2; justify-self: end; height: auto; font-size: 9px; line-height: 16px; font-weight: 700; }
   .nation-card__meta img { width: 15px; height: 15px; }
