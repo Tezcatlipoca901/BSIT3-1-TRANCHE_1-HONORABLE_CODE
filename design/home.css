@@ -253,7 +253,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   height: 100vh; height: 100svh; min-height: 720px;
   background:
     /* Figma look: deep navy behind the intro text, easing into the bright blue + swirls on the right */
-    linear-gradient(90deg, rgba(8, 17, 40, .98) 0%, rgba(11, 24, 56, .96) 30%, rgba(16, 38, 84, .8) 50%, rgba(28, 66, 135, .4) 70%, rgba(45, 98, 178, .1) 88%, rgba(58, 120, 196, 0) 100%),
+    linear-gradient(90deg, rgba(8, 17, 40, .8) 0%, rgba(8, 17, 40, .76) 30%, rgba(10, 22, 52, .54) 50%, rgba(20, 48, 100, .26) 70%, rgba(40, 90, 170, .07) 88%, rgba(58, 120, 196, 0) 100%),
     linear-gradient(180deg, rgba(6, 14, 36, .5) 0%, rgba(6, 14, 36, 0) 30%, rgba(6, 14, 36, 0) 68%, rgba(6, 14, 36, .45) 100%),
     #3a78c4 url("../assets/nations-bg.png") center / cover no-repeat;
 }
@@ -318,7 +318,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nation-card__link { position: absolute; inset: 0; z-index: 2; }
 .nation-card__info { position: absolute; left: 26px; right: 22px; top: 384px; color: #fff; }
 .nation-card__meta { display: flex; align-items: center; gap: 6px; height: 20px; font-family: var(--font-ui); font-size: 13px; }
-.nation-card__meta img { width: 28px; height: 28px; flex: none; }
+.nation-card__meta img { width: 27px; height: 27px; flex: none; }
 .nation-card h3 { margin-top: 8px; font-family: var(--font-ui); font-weight: 700; font-size: 30px; line-height: 40px; }
 .nation-card__desc { margin-top: 3px; height: 52px; overflow: hidden; font-size: 15px; line-height: 26px; color: #e3e8f0; }
 .nation-card__price { margin-top: 7px; display: flex; align-items: baseline; gap: 6px; font-family: var(--font-ui); font-weight: 700; font-size: 26px; line-height: 40px; transition: color .3s ease; }
@@ -431,7 +431,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .inquiry__field {
   position: absolute; left: 62px; width: 669px; padding: 0 20px;
   background: transparent; border: 0; outline: 0; color: #e5e7ec;
-  font-family: var(--font-ui); font-size: 22px;
+  font-family: var(--font-ui); font-size: 18px;   /* placeholder / select / typed text */
 }
 .inquiry__field::placeholder { color: #a9aebb; opacity: 1; }
 select.inquiry__field { appearance: none; color: #a9aebb; }
@@ -654,7 +654,7 @@ select.inquiry__field option { color: #13161b; }
   .guide-repeat__quote { display: block; font-family: var(--font-ui); font-weight: 700; font-size: 16px; line-height: 24px; color: #fff; }
 
   .inquiry__head { margin: 22px 0 0; width: 100%; max-width: 640px; text-align: center; }
-  .inquiry__sub { display: none; }
+  .inquiry__sub { margin: 6px auto 0; max-width: 340px; font-size: 13px; line-height: 19px; }   /* description under the title, centred */
   .inquiry__form { width: 793px; margin-top: 18px; zoom: .8; }
   .footer { height: auto; padding: 40px 24px 60px; }
   .footer__divider, .footer__copy, .footer__grid { position: static; transform: none; }
@@ -703,14 +703,25 @@ select.inquiry__field option { color: #13161b; }
   }
   .menu__cta:hover { filter: brightness(1.05); }
 
-  .company { padding: 92px 0 52px; }
-  .company__inner { padding: 0 18px; }
-  .company__eyebrow { font-size: 12px; line-height: 16px; }
-  .company__title { font-size: 22px; line-height: 30px; }
+  .company {
+    padding: 92px 0 52px;
+    /* lighter tint so the rock + landscape photo shows through, like the reference */
+    background:
+      linear-gradient(180deg, rgba(8, 14, 30, .5) 0%, rgba(8, 14, 30, .4) 40%, rgba(8, 14, 30, .38) 65%, rgba(8, 14, 30, .55) 100%),
+      url("../assets/AboutOurCompany.jpg") 58% center / cover no-repeat;
+  }
+  /* layout per reference: centred header, narrow centred text column on the left (rock shows on the right), short rule + left-aligned promise */
+  .company__inner { padding: 0 8%; }
+  .company__eyebrow { font-size: 12px; line-height: 16px; text-align: center; }
+  .company__title { font-size: 22px; line-height: 30px; text-align: center; }
   .company__title em { font-size: 30px; line-height: 36px; }
-  .company__text { font-size: 13.5px; line-height: 21px; }
+  .company__text { max-width: 62.5%; margin-left: 1.5%; margin-right: auto; padding: 0; text-align: center; font-size: 13px; line-height: 20px; }
+  .company__title + .company__text { margin-top: 36px; }
+  .company__text + .company__text { margin-top: 22px; }
+  .company__signature { max-width: none; margin-top: 30px; padding-top: 0; border-top: 0; text-align: left; }
+  .company__signature::before { content: ""; display: block; width: 69%; height: 1px; margin-bottom: 14px; background: rgba(220, 192, 138, .6); }   /* short rule, not full width */
   .company__signature strong { font-size: 18px; line-height: 24px; }
-  .company__signature span { font-size: 10.5px; line-height: 15px; }
+  .company__signature span { margin-top: 2px; font-size: 11px; line-height: 16px; font-weight: 400; letter-spacing: .03em; color: #f1f3f8; }
   .about { padding: 40px 0 70px; }
   /* FAQ bars on phones: full width, compact, wraps long questions; sparkle bullet on the answer like the reference */
   .inquiry__title { font-size: 20px; line-height: 28px; }
@@ -728,6 +739,7 @@ select.inquiry__field option { color: #13161b; }
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23dcc08a' d='M12 0c.9 6.2 5.8 11.1 12 12-6.2.9-11.1 5.8-12 12-.9-6.2-5.8-11.1-12-12C6.2 11.1 11.1 6.2 12 0z'/%3E%3C/svg%3E") center / contain no-repeat;
   }
   .inquiry__form { zoom: .46; margin-bottom: 24px; }   /* fits a 390px screen edge to edge */
+  .inquiry__field { font-size: 22px; }   /* form is zoomed down on phones, so keep the original size there */
   /* the form is shrunk with zoom, so the Send button is sized in form units: 460 x 96 shows as ~212 x 44 on a phone */
   .btn.inquiry__send { width: 460px; height: 96px; left: 166px; top: 566px; font-size: 36px; }
   .site-nav { gap: 18px; }
@@ -738,5 +750,17 @@ select.inquiry__field option { color: #13161b; }
   .hero__text { margin-top: 10px; font-size: clamp(11px, 3vw, 13px); line-height: 1.4; }
   .btn { width: 280px; height: 58px; font-size: 18px; }
   .hero .btn { width: clamp(180px, 52vw, 230px); height: clamp(36px, 10.2vw, 45px); margin: 22px 0 0; font-size: clamp(12px, 3.4vw, 15px); }
-  .footer__grid { grid-template-columns: 1fr; }
+  /* ---- FOOTER, phone: logo + blurb on top, Navigate | Tour packages side by side, socials row, copyright ---- */
+  .footer { padding: 36px 24px 28px; }
+  .footer__divider { width: 220px; margin: 0 auto 28px; }
+  .footer__grid { grid-template-columns: auto 1fr; column-gap: 32px; row-gap: 26px; }
+  .footer__brand img { width: 128px; }
+  .footer__brand p { width: auto; max-width: 100%; margin: 12px 0 0; font-size: 12.5px; line-height: 19px; }
+  .footer__col h4 { margin-top: 0; font-size: 15px; line-height: 20px; font-weight: 500; }
+  .footer__col ul { margin-top: 12px; }
+  .footer__col li, .footer__col:nth-child(3) li { font-size: 12.5px; line-height: 19px; overflow-wrap: anywhere; }
+  .footer__col:nth-child(4) { grid-column: 1 / -1; }   /* socials: full-width row under the two columns */
+  .socials { gap: 12px; }
+  .socials svg { width: 22px; height: 22px; }
+  .footer__copy { margin-top: 36px; font-size: 11px; line-height: 16px; }
 }
