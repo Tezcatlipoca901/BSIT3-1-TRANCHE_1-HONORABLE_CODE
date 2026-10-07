@@ -318,7 +318,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nation-card__link { position: absolute; inset: 0; z-index: 2; }
 .nation-card__info { position: absolute; left: 26px; right: 22px; top: 384px; color: #fff; }
 .nation-card__meta { display: flex; align-items: center; gap: 6px; height: 20px; font-family: var(--font-ui); font-size: 13px; }
-.nation-card__meta img { width: 22px; height: 22px; flex: none; }
+.nation-card__meta img { width: 28px; height: 28px; flex: none; }
 .nation-card h3 { margin-top: 8px; font-family: var(--font-ui); font-weight: 700; font-size: 30px; line-height: 40px; }
 .nation-card__desc { margin-top: 3px; height: 52px; overflow: hidden; font-size: 15px; line-height: 26px; color: #e3e8f0; }
 .nation-card__price { margin-top: 7px; display: flex; align-items: baseline; gap: 6px; font-family: var(--font-ui); font-weight: 700; font-size: 26px; line-height: 40px; transition: color .3s ease; }
