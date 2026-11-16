@@ -411,7 +411,10 @@ section {
   height: 100vh;
   height: 100svh;
   min-height: 674px;
+
   background: var(--hero-bg) center / cover no-repeat;
+  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), var(--hero-bg) center / cover no-repeat;
+
 }
 
 .hero__btn {
@@ -421,6 +424,7 @@ section {
   width: 230px;
   height: 52px;
   margin-top: 14px;
+  margin-top: 22px;
   background: url("../assets/button-blank.png") center / 100% 100% no-repeat;
   font-family: var(--font-ui);
   font-weight: 700;
@@ -450,6 +454,7 @@ section {
   position: absolute;
   left: 85px;
   bottom: 8vh;
+  bottom: 20vh;
   width: 760px;
 }
 
@@ -459,6 +464,8 @@ section {
   font-weight: 700;
   font-size: 48px;
   line-height: 60px;
+  font-size: 66px;
+  line-height: 76px;
   color: #fff;
 }
 
@@ -468,6 +475,11 @@ section {
   font-weight: 500;
   font-size: 17px;
   line-height: 22px;
+  margin-top: 10px;
+  max-width: 720px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 27px;
   color: #fff;
 }
 
@@ -481,6 +493,7 @@ section {
 
 .hero .trip-meta {
   margin-top: 26px;
+  margin-top: 32px;
 }
 
 /* ==========================================================
@@ -1233,6 +1246,8 @@ section {
 .cta {
   height: 572px;
   background: var(--cta-bg) center / cover no-repeat;
+  height: 760px;
+  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), var(--hero-bg) center / cover no-repeat;
 }
 
 .cta__inner {
@@ -1245,6 +1260,11 @@ section {
 
 .cta__mark {
   width: 38px;
+  padding-top: 170px;
+}
+
+.cta__mark {
+  width: 54px;
   height: auto;
 }
 
@@ -1252,6 +1272,9 @@ section {
   margin-top: 10px;
   font-family: var(--font-ui);
   font-size: 24px;
+  margin-top: 14px;
+  font-family: var(--font-ui);
+  font-size: 32px;
   line-height: 30px;
   color: var(--gold);
 }
@@ -1262,6 +1285,11 @@ section {
   font-weight: 700;
   font-size: 48px;
   line-height: 62px;
+  margin-top: 12px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 62px;
+  line-height: 82px;
   color: #fff;
 }
 
@@ -1277,6 +1305,10 @@ section {
 
 .cta__btn {
   margin-top: 20px;
+}
+
+.cta__btn {
+  margin-top: 26px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
