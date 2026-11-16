@@ -327,7 +327,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nation-card__price small { font-family: var(--font-body); font-weight: 500; font-size: 14px; color: #d5dbe6; }
 
 /* ==========================================================
-   FAQs + INQUIRY — one section, one Katheryne
+   FAQs — one section, one Katheryne
    ========================================================== */
 .contact {
   position: relative; overflow: hidden; height: 1500px;   /* room for the form title + one open FAQ answer */
@@ -353,7 +353,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .faqs__list { margin-left: 47px; width: 632px; }
 @media (min-width: 1300px) {
   /* Desktop: the panel is exactly one screen. Katheryne stays put on the left; only the right side
-     (FAQs, then the inquiry form) scrolls inside the panel, with the scrollbar hidden. */
+     (the FAQs) scrolls inside the panel, with the scrollbar hidden. */
   .contact {
     display: flex; align-items: flex-start;
     height: max(100svh, 640px); min-height: 0; padding-bottom: 0;
@@ -421,27 +421,6 @@ h1, h2, h3, h4, p, figure { margin: 0; }
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23dcc08a' d='M12 0c.9 6.2 5.8 11.1 12 12-6.2.9-11.1 5.8-12 12-.9-6.2-5.8-11.1-12-12C6.2 11.1 11.1 6.2 12 0z'/%3E%3C/svg%3E") center / contain no-repeat;
   }
 }
-
-/* ---------- Inquiry form ---------- */
-.inquiry__head { margin: 40px 0 0 52px; width: 640px; }
-.inquiry__title { font-family: var(--font-ui); font-weight: 700; font-size: 28px; line-height: 40px; color: var(--gold); }
-.inquiry__sub { margin-top: 4px; max-width: 520px; font-size: 16px; line-height: 24px; color: #e5e7ec; }
-.inquiry__form { position: relative; margin-top: 14px; width: 793px; height: 640px; }
-.inquiry__box { position: relative; width: 793px; height: 598px; background: url("../assets/inquiry-box.png") 0 0 / 793px 598px no-repeat; }
-.inquiry__field {
-  position: absolute; left: 62px; width: 669px; padding: 0 20px;
-  background: transparent; border: 0; outline: 0; color: #e5e7ec;
-  font-family: var(--font-ui); font-size: 18px;   /* placeholder / select / typed text */
-}
-.inquiry__field::placeholder { color: #a9aebb; opacity: 1; }
-select.inquiry__field { appearance: none; color: #a9aebb; }
-select.inquiry__field option { color: #13161b; }
-.inquiry__field--name   { top: 128px; height: 53px; }
-.inquiry__field--email  { top: 198px; height: 53px; }
-.inquiry__field--nation { top: 268px; height: 53px; }
-.inquiry__field--plans  { top: 342px; height: 166px; padding-top: 14px; resize: none; }
-.inquiry__field:focus { box-shadow: inset 0 0 0 1px rgba(220, 192, 138, .6); }
-.inquiry__send { position: absolute; left: 232px; top: 566px; width: 330px; height: 68px; font-size: 22px; }   /* same size as the hero Go to Expedition button */
 
 /* ==========================================================
    FOOTER
@@ -635,7 +614,6 @@ select.inquiry__field option { color: #13161b; }
   .guide__name { font-size: 22px; line-height: 30px; }
   .guide__role { height: 22px; margin: 6px 0 12px; font-size: 14px; line-height: 22px; }
   .guide__quote { font-size: 16px; line-height: 24px; }
-  .q-desktop { display: none; }
   .q-mobile { display: inline; }
   /* the portrait becomes a soft background behind the FAQs */
   .guide__portrait { position: absolute; left: 50%; top: 222px; width: min(62%, 260px); transform: translateX(-50%); opacity: .16; pointer-events: none; z-index: 0; }
@@ -653,9 +631,6 @@ select.inquiry__field option { color: #13161b; }
   }
   .guide-repeat__quote { display: block; font-family: var(--font-ui); font-weight: 700; font-size: 16px; line-height: 24px; color: #fff; }
 
-  .inquiry__head { margin: 22px 0 0; width: 100%; max-width: 640px; text-align: center; }
-  .inquiry__sub { margin: 6px auto 0; max-width: 340px; font-size: 13px; line-height: 19px; }   /* description under the title, centred */
-  .inquiry__form { width: 793px; margin-top: 18px; zoom: .8; }
   .footer { height: auto; padding: 40px 24px 60px; }
   .footer__divider, .footer__copy, .footer__grid { position: static; transform: none; }
   .footer__divider { margin: 0 auto 32px; }
@@ -724,7 +699,6 @@ select.inquiry__field option { color: #13161b; }
   .company__signature span { margin-top: 2px; font-size: 11px; line-height: 16px; font-weight: 400; letter-spacing: .03em; color: #f1f3f8; }
   .about { padding: 40px 0 70px; }
   /* FAQ bars on phones: full width, compact, wraps long questions; sparkle bullet on the answer like the reference */
-  .inquiry__title { font-size: 20px; line-height: 28px; }
   .faq { margin: 0 -4px 12px -24px; }   /* the bar art has empty space on its left; pull it to the screen edge like the reference */
   .faq:first-of-type { margin-top: 0; }
   .faq summary {
@@ -738,10 +712,7 @@ select.inquiry__field option { color: #13161b; }
     content: ""; position: absolute; left: -36px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%);
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23dcc08a' d='M12 0c.9 6.2 5.8 11.1 12 12-6.2.9-11.1 5.8-12 12-.9-6.2-5.8-11.1-12-12C6.2 11.1 11.1 6.2 12 0z'/%3E%3C/svg%3E") center / contain no-repeat;
   }
-  .inquiry__form { zoom: .46; margin-bottom: 24px; }   /* fits a 390px screen edge to edge */
-  .inquiry__field { font-size: 22px; }   /* form is zoomed down on phones, so keep the original size there */
   /* the form is shrunk with zoom, so the Send button is sized in form units: 460 x 96 shows as ~212 x 44 on a phone */
-  .btn.inquiry__send { width: 460px; height: 96px; left: 166px; top: 566px; font-size: 36px; }
   .site-nav { gap: 18px; }
   .site-nav a { font-size: 16px; }
   /* hero text, phone: matches the Figma mobile frame (2-line title, 2-line subtitle, compact button) */
