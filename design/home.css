@@ -71,28 +71,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   height: 100svh;          /* full screen, same as the nation pages */
   min-height: 614px;
   overflow: hidden;
-}
-
-.hero__video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  object-fit: cover;
-}
-
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(90deg, rgba(18, 12, 30, .55) 0%, rgba(18, 12, 30, .15) 55%, rgba(18, 12, 30, 0) 100%),
-    linear-gradient(180deg, rgba(18, 12, 30, .45) 0%, rgba(18, 12, 30, 0) 30%);
-  z-index: 1;
+  background: url("../assets/main hero section v2.png") center / cover no-repeat;   /* overlay is baked into the image */
 }
 
 .site-header {
@@ -109,11 +88,11 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 }
 /* Paimon + its menu are phone-only (styles live in the max-width: 640px block) */
 .paimon-btn, .menu, .menu-backdrop { display: none; }
-.brand { position: absolute; left: 66px; top: 8px; }
-.brand img { width: 215px; height: auto; }
-.site-nav { position: absolute; left: 452px; top: 0; height: 92px; display: flex; align-items: center; gap: 135px; }
+.brand { position: absolute; left: 31px; top: 18px; }
+.brand img { width: 168px; height: auto; }
+.site-nav { position: absolute; left: 522px; top: 0; height: 92px; display: flex; align-items: center; gap: 97px; }
 .site-nav a {
-  display: inline-block; font-family: var(--font-ui); font-size: 20px; color: var(--gold); 
+  display: inline-block; font-family: var(--font-ui); font-size: 17px; color: var(--gold); 
   transition: transform .25s ease, filter .25s ease, color .25s ease, text-shadow .25s ease;
 }
 /* same hover as the buttons: lift + grow, gold glow, brighter; press = dip */
@@ -196,6 +175,16 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .hero__title span { color: var(--gold); }
 .hero__text { margin-top: 11px; font-family: var(--font-body); font-weight: 500; font-size: 18px; line-height: 25px; color: #fff; }
 .hero .btn { margin: 26px 0 0 4px; }
+.hero__mark { display: none; }
+
+/* desktop: text block sits bottom-right, right-aligned, with the big waypoint mark above the title */
+@media (min-width: 1300px) {
+  .hero__content { align-items: flex-end; justify-content: flex-end; text-align: right; padding: 92px 45px 83px 40px; }
+  .hero__mark { display: block; width: 232px; height: auto; margin: 0 -23px -34px 0; }   /* 232px box = 162px visible star (the PNG has transparent padding) */
+  .hero__title { margin-top: 35px; font-size: 48px; line-height: 59px; }
+  .hero__text { margin-top: 12px; font-size: 16.5px; line-height: 20px; }
+  .hero .btn { width: 270px; height: 56px; margin: 65px 0 0; font-size: 17px; }
+}
 
 /* ==========================================================
    ABOUT / FORMER TRAVELER
