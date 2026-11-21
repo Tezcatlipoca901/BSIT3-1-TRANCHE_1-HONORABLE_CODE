@@ -77,10 +77,21 @@
 
   <!-- ============ NATIONS ============ -->
   <section class="nations" id="nations">
-    <div class="nations__intro">
-      <p class="nations__eyebrow">The Seven-Nation Collection</p>
-      <h2 class="nations__title">Choose your<em>next waypoint.</em></h2>
-      <p class="nations__text">Every expedition includes regional transport, stays, selected meals, and attraction passes.</p>
+    <div class="nations__head">
+      <div class="nations__intro">
+        <p class="nations__eyebrow">The Seven-Nation Collection</p>
+        <h2 class="nations__title">Choose your<em>next waypoint.</em></h2>
+        <p class="nations__text">Every expedition includes regional transport, stays, selected meals, and attraction passes.</p>
+      </div>
+
+      <form class="search" id="search" novalidate>
+        <div class="search__field"><label for="s-dest">Destination</label><input id="s-dest" name="destination" list="s-nations" placeholder="Mondstadt, Liyue, Inazuma..." autocomplete="off"><datalist id="s-nations"><option value="Mondstadt"><option value="Liyue"><option value="Inazuma"><option value="Sumeru"><option value="Natlan"><option value="Fontaine"><option value="Snezhnaya"></datalist></div>
+        <div class="search__field"><label for="s-in">Departure / Check-in</label><input id="s-in" name="depart" type="date" value="2026-12-04"></div>
+        <div class="search__field"><label for="s-out">Return / Check-out</label><input id="s-out" name="ret" type="date" value="2026-12-11"></div>
+        <div class="search__field"><label for="s-trav">Travelers</label><select id="s-trav" name="travelers"></select></div>
+        <p class="search__error" id="s-error" aria-live="polite"></p>
+        <button class="search__btn" type="submit">Check Availability</button>
+      </form>
     </div>
 
     <ul class="nations__track">
@@ -155,6 +166,13 @@
         </div>
       </li>
     </ul>
+
+    <div class="nations__empty" id="nations-empty" hidden>
+      <span class="nations__empty-icon" aria-hidden="true">×</span>
+      <h3>No exact destinations found</h3>
+      <p>We couldn't find a package matching that search query. Try clearing your filters to explore all available destinations.</p>
+      <button class="search__btn search__btn--plain" type="button" id="view-all">View All Packages</button>
+    </div>
   </section>
 
   <!-- ============ KATHERYNE + FAQs ============ -->
@@ -243,5 +261,6 @@
   </footer>
 
 
+  <script src="../script/home.js"></script>
 </body>
 </html>
