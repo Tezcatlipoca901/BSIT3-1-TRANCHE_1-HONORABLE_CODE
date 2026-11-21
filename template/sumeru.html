@@ -226,7 +226,7 @@
         <p class="trip-meta__price"><span class="peso">₱</span>14,000<small>per pax</small></p>
         <p class="trip-meta__dur"><img src="../assets/icon-time.png" alt="">3 Days / 3 Nights</p>
       </div>
-      <button class="cta__btn" type="button" data-open-booking aria-haspopup="dialog">Book Now</button>
+      <a class="cta__btn" href="home.html?nation=Sumeru#nations">Book Now</a>
     </div>
   </section>
 
@@ -275,67 +275,5 @@
     <p class="footer__copy">© 2026 WaypointGO Tourism Platform. All rights reserved.</p>
   </footer>
 
-  <!-- ============ BOOKING MODAL ============ -->
-  <div class="booking" id="booking" hidden>
-    <div class="booking__backdrop" data-close-booking></div>
-
-    <section class="booking__dialog booking__dialog--form" data-view="form" role="dialog" aria-modal="true" aria-labelledby="booking-title" tabindex="-1">
-      <span class="booking__corner booking__corner--tl"></span><span class="booking__corner booking__corner--tr"></span>
-      <span class="booking__corner booking__corner--bl"></span><span class="booking__corner booking__corner--br"></span>
-      <span class="booking__divider"></span>
-      <h2 class="visually-hidden" id="booking-title">Book this expedition</h2>
-      <form class="booking__form" id="booking-form" novalidate>
-        <div class="booking__field">
-          <label class="visually-hidden" for="bk-name">Name</label>
-          <input class="booking__input" id="bk-name" name="name" type="text" placeholder="Name" autocomplete="name" maxlength="80" aria-describedby="bk-name-error">
-          <p class="booking__error" id="bk-name-error" aria-live="polite"></p>
-        </div>
-        <div class="booking__field">
-          <label class="visually-hidden" for="bk-email">Email</label>
-          <input class="booking__input" id="bk-email" name="email" type="email" placeholder="Email" autocomplete="email" maxlength="254" aria-describedby="bk-email-error">
-          <p class="booking__error" id="bk-email-error" aria-live="polite"></p>
-        </div>
-        <div class="booking__field">
-          <label class="visually-hidden" for="bk-travelers">Number of Travelers</label>
-          <input class="booking__input" id="bk-travelers" name="travelers" type="text" inputmode="numeric" placeholder="Number of Travelers" maxlength="3" autocomplete="off" aria-describedby="bk-travelers-error">
-          <p class="booking__error" id="bk-travelers-error" aria-live="polite"></p>
-        </div>
-        <div class="booking__field">
-          <label class="visually-hidden" for="bk-nation">Nation</label>
-          <select class="booking__input booking__select" id="bk-nation" name="nation" aria-describedby="bk-nation-error">
-            <option value="" selected>Select one of the seven nations</option>
-            <option>Mondstadt</option>
-            <option>Liyue</option>
-            <option>Inazuma</option>
-            <option>Sumeru</option>
-            <option>Natlan</option>
-            <option>Fontaine</option>
-            <option>Snezhnaya</option>
-          </select>
-          <p class="booking__error" id="bk-nation-error" aria-live="polite"></p>
-        </div>
-        <div class="booking__field booking__field--plans">
-          <label class="visually-hidden" for="bk-plans">Your plans</label>
-          <textarea class="booking__input booking__textarea" id="bk-plans" name="plans" placeholder="Tell us your plans..." maxlength="1200" aria-describedby="bk-plans-error"></textarea>
-          <p class="booking__error" id="bk-plans-error" aria-live="polite"></p>
-        </div>
-        <div class="booking__actions">
-          <button class="cta__btn booking__btn" type="submit">Book This Expedition</button>
-        </div>
-      </form>
-    </section>
-
-    <section class="booking__dialog booking__dialog--thanks" data-view="thanks" role="dialog" aria-modal="true" aria-labelledby="booking-thanks-text" tabindex="-1" hidden>
-      <span class="booking__corner booking__corner--tl"></span><span class="booking__corner booking__corner--tr"></span>
-      <span class="booking__corner booking__corner--bl"></span><span class="booking__corner booking__corner--br"></span>
-      <span class="booking__divider"></span>
-      <p class="booking__thanks" id="booking-thanks-text">Thank you! Your travel request has been successfully sent.</p>
-      <div class="booking__actions">
-        <button class="cta__btn booking__btn" type="button" id="booking-close" data-close-booking>Close</button>
-      </div>
-    </section>
-  </div>
-
-  <script src="../script/nations.js"></script>
 </body>
 </html>

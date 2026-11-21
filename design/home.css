@@ -247,16 +247,17 @@ h1, h2, h3, h4, p, figure { margin: 0; }
     #3a78c4 url("../assets/nations-bg.png") center / cover no-repeat;
 }
 .nations__intro { flex: 0 0 694px; padding: 0 0 0 48px; z-index: 1; }
-.nations__eyebrow { font-family: var(--font-ui); font-size: 22px; line-height: 26px; color: var(--gold); }
-.nations__title { margin-top: 10px; font-family: var(--font-ui); font-weight: 700; font-size: 64px; line-height: 70px; color: #fff; }
-.nations__title em { display: block; font-family: var(--font-serif); font-weight: 400; font-style: italic; font-size: 90px; line-height: 92px; }
-.nations__text { margin-top: 14px; max-width: 440px; font-weight: 500; font-size: 18px; line-height: 28px; color: #e6ecf5; }
+.nations__eyebrow { font-family: var(--font-ui); font-size: 18px; line-height: 22px; color: var(--gold); }
+.nations__title { margin-top: 6px; font-family: var(--font-ui); font-weight: 700; font-size: 40px; line-height: 46px; color: #fff; }
+.nations__title em { display: block; font-family: var(--font-serif); font-weight: 400; font-style: italic; font-size: 60px; line-height: 62px; }
+.nations__text { margin-top: 10px; max-width: 420px; font-weight: 500; font-size: 16px; line-height: 24px; color: #e6ecf5; }
 
 .nations__track {
   flex: 1; display: flex; gap: 20px; align-items: flex-start;
-  padding: 48px 24px 48px 24px; overflow-x: auto; overflow-y: hidden; z-index: 1;   /* room so the hover lift, gold ring and glow aren't clipped */
-  scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, .35) transparent;
+  padding: 32px 24px 44px 48px; overflow-x: auto; overflow-y: hidden; z-index: 1;   /* room so the hover lift, gold ring and glow aren't clipped */
+  scrollbar-width: none; -ms-overflow-style: none;
 }
+.nations__track::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .nations__track::after { content: ""; flex: 0 0 28px; }   /* breathing space after the last card (+20px gap = 48px, same as the left margin) */
 .nation-card {
   position: relative; flex: 0 0 445px; height: 574px;
@@ -724,3 +725,36 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   .socials svg { width: 22px; height: 22px; }
   .footer__copy { margin-top: 36px; font-size: 11px; line-height: 16px; }
 }
+/* ==========================================================
+   NATIONS SEARCH PANEL  (script/home.js)
+   ========================================================== */
+.nations__head { z-index: 1; }
+.search { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; width: min(100%, 480px); z-index: 1; }
+.search__field label { display: block; margin-bottom: 4px; font: 500 11px/14px var(--font-body); letter-spacing: .06em; text-transform: uppercase; color: #cfd8e8; }
+.search__field input, .search__field select {
+  width: 100%; height: 40px; padding: 0 14px; border: 1px solid rgba(220, 192, 138, .35); border-radius: 6px;
+  background: rgba(14, 26, 58, .72); color: #fff; font: 500 14px var(--font-body); color-scheme: dark;
+}
+.search__field input::placeholder { color: #aab6cc; }
+.search__field input:focus-visible, .search__field select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.search__error { grid-column: 1 / -1; min-height: 16px; margin: 0; font-size: 13px; line-height: 18px; color: #ffc2b8; }
+.search__btn {
+  grid-column: 1 / -1; justify-self: end; width: 196px; height: 44px; border: 0; cursor: pointer;
+  background: url("../assets/button-blank.png") center / 100% 100% no-repeat; font: 700 16px var(--font-ui); color: #3b4a68;
+}
+.search__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.nation-card[hidden], .nations__track[hidden], .nations__empty[hidden] { display: none; }
+.nations__empty { z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 64px 24px 84px; text-align: center; }
+.nations__empty-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #1e2a55; font: 700 20px/1 var(--font-body); }
+.nations__empty h3 { font: 700 26px/34px var(--font-ui); color: #fff; }
+.nations__empty p { max-width: 520px; font-size: 15px; line-height: 24px; color: #dbe3f0; }
+.search__btn--plain { grid-column: auto; justify-self: auto; margin-top: 8px; }
+@media (min-width: 1300px) {
+  .nations { flex-direction: column; align-items: stretch; justify-content: flex-start; height: auto; min-height: 100svh; padding-top: 108px; }   /* clears the 84px navbar */
+  .nations__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; padding: 0 48px; }
+  .nations__intro { flex: 1 1 auto; padding: 0; }
+  .nations__track { flex: none; gap: 10px; }
+  .nation-card { zoom: var(--card-zoom, .8); }   /* 445x574 design size; home.js sets --card-zoom so the cards fill the screen height */
+}
+@media (max-width: 1299px) { .search { width: auto; margin: 0 22px 28px; } }
+@media (max-width: 520px) { .search { grid-template-columns: 1fr; } .search__btn { justify-self: stretch; width: auto; } }

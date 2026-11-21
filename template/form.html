@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Complete Your Reservation | WaypointGO</title>
+  <link rel="icon" href="../assets/logo-mark.png">
+  <link rel="stylesheet" href="../design/form.css">
+  <!-- Icons: Font Awesome Free (CC BY 4.0), inlined below -->
+</head>
+<body>
+  <main class="res" aria-labelledby="res-title">
+    <header class="res__bar">
+      <svg class="ico" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M64 64C28.7 64 0 92.7 0 128l0 64C0 200.8 7.4 207.7 15.7 210.6 34.5 217.1 48 235 48 256s-13.5 38.9-32.3 45.4C7.4 304.3 0 311.2 0 320l0 64c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-64c0-8.8-7.4-15.7-15.7-18.6-18.8-6.5-32.3-24.4-32.3-45.4s13.5-38.9 32.3-45.4c8.3-2.9 15.7-9.8 15.7-18.6l0-64c0-35.3-28.7-64-64-64L64 64zM416 336l0-160-256 0 0 160 256 0zM112 160c0-17.7 14.3-32 32-32l288 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-288 0c-17.7 0-32-14.3-32-32l0-192z"/></svg>
+      <h1 id="res-title">Complete Your Reservation</h1>
+      <a class="res__close" href="home.html#nations" aria-label="Close and return to packages">×</a>
+    </header>
+
+    <form class="res__body" id="res-form" novalidate>
+      <div class="res__content">
+      <section class="trip" aria-label="Selected package">
+        <img id="t-img" src="../assets/mondstadt/itinerary.jpg" alt="">
+        <div class="trip__info">
+          <p class="trip__dur"><svg class="ico" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64l0 11c0 42.4 16.9 83.1 46.9 113.1l67.9 67.9-67.9 67.9C48.9 353.9 32 394.6 32 437l0 11c-17.7 0-32 14.3-32 32s14.3 32 32 32l320 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l0-11c0-42.4-16.9-83.1-46.9-113.1l-67.9-67.9 67.9-67.9c30-30 46.9-70.7 46.9-113.1l0-11c17.7 0 32-14.3 32-32S369.7 0 352 0L32 0zM96 75l0-11 192 0 0 11c0 19-5.6 37.4-16 53L112 128c-10.3-15.6-16-34-16-53zm16 309c3.5-5.3 7.6-10.3 12.1-14.9l67.9-67.9 67.9 67.9c4.6 4.6 8.6 9.6 12.2 14.9L112 384z"/></svg><span id="t-dur">3 Days / 2 Nights</span></p>
+          <h2 id="t-name">Mondstadt</h2>
+          <p class="trip__desc" id="t-desc"></p>
+          <p class="trip__dates"><svg class="ico" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 32 0c35.3 0 64 28.7 64 64l0 288c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 128C0 92.7 28.7 64 64 64l32 0 0-32c0-17.7 14.3-32 32-32zM64 240l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 368l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/></svg><span id="t-dates"></span></p>
+        </div>
+        <div class="trip__trav">
+          <span id="trav-label">Travelers</span>
+          <div class="stepper" role="group" aria-labelledby="trav-label">
+            <button type="button" id="t-minus" aria-label="Fewer travelers">-</button>
+            <output id="t-trav" aria-live="polite">2</output>
+            <button type="button" id="t-plus" aria-label="More travelers">+</button>
+          </div>
+        </div>
+      </section>
+
+      <h3 class="step"><b>1</b>Select travel dates</h3>
+      <div class="grid">
+        <div class="fld"><label for="f-depart">Departure / Check-in Date <i>*</i></label><input id="f-depart" name="depart" type="date"><small class="err"></small></div>
+        <div class="fld"><label for="f-return">Return / Check-out Date <i>*</i></label><input id="f-return" name="ret" type="date"><small class="err"></small></div>
+      </div>
+
+      <h3 class="step"><b>2</b>Traveler's details</h3>
+      <div class="grid">
+        <div class="fld"><label for="f-name">Full Name <i>*</i></label><input id="f-name" name="name" type="text" placeholder="Enter your name" autocomplete="name" maxlength="60"><small class="err"></small></div>
+        <div class="fld"><label for="f-email">Email Address <i>*</i></label><input id="f-email" name="email" type="email" placeholder="Enter your email address" autocomplete="email" maxlength="254"><small class="err"></small></div>
+        <div class="fld"><label for="f-phone">Phone Number <i>*</i></label><input id="f-phone" name="phone" type="tel" placeholder="Enter your phone number" autocomplete="tel" maxlength="20"><small class="err"></small></div>
+        <div class="fld"><label for="f-notes">Special Request/s</label><input id="f-notes" name="notes" type="text" placeholder="Dietary needs, higher floor, honeymoon, etc..." maxlength="300"><small class="err"></small></div>
+      </div>
+
+      <h3 class="step"><b>3</b>Payment method</h3>
+      <fieldset class="pay">
+        <legend class="visually-hidden">Payment method</legend>
+        <label><input type="radio" name="pay" value="Credit Card" checked><span><svg class="ico" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M0 128l0 32 512 0 0-32c0-35.3-28.7-64-64-64L64 64C28.7 64 0 92.7 0 128zm0 80L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-176-512 0zM64 360c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0c-13.3 0-24-10.7-24-24zm144 0c0-13.3 10.7-24 24-24l64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0c-13.3 0-24-10.7-24-24z"/></svg><b>Credit Card</b></span></label>
+        <label><input type="radio" name="pay" value="PayPal"><span><svg class="ico" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M111.9 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5l-74.6 0c-7.6 0-13.1-6.6-12.1-13.9L59.3 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4 .7-69.5-7-75.3 24.2zM357.6 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9l63.5 0c8.6 0 15.7-6.3 17.4-14.9 .7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></svg><b>PayPal</b></span></label>
+        <label><input type="radio" name="pay" value="Pay at Agency"><span><svg class="ico" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M271.9 20.2c-9.8-5.6-21.9-5.6-31.8 0l-224 128c-12.6 7.2-18.8 22-15.1 36S17.5 208 32 208l32 0 0 208 0 0-51.2 38.4C4.7 460.4 0 469.9 0 480 0 497.7 14.3 512 32 512l448 0c17.7 0 32-14.3 32-32 0-10.1-4.7-19.6-12.8-25.6l-51.2-38.4 0-208 32 0c14.5 0 27.2-9.8 30.9-23.8s-2.5-28.8-15.1-36l-224-128zM400 208l0 208-64 0 0-208 64 0zm-112 0l0 208-64 0 0-208 64 0zm-112 0l0 208-64 0 0-208 64 0zM256 96a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg><b>Pay at Agency</b></span></label>
+      </fieldset>
+      <div class="grid grid--card" id="card-fields">
+        <div class="fld fld--wide"><label for="f-card">Card Number <i>*</i></label><input id="f-card" name="card" type="text" inputmode="numeric" placeholder="1234 5678 9012 3456" autocomplete="cc-number"><small class="err"></small></div>
+        <div class="fld"><label for="f-exp">Expiry <i>*</i></label><input id="f-exp" name="exp" type="text" inputmode="numeric" placeholder="e.g. 09/28" autocomplete="cc-exp" maxlength="5"><small class="err"></small></div>
+        <div class="fld"><label for="f-cvc">CVC <i>*</i></label><input id="f-cvc" name="cvc" type="text" inputmode="numeric" placeholder="e.g. 123" autocomplete="cc-csc" maxlength="4"><small class="err"></small></div>
+      </div>
+
+        <div class="grid grid--one" id="paypal-fields" hidden>
+          <div class="fld"><label for="f-paypal">PayPal Number <i>*</i></label><input id="f-paypal" name="paypal" type="tel" inputmode="tel" placeholder="Enter your PayPal mobile number" autocomplete="tel" maxlength="20"><small class="err"></small></div>
+        </div>
+      </div>
+
+      <footer class="res__foot">
+        <div>
+          <p class="rate" id="f-rate"></p>
+          <p class="total"><span>TOTAL:</span> <b id="f-total"></b> <em><svg class="ico" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M256 512a256 256 0 1 1 0-512 256 256 0 1 1 0 512zM374 145.7c-10.7-7.8-25.7-5.4-33.5 5.3L221.1 315.2 169 263.1c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l72 72c5 5 11.8 7.5 18.8 7s13.4-4.1 17.5-9.8L379.3 179.2c7.8-10.7 5.4-25.7-5.3-33.5z"/></svg> Taxes Included</em></p>
+        </div>
+        <button class="confirm" type="submit">Confirm Booking</button>
+      </footer>
+    </form>
+  </main>
+  <script src="../script/form.js"></script>
+</body>
+</html>
