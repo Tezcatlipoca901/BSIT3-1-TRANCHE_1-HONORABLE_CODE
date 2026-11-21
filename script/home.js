@@ -75,3 +75,65 @@
   window.addEventListener('load', fitCards);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
 })();
+
+
+/* "Ask Katheryne" inquiry modal (opened by the Ask a Question button in the FAQs).
+   Validates the fields, then shows the "sent" state. Tranche 4: send `inquiry` to the server (PHP -> inquiries table) where marked. */
+(function () {
+  'use strict';
+  var dlg = document.getElementById('ask'), openBtn = document.getElementById('ask-open');
+  if (!dlg || !openBtn || typeof dlg.showModal !== 'function') return;
+  var form = document.getElementById('ask-form'), f = form.elements;
+  var done = document.getElementById('ask-done'), count = document.getElementById('ask-count');
+  var MAX = 500;
+
+  function phoneOk(v) { var d = v.replace(/\D/g, ''); return /^\+?[\d\s()-]+$/.test(v.trim()) && d.length >= 7 && d.length <= 15; }
+  var rules = {
+    full_name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !/^[\p{L}][\p{L}\p{M}\s.'\u2019-]+$/u.test(v) ? 'Use letters only.' : ''; },
+    email: function (v) { v = v.trim(); return !v ? 'Please enter your email.' : !/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(v) ? 'Enter a valid email address.' : ''; },
+    phone: function (v) { return !v.trim() ? '' : phoneOk(v) ? '' : 'Enter a valid phone number.'; },   // optional
+    message: function (v) { v = v.trim(); return !v ? 'Please type your question.' : v.length < 10 ? 'Add a little more detail (at least 10 characters).' : v.length > MAX ? 'Keep it to ' + MAX + ' characters.' : ''; }
+  };
+  function check(name) {
+    var input = f[name], wrap = input.closest('.fld'), msg = rules[name](input.value);
+    wrap.querySelector('.err').textContent = msg;
+    wrap.classList.toggle('is-invalid', !!msg);
+    if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    return !msg;
+  }
+  Object.keys(rules).forEach(function (n) {
+    f[n].addEventListener('blur', function () { if (f[n].value) check(n); });
+    f[n].addEventListener('input', function () { if (f[n].closest('.fld').classList.contains('is-invalid')) check(n); });
+  });
+  f.message.addEventListener('input', function () { count.textContent = f.message.value.length + '/' + MAX; });
+
+  function reset() {
+    form.reset(); form.hidden = false; done.hidden = true; dlg.classList.remove('is-sent');
+    Object.keys(rules).forEach(function (n) {
+      var w = f[n].closest('.fld'); w.classList.remove('is-invalid'); w.querySelector('.err').textContent = ''; f[n].removeAttribute('aria-invalid');
+    });
+    count.textContent = '0/' + MAX;
+  }
+
+  openBtn.addEventListener('click', function () { reset(); dlg.showModal(); });
+  [].forEach.call(dlg.querySelectorAll('[data-ask-close]'), function (b) { b.addEventListener('click', function () { dlg.close(); }); });
+  // click on the dimmed backdrop (outside the framed box) closes it
+  dlg.addEventListener('click', function (e) {
+    var r = dlg.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg.close();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var bad = null;
+    Object.keys(rules).forEach(function (n) { if (!check(n) && !bad) bad = f[n]; });
+    if (bad) { bad.focus(); return; }
+    var inquiry = {
+      full_name: f.full_name.value.trim().replace(/\s+/g, ' '), email: f.email.value.trim(), phone: f.phone.value.trim(),
+      package: f['package'].value === 'general' ? '' : f['package'].value, message: f.message.value.trim()
+    };
+    // Tranche 4: POST `inquiry` to the server here (find/create the client by email, then add an inquiries row).
+    form.hidden = true; done.hidden = false; dlg.classList.add('is-sent');
+    done.querySelector('.ask__close').focus();
+  });
+})();
