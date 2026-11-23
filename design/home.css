@@ -255,9 +255,8 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nations__track {
   flex: 1; display: flex; gap: 20px; align-items: flex-start;
   padding: 32px 24px 44px 48px; overflow-x: auto; overflow-y: hidden; z-index: 1;   /* room so the hover lift, gold ring and glow aren't clipped */
-  scrollbar-width: none; -ms-overflow-style: none;
+  scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, .45) transparent;   /* visible horizontal scrollbar */
 }
-.nations__track::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .nations__track::after { content: ""; flex: 0 0 28px; }   /* breathing space after the last card (+20px gap = 48px, same as the left margin) */
 .nation-card {
   position: relative; flex: 0 0 445px; height: 574px;
@@ -826,4 +825,36 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   .ask__title { padding: 10px 30px 12px; font-size: 20px; line-height: 28px; }
   .ask__done p { font-size: 18px; line-height: 28px; }
 }
+<<<<<<< HEAD
 @media (prefers-reduced-motion: reduce) { .ask[open] { animation: none; } }
+/* ==========================================================
+   EXPEDITION PANEL FIXES: button hover, travelers combo box, filter clear, drag-scroll cards
+   ========================================================== */
+.search__btn { transition: transform .18s ease, filter .18s ease; }
+.search__btn:hover { transform: translateY(-2px); filter: brightness(1.05) drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
+.search__btn:active { transform: translateY(0); filter: none; }
+@media (prefers-reduced-motion: reduce) { .search__btn, .search__btn:hover { transition: none; transform: none; } }
+.clearable, .combo { position: relative; }
+.clearable input { padding-right: 38px; }
+.clearable__btn { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); width: 24px; height: 24px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .14); color: #fff; font: 600 16px/1 var(--font-body); cursor: pointer; transition: background .18s; }
+.clearable__btn:hover { background: rgba(255, 255, 255, .3); }
+.clearable__btn[hidden] { display: none; }
+.combo input { padding-right: 40px; }
+.combo__btn { position: absolute; top: 0; right: 0; width: 40px; height: 100%; display: grid; place-items: center; border: 0; background: none; cursor: pointer; }
+.combo__btn::before { content: ""; width: 7px; height: 7px; margin-top: -3px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); transition: opacity .18s; }
+.combo__btn:hover::before { opacity: .7; }
+.combo__list { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; right: 0; max-height: 240px; margin: 0; padding: 4px; overflow-y: auto; list-style: none; border: 1px solid rgba(220, 192, 138, .45); border-radius: 6px; background: #12204a; box-shadow: 0 10px 24px rgba(0, 0, 0, .45); }
+.combo__list[hidden] { display: none; }
+.combo__list li { padding: 8px 10px; border-radius: 4px; font: 500 14px var(--font-body); color: #fff; cursor: pointer; }
+.combo__list li:hover { background: rgba(255, 255, 255, .12); }
+.combo__list .combo__note { padding: 6px 10px 8px; font-size: 11px; color: #aab6cc; cursor: default; pointer-events: none; }
+.search__link { padding: 0; border: 0; background: none; color: var(--gold); font: 600 13px var(--font-body); text-decoration: underline; cursor: pointer; }
+.search__link:hover { color: #fff; }
+.nations__track { cursor: grab; }
+.nations__track.is-dragging { cursor: grabbing; user-select: none; }
+.nations__track.is-dragging a { pointer-events: none; }
+@media (max-width: 1299px) { .nations__track { cursor: auto; } }
+.nations__head { position: relative; z-index: 3; }   /* keeps the travelers list above the cards */
+=======
+@media (prefers-reduced-motion: reduce) { .ask[open] { animation: none; } }
+>>>>>>> dev

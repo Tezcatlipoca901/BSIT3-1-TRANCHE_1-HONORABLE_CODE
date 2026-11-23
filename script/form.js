@@ -16,7 +16,7 @@
   var key = 'Mondstadt';
   Object.keys(NATIONS).forEach(function (k) { if (k.toLowerCase() === (qs.get('nation') || '').toLowerCase()) key = k; });
   var nation = NATIONS[key];
-  var trav = Math.min(20, Math.max(1, parseInt(qs.get('travelers'), 10) || 2));
+  var trav = Math.max(1, parseInt(qs.get('travelers'), 10) || 2);
   var f = form.elements;
 
   $('t-name').textContent = key; $('t-dur').textContent = nation.n; $('t-desc').textContent = nation.d;
@@ -36,10 +36,10 @@
     $('t-dates').textContent = datesText();
     $('f-rate').textContent = peso(nation.p) + ' x ' + trav + (trav === 1 ? ' traveler' : ' travelers');
     $('f-total').textContent = peso(nation.p * trav);
-    $('t-minus').disabled = trav <= 1; $('t-plus').disabled = trav >= 20;
+    $('t-minus').disabled = trav <= 1;
   }
   $('t-minus').addEventListener('click', function () { trav = Math.max(1, trav - 1); render(); });
-  $('t-plus').addEventListener('click', function () { trav = Math.min(20, trav + 1); render(); });
+  $('t-plus').addEventListener('click', function () { trav += 1; render(); });
   ['depart', 'ret'].forEach(function (n) { f[n].addEventListener('change', render); });
 
   function method() { return form.querySelector('input[name="pay"]:checked').value; }
@@ -51,12 +51,17 @@
   f.exp.addEventListener('input', function () { var d = f.exp.value.replace(/\D/g, '').slice(0, 4); f.exp.value = d.length > 2 ? d.slice(0, 2) + '/' + d.slice(2) : d; });
   f.cvc.addEventListener('input', function () { f.cvc.value = f.cvc.value.replace(/\D/g, '').slice(0, 4); });
 
+  function phoneOk(v) {
+    var value = v.trim(), digits = value.replace(/\D/g, '');
+    return /^\+?(?:\d|\(\d)[\d\s()-]*\d$/.test(value) && digits.length >= 7 && digits.length <= 15;
+  }
+
   var rules = {
     depart: function (v) { return !v ? 'Pick a departure date.' : v < today ? 'Departure can\u2019t be in the past.' : ''; },
     ret: function (v) { return !v ? 'Pick a return date.' : v <= f.depart.value ? 'Return must be after departure.' : ''; },
     name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !/^[\p{L}][\p{L}\p{M}\s.'\u2019-]+$/u.test(v) ? 'Use letters only.' : ''; },
     email: function (v) { v = v.trim(); return !v ? 'Please enter your email.' : !/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(v) ? 'Enter a valid email address.' : ''; },
-    phone: function (v) { var d = v.replace(/\D/g, ''); return !v.trim() ? 'Please enter your phone number.' : (!/^\+?[\d\s()-]+$/.test(v.trim()) || d.length < 7 || d.length > 15) ? 'Enter a valid phone number.' : ''; },
+    phone: function (v) { return !v.trim() ? 'Please enter your phone number.' : phoneOk(v) ? '' : 'Enter a valid phone number (7 to 15 digits).'; },
     notes: function () { return ''; },
     paypal: function (v) { var d = v.replace(/\D/g, ''); return !v.trim() ? 'Enter your PayPal number.' : (!/^\+?[\d\s()-]+$/.test(v.trim()) || d.length < 7 || d.length > 15) ? 'Enter a valid PayPal number.' : ''; },
     card: function (v) { var d = v.replace(/\D/g, ''); return !d ? 'Enter your card number.' : (d.length < 13 || d.length > 19) ? 'Card number should be 13 to 19 digits.' : ''; },
