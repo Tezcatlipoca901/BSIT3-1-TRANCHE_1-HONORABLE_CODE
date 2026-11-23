@@ -3,13 +3,13 @@
 (function () {
   'use strict';
   var NATIONS = {
-    Mondstadt: { n: '3 Days / 2 Nights', nights: 2, p: 12500, d: 'Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.' },
-    Liyue: { n: '4 Days / 3 Nights', nights: 3, p: 15000, d: 'A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.' },
-    Inazuma: { n: '4 Days / 3 Nights', nights: 3, p: 18000, d: 'Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.' },
-    Sumeru: { n: '3 Days / 3 Nights', nights: 3, p: 14000, d: 'A dual-environment journey taking you from the majestic halls of learning to the dense, mystical canopies of the rainforest.' },
-    Natlan: { n: '4 Days / 3 Nights', nights: 3, p: 16500, d: 'An energetic adventure featuring dramatic volcanic landscapes, therapeutic thermal springs, and vibrant tribal festivals.' },
-    Fontaine: { n: '5 Days / 4 Nights', nights: 4, p: 20000, d: 'Step into a picturesque hub of art, fashion, and advanced clockwork engineering surrounded by pristine waters.' },
-    Snezhnaya: { n: '5 Days / 4 Nights', nights: 4, p: 22000, d: 'A majestic winter expedition exploring frosted architectural marvels, grand palaces, and cozy alpine chalets under the aurora.' }
+    Mondstadt: { n: '3 Days / 2 Nights', days: 3, p: 12500, d: 'Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.' },
+    Liyue: { n: '4 Days / 3 Nights', days: 4, p: 15000, d: 'A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.' },
+    Inazuma: { n: '4 Days / 3 Nights', days: 4, p: 18000, d: 'Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.' },
+    Sumeru: { n: '3 Days / 3 Nights', days: 3, p: 14000, d: 'A dual-environment journey taking you from the majestic halls of learning to the dense, mystical canopies of the rainforest.' },
+    Natlan: { n: '4 Days / 3 Nights', days: 4, p: 16500, d: 'An energetic adventure featuring dramatic volcanic landscapes, therapeutic thermal springs, and vibrant tribal festivals.' },
+    Fontaine: { n: '5 Days / 4 Nights', days: 5, p: 20000, d: 'Step into a picturesque hub of art, fashion, and advanced clockwork engineering surrounded by pristine waters.' },
+    Snezhnaya: { n: '5 Days / 4 Nights', days: 5, p: 22000, d: 'A majestic winter expedition exploring frosted architectural marvels, grand palaces, and cozy alpine chalets under the aurora.' }
   };
   var $ = function (id) { return document.getElementById(id); };
   var form = $('res-form'), qs = new URLSearchParams(location.search);
@@ -31,11 +31,18 @@
   function datesText() { return long(f.depart.value) && long(f.ret.value) ? long(f.depart.value) + ' - ' + long(f.ret.value) : ''; }
   var today = iso(new Date());
   f.depart.min = today;
+  f.ret.readOnly = true;
   function syncReturnMin() {
-    var expectedReturn = f.depart.value ? addDays(f.depart.value, nation.nights) : '';
-    f.ret.min = expectedReturn || today;
+    if (!f.depart.value || f.depart.value.slice(0, 4) < '2000') {
+      f.ret.value = '';
+      f.ret.min = today;
+      f.ret.max = '';
+      return;
+    }
+    var expectedReturn = addDays(f.depart.value, nation.days);
+    f.ret.min = expectedReturn;
     f.ret.max = expectedReturn;
-    if (f.ret.value && expectedReturn && f.ret.value !== expectedReturn) f.ret.value = '';
+    f.ret.value = expectedReturn;
   }
   syncReturnMin();
 
@@ -93,7 +100,7 @@
 
   var rules = {
     depart: function (v) { return !v ? 'Pick a departure date.' : v < today ? 'Departure can\u2019t be in the past.' : ''; },
-    ret: function (v) { return !v ? 'Pick a return date.' : !f.depart.value || v !== addDays(f.depart.value, nation.nights) ? 'This package requires a ' + nation.nights + '-night stay.' : ''; },
+    ret: function (v) { return !v ? 'Pick a return date.' : !f.depart.value || v !== addDays(f.depart.value, nation.days) ? 'This package requires a ' + nation.days + '-day trip.' : ''; },
     name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !fullNameOk(v) ? 'Use letters and single spaces only; apostrophes, periods, and hyphens must be within a name.' : ''; },
     email: function (v) { return emailError(v.trim()); },
     phone: function (v) { return !v.trim() ? 'Please enter your phone number.' : phoneOk(v) ? '' : 'Enter a valid phone number (7 to 15 digits).'; },
