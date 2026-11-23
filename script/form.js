@@ -3,13 +3,13 @@
 (function () {
   'use strict';
   var NATIONS = {
-    Mondstadt: { n: '3 Days / 2 Nights', p: 12500, d: 'Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.' },
-    Liyue: { n: '4 Days / 3 Nights', p: 15000, d: 'A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.' },
-    Inazuma: { n: '4 Days / 3 Nights', p: 18000, d: 'Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.' },
-    Sumeru: { n: '3 Days / 3 Nights', p: 14000, d: 'A dual-environment journey taking you from the majestic halls of learning to the dense, mystical canopies of the rainforest.' },
-    Natlan: { n: '4 Days / 3 Nights', p: 16500, d: 'An energetic adventure featuring dramatic volcanic landscapes, therapeutic thermal springs, and vibrant tribal festivals.' },
-    Fontaine: { n: '5 Days / 4 Nights', p: 20000, d: 'Step into a picturesque hub of art, fashion, and advanced clockwork engineering surrounded by pristine waters.' },
-    Snezhnaya: { n: '5 Days / 4 Nights', p: 22000, d: 'A majestic winter expedition exploring frosted architectural marvels, grand palaces, and cozy alpine chalets under the aurora.' }
+    Mondstadt: { n: '3 Days / 2 Nights', nights: 2, p: 12500, d: 'Experience the romantic charm of windmills, rolling green hills, and historic stone architecture. Perfect for travelers looking for a relaxing nature getaway.' },
+    Liyue: { n: '4 Days / 3 Nights', nights: 3, p: 15000, d: 'A bustling port city tour blending breathtaking mountain ranges, ancient folklore, and world-class culinary adventures.' },
+    Inazuma: { n: '4 Days / 3 Nights', nights: 3, p: 18000, d: 'Discover a culturally rich archipelago featuring striking purple foliage, traditional shrines, and serene coastal views.' },
+    Sumeru: { n: '3 Days / 3 Nights', nights: 3, p: 14000, d: 'A dual-environment journey taking you from the majestic halls of learning to the dense, mystical canopies of the rainforest.' },
+    Natlan: { n: '4 Days / 3 Nights', nights: 3, p: 16500, d: 'An energetic adventure featuring dramatic volcanic landscapes, therapeutic thermal springs, and vibrant tribal festivals.' },
+    Fontaine: { n: '5 Days / 4 Nights', nights: 4, p: 20000, d: 'Step into a picturesque hub of art, fashion, and advanced clockwork engineering surrounded by pristine waters.' },
+    Snezhnaya: { n: '5 Days / 4 Nights', nights: 4, p: 22000, d: 'A majestic winter expedition exploring frosted architectural marvels, grand palaces, and cozy alpine chalets under the aurora.' }
   };
   var $ = function (id) { return document.getElementById(id); };
   var form = $('res-form'), qs = new URLSearchParams(location.search);
@@ -32,8 +32,10 @@
   var today = iso(new Date());
   f.depart.min = today;
   function syncReturnMin() {
-    f.ret.min = f.depart.value ? addDays(f.depart.value, 1) : today;
-    if (f.ret.value && f.depart.value && f.ret.value <= f.depart.value) f.ret.value = '';
+    var expectedReturn = f.depart.value ? addDays(f.depart.value, nation.nights) : '';
+    f.ret.min = expectedReturn || today;
+    f.ret.max = expectedReturn;
+    if (f.ret.value && expectedReturn && f.ret.value !== expectedReturn) f.ret.value = '';
   }
   syncReturnMin();
 
@@ -62,19 +64,41 @@
     var value = v.trim(), digits = value.replace(/\D/g, '');
     return /^\+?(?:\d|\(\d)[\d\s()-]*\d$/.test(value) && digits.length >= 7 && digits.length <= 15;
   }
-  f.phone.addEventListener('input', function () {
-    var value = f.phone.value.replace(/[^\d\s()+-]/g, '').replace(/(?!^)\+/g, '');
-    if (f.phone.value !== value) f.phone.value = value;
+  function restrictPhoneInput(input) {
+    input.addEventListener('input', function () {
+      var value = input.value.replace(/[^\d\s()+-]/g, '').replace(/(?!^)\+/g, '');
+      if (input.value !== value) input.value = value;
+    });
+  }
+  function fullNameOk(v) {
+    var namePart = "[\\p{L}][\\p{L}\\p{M}]*(?:[.'\\u2019-][\\p{L}\\p{M}]+)*";
+    return new RegExp('^' + namePart + '(?: ' + namePart + ')*$', 'u').test(v);
+  }
+  function emailError(v) {
+    var at = v.indexOf('@'), domain;
+    if (!v) return 'Please enter your email.';
+    if (v.length < 6) return 'Email address must be at least 6 characters.';
+    if (v.length > 254) return 'Email address must be 254 characters or fewer.';
+    if (at < 1 || at !== v.lastIndexOf('@')) return 'Enter an email address with an @ symbol.';
+    domain = v.slice(at + 1);
+    if (!/^[^\s@.]+(?:\.[^\s@.]+)+$/.test(domain)) return 'Enter an email address with a valid domain extension (for example, .com).';
+    return !/^[^\s@]+$/.test(v.slice(0, at)) ? 'Enter a valid email address.' : '';
+  }
+  restrictPhoneInput(f.phone);
+  restrictPhoneInput(f.paypal);
+  f.name.addEventListener('input', function () {
+    var value = f.name.value.replace(/[^\p{L}\p{M}\s.'\u2019-]/gu, '');
+    if (f.name.value !== value) f.name.value = value;
   });
 
   var rules = {
     depart: function (v) { return !v ? 'Pick a departure date.' : v < today ? 'Departure can\u2019t be in the past.' : ''; },
-    ret: function (v) { return !v ? 'Pick a return date.' : v <= f.depart.value ? 'Return must be after departure.' : ''; },
-    name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !/^[\p{L}][\p{L}\p{M}\s.'\u2019-]+$/u.test(v) ? 'Use letters only.' : ''; },
-    email: function (v) { v = v.trim(); return !v ? 'Please enter your email.' : !/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(v) ? 'Enter a valid email address.' : ''; },
+    ret: function (v) { return !v ? 'Pick a return date.' : !f.depart.value || v !== addDays(f.depart.value, nation.nights) ? 'This package requires a ' + nation.nights + '-night stay.' : ''; },
+    name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !fullNameOk(v) ? 'Use letters and single spaces only; apostrophes, periods, and hyphens must be within a name.' : ''; },
+    email: function (v) { return emailError(v.trim()); },
     phone: function (v) { return !v.trim() ? 'Please enter your phone number.' : phoneOk(v) ? '' : 'Enter a valid phone number (7 to 15 digits).'; },
     notes: function () { return ''; },
-    paypal: function (v) { var d = v.replace(/\D/g, ''); return !v.trim() ? 'Enter your PayPal number.' : (!/^\+?[\d\s()-]+$/.test(v.trim()) || d.length < 7 || d.length > 15) ? 'Enter a valid PayPal number.' : ''; },
+    paypal: function (v) { return !v.trim() ? 'Enter your PayPal number.' : phoneOk(v) ? '' : 'Enter a valid PayPal number (7 to 15 digits).'; },
     card: function (v) { var d = v.replace(/\D/g, ''); return !d ? 'Enter your card number.' : (d.length < 13 || d.length > 19) ? 'Card number should be 13 to 19 digits.' : ''; },
     exp: function (v) {
       var m = /^(\d{2})\/(\d{2})$/.exec(v); if (!v) return 'Enter the expiry date.';
