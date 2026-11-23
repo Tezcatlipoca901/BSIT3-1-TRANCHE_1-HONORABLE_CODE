@@ -107,6 +107,7 @@
   window.addEventListener('resize', fitCards);
   window.addEventListener('load', fitCards);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+<<<<<<< HEAD
 
   // Horizontal scrolling for the cards: mouse wheel, click-and-drag swipe (touch / trackpad swipe already work natively)
   track.addEventListener('wheel', function (e) {
@@ -126,6 +127,8 @@
   window.addEventListener('pointerup', function () { drag = false; track.classList.remove('is-dragging'); });
   track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);   // a drag must not open a card
   track.addEventListener('dragstart', function (e) { e.preventDefault(); });
+=======
+>>>>>>> dev
 })();
 
 
@@ -139,6 +142,7 @@
   var done = document.getElementById('ask-done'), count = document.getElementById('ask-count');
   var MAX = 500;
 
+<<<<<<< HEAD
   function phoneOk(v) {
     var value = v.trim(), digits = value.replace(/\D/g, '');
     return /^\+?(?:\d|\(\d)[\d\s()-]*\d$/.test(value) && digits.length >= 7 && digits.length <= 15;
@@ -149,6 +153,11 @@
   }
   var rules = {
     full_name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !fullNameOk(v) ? 'Use letters and single spaces only; apostrophes, periods, and hyphens must be within a name.' : ''; },
+=======
+  function phoneOk(v) { var d = v.replace(/\D/g, ''); return /^\+?[\d\s()-]+$/.test(v.trim()) && d.length >= 7 && d.length <= 15; }
+  var rules = {
+    full_name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !/^[\p{L}][\p{L}\p{M}\s.'\u2019-]+$/u.test(v) ? 'Use letters only.' : ''; },
+>>>>>>> dev
     email: function (v) { v = v.trim(); return !v ? 'Please enter your email.' : !/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(v) ? 'Enter a valid email address.' : ''; },
     phone: function (v) { return !v.trim() ? '' : phoneOk(v) ? '' : 'Enter a valid phone number.'; },   // optional
     message: function (v) { v = v.trim(); return !v ? 'Please type your question.' : v.length < 10 ? 'Add a little more detail (at least 10 characters).' : v.length > MAX ? 'Keep it to ' + MAX + ' characters.' : ''; }
@@ -195,4 +204,8 @@
     form.hidden = true; done.hidden = false; dlg.classList.add('is-sent');
     done.querySelector('.ask__close').focus();
   });
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> dev
