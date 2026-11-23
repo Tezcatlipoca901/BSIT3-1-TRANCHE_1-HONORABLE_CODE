@@ -255,9 +255,8 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nations__track {
   flex: 1; display: flex; gap: 20px; align-items: flex-start;
   padding: 32px 24px 44px 48px; overflow-x: auto; overflow-y: hidden; z-index: 1;   /* room so the hover lift, gold ring and glow aren't clipped */
-  scrollbar-width: none; -ms-overflow-style: none;
+  scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, .45) transparent;   /* visible horizontal scrollbar */
 }
-.nations__track::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .nations__track::after { content: ""; flex: 0 0 28px; }   /* breathing space after the last card (+20px gap = 48px, same as the left margin) */
 .nation-card {
   position: relative; flex: 0 0 445px; height: 574px;
@@ -363,7 +362,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   .contact__main {
     position: relative; left: auto; top: auto; flex: none;
     width: 880px;   /* a bit wider than the 793px form so long FAQ questions (nowrap) aren't cut off */
-    height: 100%; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;   /* vertical scroll only */
+    height: 100%; overflow-x: hidden; overflow-y: auto; overscroll-behavior: auto;   /* vertical scroll only; the page keeps scrolling when the FAQ list can't (was `contain`, which trapped the mouse wheel over the FAQs) */
     margin: 0 0 0 calc(-52px + min(0px, 50% - 720px));   /* same x-position as before */
     padding: 163px 0 100px;                               /* the old top margin lives inside the scroller now */
     scrollbar-width: none; -ms-overflow-style: none;       /* invisible scrollbar (Firefox / old Edge) */
@@ -758,3 +757,100 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 }
 @media (max-width: 1299px) { .search { width: auto; margin: 0 22px 28px; } }
 @media (max-width: 520px) { .search { grid-template-columns: 1fr; } .search__btn { justify-self: stretch; width: auto; } }
+
+/* ==========================================================
+   FAQ "Ask a Question" button + Ask Katheryne modal
+   (frame art: assets/inquiry-frame.png, cut from the inquiry box design so it fits any height)
+   ========================================================== */
+.faqs__ask { display: flex; align-items: center; gap: 24px; margin: 28px 0 0 5px; }
+.faqs__ask p { font-family: var(--font-ui); font-weight: 700; font-size: 20px; line-height: 28px; color: #fff; }
+.btn--ask { flex: none; width: 250px; height: 58px; font-size: 18px; }
+
+.ask {
+  box-sizing: border-box; width: min(580px, calc(100vw - 20px)); max-height: calc(100svh - 20px);
+  margin: auto; padding: 0 28px 28px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
+  font-family: var(--font-ui); font-weight: 700;   /* same font as the FAQ questions */
+  color: #e5e7ec; background: none;
+  border: 30px solid transparent; border-image: url("../assets/inquiry-frame.png") 30 fill / 30px stretch;
+}
+.ask::backdrop { background: rgba(19, 22, 27, .74); }
+.ask[open] { animation: ask-in .25s ease; }
+@keyframes ask-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.ask__x {
+  position: absolute; top: 4px; right: 0; width: 34px; height: 34px; border: 0; background: none; cursor: pointer;
+  font: 400 28px/34px var(--font-body); color: #aab1c0;
+}
+.ask__x:hover, .ask__x:focus-visible { color: var(--gold); outline: 0; }
+.ask__title { padding: 12px 36px 14px; text-align: center; font-family: var(--font-ui); font-weight: 700; font-size: 24px; line-height: 32px; color: #fff; }
+.ask.is-sent .ask__title { visibility: hidden; }   /* the done state keeps the empty title band, like the design */
+.ask__rule {
+  position: relative; display: block; height: 11px; margin-bottom: 22px;
+  background: linear-gradient(#586072, #586072) center / 100% 1px no-repeat;
+}
+.ask__rule::before, .ask__rule::after {
+  content: ""; position: absolute; top: 50%; width: 9px; height: 9px; background: #3e4457; border: 1px solid #7b8396;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.ask__rule::before { left: calc(50% - 5px); }
+.ask__rule::after { left: calc(50% + 5px); }
+
+.ask__form { display: grid; gap: 14px; }
+.ask__form[hidden], .ask__done[hidden] { display: none; }
+.ask .fld input, .ask .fld select, .ask .fld textarea {
+  display: block; width: 100%; height: 50px; padding: 0 16px; border: 1px solid transparent; border-radius: 5px;
+  background: #2f3847; color: #e5e7ec; font: 700 16px var(--font-ui);
+}
+.ask .fld textarea { height: 150px; padding: 14px 16px; resize: none; line-height: 24px; }
+.ask .fld input::placeholder, .ask .fld textarea::placeholder { color: #8a93a3; }
+.ask .fld select {
+  appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 40px;
+  background: #2f3847 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23dcc08a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 16px center / 12px 8px no-repeat;
+}
+.ask .fld select:has(option[value=""]:checked) { color: #8a93a3; }
+.ask .fld select option { color: #1c2536; }
+.ask .fld :is(input, select, textarea):focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.ask .fld.is-invalid :is(input, textarea) { border-color: #e58c7d; }
+.ask .err { display: block; margin-top: 5px; font-size: 13px; line-height: 18px; color: #f4a79a; }
+.ask .err:empty { display: none; }
+.ask__count { display: block; margin-top: 4px; text-align: right; font-size: 12px; line-height: 16px; color: #8a93a3; }
+.ask__send, .ask__close { justify-self: center; width: 180px; height: 50px; margin-top: 8px; font-size: 18px; }
+.ask__done { padding: 30px 6px 4px; text-align: center; }
+.ask__done p { margin-bottom: 32px; font-family: var(--font-ui); font-weight: 700; font-size: 22px; line-height: 34px; color: #e5e7ec; }
+.ask__done .ask__close { margin: 0 auto; }
+
+@media (max-width: 1299px) { .faqs__ask { margin: 22px 0 0; justify-content: center; } }
+@media (max-width: 640px)  { .faqs__ask { flex-direction: column; gap: 12px; } .faqs__ask p { font-size: 16px; line-height: 24px; } }
+@media (max-width: 520px) {
+  .ask { padding: 0 12px 20px; border-width: 20px; border-image-width: 20px; }
+  .ask__title { padding: 10px 30px 12px; font-size: 20px; line-height: 28px; }
+  .ask__done p { font-size: 18px; line-height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .ask[open] { animation: none; } }
+/* ==========================================================
+   EXPEDITION PANEL FIXES: button hover, travelers combo box, filter clear, drag-scroll cards
+   ========================================================== */
+.search__btn { transition: transform .18s ease, filter .18s ease; }
+.search__btn:hover { transform: translateY(-2px); filter: brightness(1.05) drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
+.search__btn:active { transform: translateY(0); filter: none; }
+@media (prefers-reduced-motion: reduce) { .search__btn, .search__btn:hover { transition: none; transform: none; } }
+.clearable, .combo { position: relative; }
+.clearable input { padding-right: 38px; }
+.clearable__btn { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); width: 24px; height: 24px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .14); color: #fff; font: 600 16px/1 var(--font-body); cursor: pointer; transition: background .18s; }
+.clearable__btn:hover { background: rgba(255, 255, 255, .3); }
+.clearable__btn[hidden] { display: none; }
+.combo input { padding-right: 40px; }
+.combo__btn { position: absolute; top: 0; right: 0; width: 40px; height: 100%; display: grid; place-items: center; border: 0; background: none; cursor: pointer; }
+.combo__btn::before { content: ""; width: 7px; height: 7px; margin-top: -3px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); transition: opacity .18s; }
+.combo__btn:hover::before { opacity: .7; }
+.combo__list { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; right: 0; max-height: 240px; margin: 0; padding: 4px; overflow-y: auto; list-style: none; border: 1px solid rgba(220, 192, 138, .45); border-radius: 6px; background: #12204a; box-shadow: 0 10px 24px rgba(0, 0, 0, .45); }
+.combo__list[hidden] { display: none; }
+.combo__list li { padding: 8px 10px; border-radius: 4px; font: 500 14px var(--font-body); color: #fff; cursor: pointer; }
+.combo__list li:hover { background: rgba(255, 255, 255, .12); }
+.combo__list .combo__note { padding: 6px 10px 8px; font-size: 11px; color: #aab6cc; cursor: default; pointer-events: none; }
+.search__link { padding: 0; border: 0; background: none; color: var(--gold); font: 600 13px var(--font-body); text-decoration: underline; cursor: pointer; }
+.search__link:hover { color: #fff; }
+.nations__track { cursor: grab; }
+.nations__track.is-dragging { cursor: grabbing; user-select: none; }
+.nations__track.is-dragging a { pointer-events: none; }
+@media (max-width: 1299px) { .nations__track { cursor: auto; } }
+.nations__head { position: relative; z-index: 3; }   /* keeps the travelers list above the cards */

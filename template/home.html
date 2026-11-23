@@ -85,10 +85,16 @@
       </div>
 
       <form class="search" id="search" novalidate>
-        <div class="search__field"><label for="s-dest">Destination</label><input id="s-dest" name="destination" list="s-nations" placeholder="Mondstadt, Liyue, Inazuma..." autocomplete="off"><datalist id="s-nations"><option value="Mondstadt"><option value="Liyue"><option value="Inazuma"><option value="Sumeru"><option value="Natlan"><option value="Fontaine"><option value="Snezhnaya"></datalist></div>
+        <div class="search__field"><label for="s-dest">Destination</label><div class="clearable"><input id="s-dest" name="destination" list="s-nations" placeholder="Mondstadt, Liyue, Inazuma..." autocomplete="off"><button class="clearable__btn" type="button" aria-label="Clear destination" hidden>&times;</button></div><datalist id="s-nations"><option value="Mondstadt"><option value="Liyue"><option value="Inazuma"><option value="Sumeru"><option value="Natlan"><option value="Fontaine"><option value="Snezhnaya"></datalist></div>
         <div class="search__field"><label for="s-in">Departure / Check-in</label><input id="s-in" name="depart" type="date" value="2026-12-04"></div>
         <div class="search__field"><label for="s-out">Return / Check-out</label><input id="s-out" name="ret" type="date" value="2026-12-11"></div>
-        <div class="search__field"><label for="s-trav">Travelers</label><select id="s-trav" name="travelers"></select></div>
+        <div class="search__field"><label for="s-trav">Travelers</label>
+          <div class="combo">
+            <input id="s-trav" name="travelers" type="text" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="s-trav-list" autocomplete="off" value="2 Travelers">
+            <button class="combo__btn" type="button" tabindex="-1" aria-label="Show traveler options"></button>
+            <ul class="combo__list" id="s-trav-list" role="listbox" hidden></ul>
+          </div>
+        </div>
         <p class="search__error" id="s-error" aria-live="polite"></p>
         <button class="search__btn" type="submit">Check Availability</button>
       </form>
@@ -196,7 +202,7 @@
       </details>
       <details class="faq">
         <summary>Can I customize a regional itinerary?</summary>
-        <p>Yes. Tell Katheryne which stops you want to add, swap, or skip in the form below, and her team will draft a custom route and an updated quote within two days.</p>
+        <p>Yes. Tell Katheryne which stops you want to add, swap, or skip with the Ask a Question button below, and her team will draft a custom route and an updated quote within two days.</p>
       </details>
       <details class="faq">
         <summary>Do I need visa to enter Teyvat?</summary>
@@ -206,6 +212,10 @@
         <summary>Are these tours suitable for first time travelers?</summary>
         <p>Absolutely. Every journey is led by a local guide, with gentle pacing and 24/7 support, so first-time travelers can explore each nation without worrying about the details.</p>
       </details>
+      <div class="faqs__ask">
+        <p>Still have a question?</p>
+        <button class="btn btn--ask" type="button" id="ask-open" aria-haspopup="dialog">Ask a Question</button>
+      </div>
     </div>
     <div class="guide-repeat" aria-hidden="true">
       <span class="guide-repeat__name">Katheryne</span>
@@ -260,6 +270,57 @@
     <p class="footer__copy">© 2026 WaypointGO Tourism Platform. All rights reserved.</p>
   </footer>
 
+
+  <!-- ============ ASK KATHERYNE (inquiry modal, opened from the FAQs) ============ -->
+  <dialog class="ask" id="ask" aria-labelledby="ask-title">
+    <button class="ask__x" type="button" data-ask-close aria-label="Close">&times;</button>
+    <h2 class="ask__title" id="ask-title">Ask Katheryne</h2>
+    <span class="ask__rule" aria-hidden="true"></span>
+
+    <form class="ask__form" id="ask-form" novalidate>
+      <div class="fld">
+        <label class="visually-hidden" for="ask-name">Full name</label>
+        <input id="ask-name" name="full_name" type="text" placeholder="Full name" autocomplete="name" maxlength="60" aria-describedby="ask-err-full_name">
+        <small class="err" id="ask-err-full_name"></small>
+      </div>
+      <div class="fld">
+        <label class="visually-hidden" for="ask-email">Email address</label>
+        <input id="ask-email" name="email" type="email" placeholder="Email address" autocomplete="email" maxlength="100" aria-describedby="ask-err-email">
+        <small class="err" id="ask-err-email"></small>
+      </div>
+      <div class="fld">
+        <label class="visually-hidden" for="ask-phone">Phone number (optional)</label>
+        <input id="ask-phone" name="phone" type="tel" placeholder="Phone number (optional)" autocomplete="tel" maxlength="20" aria-describedby="ask-err-phone">
+        <small class="err" id="ask-err-phone"></small>
+      </div>
+      <div class="fld">
+        <label class="visually-hidden" for="ask-package">About which package? (optional)</label>
+        <select id="ask-package" name="package">
+          <option value="" selected>About which package? (optional)</option>
+          <option value="general">General question</option>
+          <option>Mondstadt</option>
+          <option>Liyue</option>
+          <option>Inazuma</option>
+          <option>Sumeru</option>
+          <option>Natlan</option>
+          <option>Fontaine</option>
+          <option>Snezhnaya</option>
+        </select>
+      </div>
+      <div class="fld">
+        <label class="visually-hidden" for="ask-message">Your question</label>
+        <textarea id="ask-message" name="message" placeholder="Your question" maxlength="500" aria-describedby="ask-err-message"></textarea>
+        <small class="err" id="ask-err-message"></small>
+        <small class="ask__count" id="ask-count" aria-hidden="true">0/500</small>
+      </div>
+      <button class="btn ask__send" type="submit">Send</button>
+    </form>
+
+    <div class="ask__done" id="ask-done" role="status" hidden>
+      <p>Thank you! Your question has been successfully sent.</p>
+      <button class="btn ask__close" type="button" data-ask-close>Close</button>
+    </div>
+  </dialog>
 
   <script src="../script/home.js"></script>
 </body>
