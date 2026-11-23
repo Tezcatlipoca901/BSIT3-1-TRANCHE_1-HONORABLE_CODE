@@ -825,7 +825,6 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   .ask__title { padding: 10px 30px 12px; font-size: 20px; line-height: 28px; }
   .ask__done p { font-size: 18px; line-height: 28px; }
 }
-<<<<<<< HEAD
 @media (prefers-reduced-motion: reduce) { .ask[open] { animation: none; } }
 /* ==========================================================
    EXPEDITION PANEL FIXES: button hover, travelers combo box, filter clear, drag-scroll cards
@@ -855,6 +854,3 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nations__track.is-dragging a { pointer-events: none; }
 @media (max-width: 1299px) { .nations__track { cursor: auto; } }
 .nations__head { position: relative; z-index: 3; }   /* keeps the travelers list above the cards */
-=======
-@media (prefers-reduced-motion: reduce) { .ask[open] { animation: none; } }
->>>>>>> dev
