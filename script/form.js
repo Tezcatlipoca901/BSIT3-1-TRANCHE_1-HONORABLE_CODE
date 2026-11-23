@@ -55,6 +55,10 @@
     var value = v.trim(), digits = value.replace(/\D/g, '');
     return /^\+?(?:\d|\(\d)[\d\s()-]*\d$/.test(value) && digits.length >= 7 && digits.length <= 15;
   }
+  f.phone.addEventListener('input', function () {
+    var value = f.phone.value.replace(/[^\d\s()+-]/g, '').replace(/(?!^)\+/g, '');
+    if (f.phone.value !== value) f.phone.value = value;
+  });
 
   var rules = {
     depart: function (v) { return !v ? 'Pick a departure date.' : v < today ? 'Departure can\u2019t be in the past.' : ''; },
