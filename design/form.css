@@ -80,3 +80,12 @@ h1, h2, h3, p { margin: 0; }
   .grid, .grid--card { grid-template-columns: 1fr; } .pay { gap: 8px; }
   .res__foot { flex-direction: column; align-items: stretch; padding: 16px 18px; } .confirm { width: 100%; }
 }
+
+/* Read-only automatic return date styling */
+.fld input[readonly] {
+  opacity: 0.78;
+  cursor: not-allowed;
+}
+.fld input[readonly]::-webkit-calendar-picker-indicator {
+  display: none;
+}
