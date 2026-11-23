@@ -3,6 +3,16 @@
 (function () {
   'use strict';
   var NATIONS = ['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Natlan', 'Fontaine', 'Snezhnaya'];
+  // Adjust these day counts to match your package cards
+  var NATION_DAYS = {
+    Mondstadt: 3,
+    Liyue: 4,
+    Inazuma: 4,
+    Sumeru: 3,
+    Natlan: 4,
+    Fontaine: 5,
+    Snezhnaya: 5
+  };
   var form = document.getElementById('search');
   if (!form) return;
   var dest = form.elements.destination, dIn = form.elements.depart, dOut = form.elements.ret, trav = form.elements.travelers;
@@ -16,6 +26,21 @@
   var today = iso(new Date());
   dIn.min = today;
   dOut.min = today;
+  dOut.readOnly = true;
+
+  function syncReturnDate() {
+    var q = dest.value.trim().toLowerCase();
+    var match = NATIONS.filter(function (n) { return n.toLowerCase() === q; })[0];
+
+    if (!match || !dIn.value || dIn.value.slice(0, 4) < '2000') {
+      dOut.value = '';
+      return;
+    }
+
+    var days = NATION_DAYS[match] || 1;
+    dOut.min = dIn.value;
+    dOut.value = addDays(dIn.value, days);
+  }
 
   // Travelers: type any number (no upper limit) or pick a quick option from the list. Counts everyone, children included.
   var list = document.getElementById('s-trav-list'), comboBtn = form.querySelector('.combo__btn');
@@ -43,6 +68,7 @@
   // arriving from a nation page's "Book Now": ?nation=Liyue pre-fills the destination
   var wanted = (new URLSearchParams(location.search).get('nation') || '').toLowerCase();
   NATIONS.forEach(function (n) { if (n.toLowerCase() === wanted) dest.value = n; });
+  syncReturnDate();
 
   function showCards(list) {
     cards.forEach(function (c, k) { c.hidden = list.indexOf(NATIONS[k]) === -1; });
@@ -52,21 +78,23 @@
     if (!dest.value.trim()) return 'Choose a destination.';
     if (!dIn.value) return 'Enter a valid departure date (MM/DD/YYYY).';
     if (dIn.value < today) return 'Pick a departure date from today onward.';
-    if (!dOut.value) return 'Enter a valid return date (MM/DD/YYYY).';
+    if (!dOut.value) return 'Select an exact destination to calculate the return date.';
     if (dOut.value <= dIn.value) return 'Return date must be after departure.';
     var c = count(); if (isNaN(c) || c < 1) return 'Enter at least 1 traveler.';
     return '';
   }
 
   dIn.addEventListener('change', function () {
-    if (!dIn.value || dIn.value.slice(0, 4) < '2000') return;   // ignore half-typed years while the visitor is entering a date by hand
-    dOut.min = dIn.value;
-    if (dOut.value && dOut.value <= dIn.value) dOut.value = addDays(dIn.value, 1);
+    if (!dIn.value || dIn.value.slice(0, 4) < '2000') {   // ignore half-typed years while the visitor is entering a date by hand
+      dOut.value = '';
+      return;
+    }
+    syncReturnDate();
   });
   // Filter clearing: the x button, emptying the field, or "View All Packages" / "Clear filter" all bring every card back
   var clr = form.querySelector('.clearable__btn');
   function syncClear() { clr.hidden = !dest.value; }
-  function clearFilter() { dest.value = ''; err.textContent = ''; syncClear(); showCards(NATIONS); }
+  function clearFilter() { dest.value = ''; err.textContent = ''; syncClear(); syncReturnDate(); showCards(NATIONS); }
   function note(msg, withClear) {
     err.textContent = msg;
     if (!withClear) return;
@@ -74,7 +102,7 @@
     b.addEventListener('click', function () { clearFilter(); dest.focus(); });
     err.appendChild(document.createTextNode(' ')); err.appendChild(b);
   }
-  dest.addEventListener('input', function () { err.textContent = ''; syncClear(); if (!dest.value.trim() || !empty.hidden) showCards(NATIONS); });
+  dest.addEventListener('input', function () { err.textContent = ''; syncClear(); syncReturnDate(); if (!dest.value.trim() || !empty.hidden) showCards(NATIONS); });
   clr.addEventListener('click', function () { clearFilter(); dest.focus(); });
   document.getElementById('view-all').addEventListener('click', function () { clearFilter(); dest.focus(); });
   syncClear();
