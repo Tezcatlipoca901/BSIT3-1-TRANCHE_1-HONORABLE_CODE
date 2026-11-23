@@ -86,8 +86,8 @@
 
       <form class="search" id="search" novalidate>
         <div class="search__field"><label for="s-dest">Destination</label><div class="clearable"><input id="s-dest" name="destination" list="s-nations" placeholder="Mondstadt, Liyue, Inazuma..." autocomplete="off"><button class="clearable__btn" type="button" aria-label="Clear destination" hidden>&times;</button></div><datalist id="s-nations"><option value="Mondstadt"><option value="Liyue"><option value="Inazuma"><option value="Sumeru"><option value="Natlan"><option value="Fontaine"><option value="Snezhnaya"></datalist></div>
-        <div class="search__field"><label for="s-in">Departure / Check-in</label><input id="s-in" name="depart" type="date" value="2026-12-04"></div>
-        <div class="search__field"><label for="s-out">Return / Check-out</label><input id="s-out" name="ret" type="date" value="2026-12-11"></div>
+        <div class="search__field"><label for="s-in">Departure / Check-in</label><input id="s-in" name="depart" type="date"></div>
+        <div class="search__field"><label for="s-out">Return / Check-out</label><input id="s-out" name="ret" type="date"></div>
         <div class="search__field"><label for="s-trav">Travelers</label>
           <div class="combo">
             <input id="s-trav" name="travelers" type="text" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="s-trav-list" autocomplete="off" value="2 Travelers">
@@ -285,7 +285,7 @@
       </div>
       <div class="fld">
         <label class="visually-hidden" for="ask-email">Email address</label>
-        <input id="ask-email" name="email" type="email" placeholder="Email address" autocomplete="email" maxlength="100" aria-describedby="ask-err-email">
+        <input id="ask-email" name="email" type="email" placeholder="example@mail.com" autocomplete="email" aria-describedby="ask-err-email">
         <small class="err" id="ask-err-email"></small>
       </div>
       <div class="fld">

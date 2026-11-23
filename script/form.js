@@ -21,15 +21,21 @@
 
   $('t-name').textContent = key; $('t-dur').textContent = nation.n; $('t-desc').textContent = nation.d;
   $('t-img').src = '../assets/' + key.toLowerCase() + '/itinerary.jpg'; $('t-img').alt = key;
-  f.depart.value = qs.get('depart') || '2026-12-04';
-  f.ret.value = qs.get('return') || '2026-12-11';
+  f.depart.value = qs.get('depart') || '';
+  f.ret.value = qs.get('return') || '';
 
   function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function addDays(s, n) { var p = s.split('-'); return iso(new Date(+p[0], +p[1] - 1, +p[2] + n)); }
   function long(s) { var p = s.split('-'); return p.length < 3 || !p[0] ? '' : new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
   function peso(n) { return '\u20B1' + n.toLocaleString('en-US'); }
   function datesText() { return long(f.depart.value) && long(f.ret.value) ? long(f.depart.value) + ' - ' + long(f.ret.value) : ''; }
   var today = iso(new Date());
   f.depart.min = today;
+  function syncReturnMin() {
+    f.ret.min = f.depart.value ? addDays(f.depart.value, 1) : today;
+    if (f.ret.value && f.depart.value && f.ret.value <= f.depart.value) f.ret.value = '';
+  }
+  syncReturnMin();
 
   function render() {
     $('t-trav').textContent = trav;
@@ -40,7 +46,8 @@
   }
   $('t-minus').addEventListener('click', function () { trav = Math.max(1, trav - 1); render(); });
   $('t-plus').addEventListener('click', function () { trav += 1; render(); });
-  ['depart', 'ret'].forEach(function (n) { f[n].addEventListener('change', render); });
+  f.depart.addEventListener('change', function () { syncReturnMin(); render(); });
+  f.ret.addEventListener('change', render);
 
   function method() { return form.querySelector('input[name="pay"]:checked').value; }
   function showPayFields() { $('card-fields').hidden = method() !== 'Credit Card'; $('paypal-fields').hidden = method() !== 'PayPal'; }

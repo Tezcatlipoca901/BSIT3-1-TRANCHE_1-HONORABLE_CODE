@@ -15,8 +15,7 @@
 
   var today = iso(new Date());
   dIn.min = today;
-  if (!dIn.value || dIn.value < today) { dIn.value = addDays(today, 14); dOut.value = addDays(today, 21); }
-  dOut.min = dIn.value;
+  dOut.min = today;
 
   // Travelers: type any number (no upper limit) or pick a quick option from the list. Counts everyone, children included.
   var list = document.getElementById('s-trav-list'), comboBtn = form.querySelector('.combo__btn');
@@ -150,9 +149,20 @@
     var namePart = "[\\p{L}][\\p{L}\\p{M}]*(?:[.'\\u2019-][\\p{L}\\p{M}]+)*";
     return new RegExp('^' + namePart + '(?: ' + namePart + ')*$', 'u').test(v);
   }
+  function emailError(v) {
+    var at = v.indexOf('@'), domain;
+    if (!v) return 'Please enter your email.';
+    if (v.length < 6) return 'Email address must be at least 6 characters.';
+    if (v.length > 254) return 'Email address must be 254 characters or fewer.';
+    if (at < 1 || at !== v.lastIndexOf('@')) return 'Enter an email address with an @ symbol.';
+    domain = v.slice(at + 1);
+    if (!/^[^\s@.]+(?:\.[^\s@.]+)+$/.test(domain)) return 'Enter an email address with a valid domain extension (for example, .com).';
+    if (!/^[^\s@]+$/.test(v.slice(0, at))) return 'Enter a valid email address.';
+    return '';
+  }
   var rules = {
     full_name: function (v) { v = v.trim(); return !v ? 'Please enter your name.' : !fullNameOk(v) ? 'Use letters and single spaces only; apostrophes, periods, and hyphens must be within a name.' : ''; },
-    email: function (v) { v = v.trim(); return !v ? 'Please enter your email.' : !/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(v) ? 'Enter a valid email address.' : ''; },
+    email: function (v) { return emailError(v.trim()); },
     phone: function (v) { return !v.trim() ? '' : phoneOk(v) ? '' : 'Enter a valid phone number.'; },   // optional
     message: function (v) { v = v.trim(); return !v ? 'Please type your question.' : v.length < 10 ? 'Add a little more detail (at least 10 characters).' : v.length > MAX ? 'Keep it to ' + MAX + ' characters.' : ''; }
   };
@@ -167,6 +177,10 @@
     f[n].addEventListener('blur', function () { if (f[n].value) check(n); });
     f[n].addEventListener('input', function () { if (f[n].closest('.fld').classList.contains('is-invalid')) check(n); });
   });
+  f.full_name.addEventListener('input', function () {
+    var value = f.full_name.value.replace(/[^\p{L}\p{M}\s.'\u2019-]/gu, '');
+    if (f.full_name.value !== value) f.full_name.value = value;
+  });
   f.message.addEventListener('input', function () { count.textContent = f.message.value.length + '/' + MAX; });
 
   function reset() {
@@ -179,11 +193,7 @@
 
   openBtn.addEventListener('click', function () { reset(); dlg.showModal(); });
   [].forEach.call(dlg.querySelectorAll('[data-ask-close]'), function (b) { b.addEventListener('click', function () { dlg.close(); }); });
-  // click on the dimmed backdrop (outside the framed box) closes it
-  dlg.addEventListener('click', function (e) {
-    var r = dlg.getBoundingClientRect();
-    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg.close();
-  });
+  dlg.addEventListener('cancel', function (e) { e.preventDefault(); });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
