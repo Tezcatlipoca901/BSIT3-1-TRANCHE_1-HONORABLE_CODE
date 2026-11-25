@@ -64,7 +64,18 @@
       </div>
 
         <div class="grid grid--one" id="paypal-fields" hidden>
+          <div class="paypal-notice" aria-label="PayPal information">
+            <svg class="paypal-notice__icon" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M111.9 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5l-74.6 0c-7.6 0-13.1-6.6-12.1-13.9L59.3 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4 .7-69.5-7-75.3 24.2zM357.6 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9l63.5 0c8.6 0 15.7-6.3 17.4-14.9 .7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></svg>
+            <p>You will be securely connected to PayPal Express Checkout upon clicking Confirm Booking. Zero extra processing fees.</p>
+          </div>
           <div class="fld"><label for="f-paypal">PayPal Number <i>*</i></label><input id="f-paypal" name="paypal" type="tel" inputmode="tel" placeholder="+63 9999 123 4567" autocomplete="tel" maxlength="20"><small class="err"></small></div>
+        </div>
+
+        <div class="grid grid--one" id="agency-fields" hidden>
+          <div class="paypal-notice" aria-label="Pay at Agency information">
+            <svg class="paypal-notice__icon" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.5 33.3-6.5s4.5-25.9-6.5-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+            <p>Hold your reservation at today's guaranteed price for 48 hours while you complete payment at any WaypointGO branch.</p>
+          </div>
         </div>
       </div>
 
@@ -77,6 +88,32 @@
       </footer>
     </form>
   </main>
+  <!-- Confirmation Modal -->
+  <div class="conf-backdrop" id="conf-backdrop" hidden aria-hidden="true">
+    <div class="conf-modal" role="dialog" aria-modal="true" aria-labelledby="conf-title">
+      <div class="conf-modal__bar">
+        <img src="../assets/logo-mark.png" alt="">
+        <p id="conf-title">Reservation Confirmed</p>
+      </div>
+      <div class="conf-modal__body">
+        <span class="conf-modal__icon" aria-hidden="true"><img src="../assets/time-check.png" alt=""></span>
+        <p class="conf-modal__pill">Reservation complete</p>
+        <h2 class="conf-modal__heading">Bon Voyage, <span data-cf="first">Name</span>!</h2>
+        <p class="conf-modal__lead">Your itinerary and e-tickets have been generated and sent to <span data-cf="email">example@gmail.com</span></p>
+        <dl class="conf-modal__details">
+          <div><dt>Booking Reference</dt><dd class="conf-modal__ref" data-cf="ref">#WPG-3383</dd></div>
+          <div class="r"><dt>Amount Paid</dt><dd data-cf="amount">₱29,000</dd></div>
+          <div class="conf-modal__divider" aria-hidden="true"></div>
+          <div><dt>Destination Package</dt><dd data-cf="nation">Mondstadt</dd></div>
+          <div><dt>Travel Dates</dt><dd data-cf="dates">December 4, 2026 – December 11, 2026</dd></div>
+          <div><dt>Travelers</dt><dd data-cf="travelers">2 Travelers</dd></div>
+          <div><dt>Payment Method</dt><dd data-cf="method">Credit Card</dd></div>
+        </dl>
+        <a class="conf-modal__btn" href="home.html#nations">Continue Exploring</a>
+      </div>
+    </div>
+  </div>
+
   <script src="../script/form.js"></script>
 </body>
 </html>
