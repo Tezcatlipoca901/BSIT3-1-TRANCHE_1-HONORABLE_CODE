@@ -24,14 +24,57 @@
     Snezhnaya: 8
   };
   var DATE_SLOT_OVERRIDES = {
-    '2026-12-04': { Liyue: 7, Fontaine: 4 },
-    '2026-12-05': { Mondstadt: 9, Natlan: 6 },
-    '2026-12-11': { Liyue: 5, Fontaine: 3 },
-    '2026-12-12': { Mondstadt: 8, Natlan: 5 },
-    '2026-12-18': { Liyue: 4, Fontaine: 2 },
-    '2026-12-19': { Mondstadt: 6, Natlan: 4 },
-    '2026-12-25': { Liyue: 3, Fontaine: 2 },
-    '2026-12-26': { Mondstadt: 5, Natlan: 3 }
+    '2026-12-03': { Inazuma: 6, Snezhnaya: 5 },
+    '2026-12-04': { Liyue: 7, Sumeru: 8, Fontaine: 4 },
+    '2026-12-05': { Mondstadt: 9, Inazuma: 3, Natlan: 6 },
+    '2026-12-06': { Sumeru: 5 },
+    '2026-12-10': { Inazuma: 5, Snezhnaya: 3 },
+    '2026-12-11': { Liyue: 4, Fontaine: 2 },
+    '2026-12-12': { Mondstadt: 6, Natlan: 4 },
+    '2026-12-13': { Sumeru: 7 },
+    '2026-12-17': { Inazuma: 2, Snezhnaya: 2 },
+    '2026-12-18': { Liyue: 2, Fontaine: 1 },
+    '2026-12-19': { Mondstadt: 4, Natlan: 2 },
+    '2026-12-20': { Sumeru: 3 },
+    '2026-12-24': { Inazuma: 1, Snezhnaya: 1 },
+    '2026-12-25': { Liyue: 1, Fontaine: 3 },
+    '2026-12-26': { Mondstadt: 2, Natlan: 1 },
+    '2026-12-27': { Sumeru: 2 },
+    '2027-01-01': { Liyue: 9, Fontaine: 6 },
+    '2027-01-02': { Mondstadt: 11, Natlan: 8 },
+    '2027-01-03': { Sumeru: 10 },
+    '2027-01-07': { Inazuma: 8, Snezhnaya: 7 },
+    '2027-01-08': { Liyue: 6, Fontaine: 5 },
+    '2027-01-09': { Mondstadt: 8, Natlan: 5 },
+    '2027-01-10': { Sumeru: 6 },
+    '2027-01-14': { Inazuma: 4, Snezhnaya: 6 },
+    '2027-01-15': { Liyue: 8, Fontaine: 3 },
+    '2027-01-16': { Mondstadt: 5, Natlan: 7 },
+    '2027-01-17': { Sumeru: 9 },
+    '2027-01-21': { Inazuma: 7, Snezhnaya: 4 },
+    '2027-01-22': { Liyue: 5, Fontaine: 4 },
+    '2027-01-23': { Mondstadt: 10, Natlan: 3 },
+    '2027-01-24': { Sumeru: 4 },
+    '2027-01-28': { Inazuma: 5, Snezhnaya: 8 },
+    '2027-01-29': { Liyue: 10, Fontaine: 2 },
+    '2027-01-30': { Mondstadt: 7, Natlan: 9 },
+    '2027-01-31': { Sumeru: 8 },
+    '2027-02-04': { Inazuma: 6, Snezhnaya: 5 },
+    '2027-02-05': { Liyue: 4, Fontaine: 5 },
+    '2027-02-06': { Mondstadt: 12, Natlan: 6 },
+    '2027-02-07': { Sumeru: 3 },
+    '2027-02-11': { Inazuma: 2, Snezhnaya: 6 },
+    '2027-02-12': { Liyue: 3, Fontaine: 1 },
+    '2027-02-13': { Mondstadt: 3, Natlan: 2 },
+    '2027-02-14': { Sumeru: 7 },
+    '2027-02-18': { Inazuma: 8, Snezhnaya: 2 },
+    '2027-02-19': { Liyue: 7, Fontaine: 4 },
+    '2027-02-20': { Mondstadt: 9, Natlan: 5 },
+    '2027-02-21': { Sumeru: 10 },
+    '2027-02-25': { Inazuma: 4, Snezhnaya: 7 },
+    '2027-02-26': { Liyue: 9, Fontaine: 6 },
+    '2027-02-27': { Mondstadt: 6, Natlan: 8 },
+    '2027-02-28': { Sumeru: 6 }
   };
 
   // Departure-return schedule windows (matching home.js)
@@ -293,7 +336,6 @@
     return !/^[^\s@]+$/.test(v.slice(0, at)) ? 'Enter a valid email address.' : '';
   }
   restrictPhoneInput(f.phone);
-  restrictPhoneInput(f.paypal);
   f.name.addEventListener('input', function () {
     var value = f.name.value.replace(/[^\p{L}\p{M}\s.'\u2019-]/gu, '');
     if (f.name.value !== value) f.name.value = value;
@@ -318,7 +360,7 @@
     email: function (v) { return emailError(v.trim()); },
     phone: function (v) { return !v.trim() ? 'Please enter your phone number.' : phoneOk(v) ? '' : 'Enter a valid phone number (7 to 15 digits).'; },
     notes: function () { return ''; },
-    paypal: function (v) { return !v.trim() ? 'Enter your PayPal number.' : phoneOk(v) ? '' : 'Enter a valid PayPal number (7 to 15 digits).'; },
+    paypal: function (v) { return emailError(v.trim()); },
     card: function (v) { var d = v.replace(/\D/g, ''); return !d ? 'Enter your card number.' : (d.length < 13 || d.length > 19) ? 'Card number should be 13 to 19 digits.' : ''; },
     exp: function (v) {
       var m = /^(\d{2})\/(\d{2})$/.exec(v); if (!v) return 'Enter the expiry date.';

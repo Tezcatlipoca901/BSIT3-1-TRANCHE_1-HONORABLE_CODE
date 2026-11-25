@@ -756,10 +756,10 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nations__empty h3 { font: 700 26px/34px var(--font-ui); color: #fff; }
 .nations__empty p { max-width: 520px; font-size: 15px; line-height: 24px; color: #dbe3f0; }
 @media (min-width: 1300px) {
-  .nations { flex-direction: column; align-items: stretch; justify-content: flex-start; height: auto; min-height: 100svh; padding-top: 108px; }   /* clears the 84px navbar */
+  .nations { flex-direction: column; align-items: stretch; justify-content: space-between; height: 100vh; height: 100svh; min-height: 720px; padding-top: 108px; padding-bottom: 14px; }   /* clears the 84px navbar and pins the scrollbar near the bottom */
   .nations__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; padding: 0 48px; }
   .nations__intro { flex: 1 1 auto; padding: 0; }
-  .nations__track { flex: none; gap: 10px; }
+  .nations__track { flex: 1 1 auto; align-items: center; gap: 10px; padding-bottom: 16px; }
   .nation-card { zoom: var(--card-zoom, .8); }   /* 445x574 design size; home.js sets --card-zoom so the cards fill the screen height */
 }
 @media (max-width: 1299px) { .search { width: auto; margin: 0 22px 28px; } }
