@@ -93,14 +93,16 @@
             <ul class="combo__list" id="s-dest-list" role="listbox" hidden></ul>
           </div>
         </div>
-        <div class="search__field"><label for="s-in">Departure / Check-in</label><input id="s-in" name="depart" type="date"></div>
-        <div class="search__field"><label for="s-out">Return / Check-out</label><input id="s-out" name="ret" type="date"></div>
-        <div class="search__field"><label for="s-trav">Travelers</label>
-          <div class="combo">
-            <input id="s-trav" name="travelers" type="text" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="s-trav-list" autocomplete="off" value="2 Travelers">
-            <button class="combo__btn" type="button" tabindex="-1" aria-label="Show traveler options"></button>
-            <ul class="combo__list" id="s-trav-list" role="listbox" hidden></ul>
+        <div class="search__field"><label for="s-in">Departure / Check-in</label>
+          <div class="dpick">
+            <input id="s-in" name="depart" type="text" placeholder="MM/DD/YYYY" readonly autocomplete="off" aria-haspopup="dialog" aria-expanded="false">
+            <button class="dpick__btn" type="button" tabindex="-1" aria-label="Open departure calendar"></button>
+            <div class="dpick__pop" id="s-dpick" role="dialog" aria-label="Select departure date" hidden></div>
           </div>
+        </div>
+        <div class="search__field"><label for="s-out">Return / Check-out</label><input id="s-out" name="ret" type="text" placeholder="MM/DD/YYYY" readonly autocomplete="off"></div>
+        <div class="search__field"><label for="s-trav">Travelers</label>
+          <input id="s-trav" name="travelers" type="text" readonly autocomplete="off" value="Select a date">
         </div>
         <p class="search__error" id="s-error" aria-live="polite"></p>
         <button class="search__btn" type="submit">Check Availability</button>

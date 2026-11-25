@@ -883,3 +883,80 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .nations__track.is-dragging a { pointer-events: none; }
 @media (max-width: 1299px) { .nations__track { cursor: auto; } }
 .nations__head { position: relative; z-index: 3; }   /* keeps the travelers list above the cards */
+
+/* ==========================================================
+   CUSTOM DEPARTURE CALENDAR & CARD SELECTION STATES
+   ========================================================== */
+.dpick { position: relative; }
+.dpick input { padding-right: 40px; cursor: pointer !important; opacity: 1 !important; }
+.dpick__btn {
+  position: absolute; top: 0; right: 0; width: 40px; height: 100%;
+  display: grid; place-items: center; border: 0; background: none; cursor: pointer;
+}
+.dpick__btn::before {
+  content: ""; width: 16px; height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23dcc08a' d='M128 0c17.7 0 32 14.3 32 32v32h128V32c0-17.7 14.3-32 32-32s32 14.3 32 32v32h32c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128c0-35.3 28.7-64 64-64h32V32c0-17.7 14.3-32 32-32zM64 224v192h320V224H64z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.dpick__pop {
+  position: absolute; z-index: 12; top: calc(100% + 6px); left: 0; width: 286px;
+  padding: 12px; border: 1px solid rgba(220, 192, 138, .55); border-radius: 8px;
+  background: #101d44; box-shadow: 0 14px 30px rgba(0, 0, 0, .55); color: #fff;
+}
+.dpick__pop[hidden] { display: none; }
+.dpick__head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+  font: 700 13px var(--font-ui); color: var(--gold);
+}
+.dpick__nav {
+  width: 28px; height: 28px; border: 1px solid rgba(220, 192, 138, .35); border-radius: 5px;
+  background: rgba(255, 255, 255, .06); color: #fff; font: 700 14px/1 var(--font-body); cursor: pointer;
+}
+.dpick__nav:hover:not(:disabled) { background: rgba(220, 192, 138, .22); color: var(--gold); }
+.dpick__nav:disabled { opacity: .35; cursor: not-allowed; }
+.dpick__wk, .dpick__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center; }
+.dpick__wk { margin-bottom: 6px; font: 600 10px var(--font-body); color: #9fb0cc; text-transform: uppercase; }
+.dpick__day {
+  height: 32px; border: 1px solid transparent; border-radius: 5px;
+  background: rgba(255, 255, 255, .09); color: #fff; font: 600 12px var(--font-body); cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.dpick__day:hover:not(:disabled) {
+  background: rgba(220, 192, 138, .28); border-color: var(--gold); color: var(--gold);
+}
+.dpick__day.is-selected {
+  background: var(--gold); color: #1a2444; font-weight: 700;
+}
+.dpick__day:disabled, .dpick__day.is-unavailable {
+  background: rgba(255, 255, 255, .02);
+  color: rgba(170, 182, 204, .32);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.dpick__empty { height: 32px; }
+.dpick__foot {
+  display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, .1); font-size: 11px; color: #aab6cc;
+}
+.dpick__clear {
+  border: 0; background: none; color: var(--gold); font: 600 11px var(--font-body); cursor: pointer; text-decoration: underline;
+}
+.dpick__clear:hover { color: #fff; }
+
+/* Selected nation card state when date-filtering multiple destinations */
+.nation-card.is-selected {
+  transform: translateY(-12px);
+  filter: brightness(1.1) saturate(1.12) drop-shadow(0 18px 20px rgba(10, 24, 60, .55)) drop-shadow(0 0 18px rgba(220, 192, 138, .95));
+}
+.nation-card.is-selected h3,
+.nation-card.is-selected .nation-card__price { color: var(--gold); }
+.nation-card__badge {
+  position: absolute; top: 14px; right: 20px; z-index: 3;
+  padding: 4px 10px; border-radius: 99px;
+  background: rgba(14, 26, 58, .88); border: 1px solid var(--gold);
+  font: 600 11px/1.2 var(--font-body); color: var(--gold);
+  pointer-events: none;
+}
+@media (max-width: 1299px) {
+  .nation-card.is-selected { transform: translateY(-4px); }
+  .nation-card__badge { top: 8px; right: 10px; font-size: 10px; padding: 3px 8px; }
+}
