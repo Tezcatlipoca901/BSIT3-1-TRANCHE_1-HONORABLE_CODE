@@ -744,17 +744,17 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .search__field input::placeholder { color: #aab6cc; }
 .search__field input:focus-visible, .search__field select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
 .search__error { grid-column: 1 / -1; min-height: 16px; margin: 0; font-size: 13px; line-height: 18px; color: #ffc2b8; }
-.search__btn {
-  grid-column: 1 / -1; justify-self: end; width: 196px; height: 44px; border: 0; cursor: pointer;
+.search__btn--plain {
+  display: inline-flex; align-items: center; justify-content: center; margin-top: 8px;
+  width: 196px; height: 44px; border: 0; cursor: pointer;
   background: url("../assets/button-blank.png") center / 100% 100% no-repeat; font: 700 16px var(--font-ui); color: #3b4a68;
 }
-.search__btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.search__btn--plain:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .nation-card[hidden], .nations__track[hidden], .nations__empty[hidden] { display: none; }
 .nations__empty { z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 64px 24px 84px; text-align: center; }
 .nations__empty-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #1e2a55; font: 700 20px/1 var(--font-body); }
 .nations__empty h3 { font: 700 26px/34px var(--font-ui); color: #fff; }
 .nations__empty p { max-width: 520px; font-size: 15px; line-height: 24px; color: #dbe3f0; }
-.search__btn--plain { grid-column: auto; justify-self: auto; margin-top: 8px; }
 @media (min-width: 1300px) {
   .nations { flex-direction: column; align-items: stretch; justify-content: flex-start; height: auto; min-height: 100svh; padding-top: 108px; }   /* clears the 84px navbar */
   .nations__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; padding: 0 48px; }
