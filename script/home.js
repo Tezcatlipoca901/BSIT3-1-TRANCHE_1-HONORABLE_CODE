@@ -1,8 +1,10 @@
 /* home.js - expedition search panel (home.html #nations)
-   Check Availability -> form.html (booking form), or the "No exact destinations found" state. */
+   Check Availability filters the nation cards by destination and the bookable
+   date windows listed in README.md, or shows the "No exact destinations found" state. */
 (function () {
   'use strict';
   var NATIONS = ['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Natlan', 'Fontaine', 'Snezhnaya'];
+<<<<<<< Updated upstream
   // Adjust these day counts to match your package cards
   var NATION_DAYS = {
     Mondstadt: 3,
@@ -12,6 +14,18 @@
     Natlan: 4,
     Fontaine: 5,
     Snezhnaya: 5
+=======
+  // Departure-return windows from README.md. A range like "30-1" ends in the next month.
+  var MONTHS = { December: 12, January: 1, February: 2 };
+  var SCHEDULE = {
+    Mondstadt: { 'December 2026': ['5-7', '12-14', '19-21', '26-28'], 'January 2027': ['2-4', '9-11', '16-18', '23-25', '30-1'], 'February 2027': ['6-8', '13-15', '20-22', '27-1'] },
+    Liyue: { 'December 2026': ['4-7', '11-14', '18-21', '25-28'], 'January 2027': ['1-4', '8-11', '15-18', '22-25', '29-1'], 'February 2027': ['5-8', '12-15', '19-22', '26-1'] },
+    Inazuma: { 'December 2026': ['3-6', '10-13', '17-20', '24-27'], 'January 2027': ['7-10', '14-17', '21-24', '28-31'], 'February 2027': ['4-7', '11-14', '18-21', '25-28'] },
+    Sumeru: { 'December 2026': ['6-8', '13-15', '20-22', '27-29'], 'January 2027': ['3-5', '10-12', '17-19', '24-26', '31-2'], 'February 2027': ['7-9', '14-16', '21-23', '28-2'] },
+    Natlan: { 'December 2026': ['5-8', '12-15', '19-22', '26-29'], 'January 2027': ['2-5', '9-12', '16-19', '23-26', '30-2'], 'February 2027': ['6-9', '13-16', '20-23', '27-2'] },
+    Fontaine: { 'December 2026': ['4-8', '11-15', '18-22', '25-29'], 'January 2027': ['1-5', '8-12', '15-19', '22-26', '29-2'], 'February 2027': ['5-9', '12-16', '19-23', '26-2'] },
+    Snezhnaya: { 'December 2026': ['3-7', '10-14', '17-21', '24-28'], 'January 2027': ['7-11', '14-18', '21-25', '28-1'], 'February 2027': ['4-8', '11-15', '18-22', '25-1'] }
+>>>>>>> Stashed changes
   };
   var form = document.getElementById('search');
   if (!form) return;
@@ -42,8 +56,56 @@
     dOut.value = addDays(dIn.value, days);
   }
 
+  var WINDOWS = {};
+  NATIONS.forEach(function (nation) {
+    WINDOWS[nation] = [];
+    Object.keys(SCHEDULE[nation]).forEach(function (label) {
+      var bits = label.split(' '), month = MONTHS[bits[0]], year = +bits[1];
+      SCHEDULE[nation][label].forEach(function (range) {
+        var parts = range.split('-'), start = +parts[0], end = +parts[1];
+        var ret = end < start ? new Date(year, month, end) : new Date(year, month - 1, end);
+        WINDOWS[nation].push([iso(new Date(year, month - 1, start)), iso(ret)]);
+      });
+    });
+  });
+
   // Travelers: type any number (no upper limit) or pick a quick option from the list. Counts everyone, children included.
-  var list = document.getElementById('s-trav-list'), comboBtn = form.querySelector('.combo__btn');
+  var list = document.getElementById('s-trav-list'), travComboBtn = trav.parentElement.querySelector('.combo__btn');
+
+  // Destination: same chevron as travelers, plus a clear button. Options mirror the seven nations.
+  var clr = form.querySelector('.clearable__btn');
+  var destList = document.getElementById('s-dest-list'), destBtn = dest.parentElement.querySelector('.combo__btn');
+  function syncClear() { clr.hidden = !dest.value; }
+  function setDestOpen(o) { destList.hidden = !o; dest.setAttribute('aria-expanded', String(o)); }
+  NATIONS.forEach(function (n) {
+    var option = document.createElement('li');
+    option.setAttribute('role', 'option'); option.dataset.nation = n; option.textContent = n;
+    destList.appendChild(option);
+  });
+  function filterDestOptions() {
+    var q = dest.value.trim().toLowerCase(), any = false;
+    [].forEach.call(destList.children, function (option) {
+      var show = !q || option.dataset.nation.toLowerCase().indexOf(q) > -1;
+      option.hidden = !show;
+      if (show) any = true;
+    });
+    return any;
+  }
+  destList.addEventListener('mousedown', function (e) {
+    var option = e.target.closest('li[data-nation]'); if (!option) return;
+    e.preventDefault(); dest.value = option.dataset.nation; setDestOpen(false); err.textContent = ''; syncClear(); paint(currentHits());
+  });
+  destBtn.addEventListener('mousedown', function (e) {
+    e.preventDefault();
+    if (destList.hidden) { filterDestOptions(); dest.focus(); setDestOpen(true); }
+    else setDestOpen(false);
+  });
+  dest.addEventListener('focus', function () { filterDestOptions(); setDestOpen(true); });
+  dest.addEventListener('blur', function () { setDestOpen(false); });
+  dest.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setDestOpen(false);
+    else if (e.key === 'ArrowDown') { e.preventDefault(); filterDestOptions(); setDestOpen(true); }
+  });
   function fmt(n) { return n + (n === 1 ? ' Traveler' : ' Travelers'); }
   function count() { var m = /\d+/.exec(trav.value); return m ? parseInt(m[0], 10) : NaN; }
   function setOpen(o) { list.hidden = !o; trav.setAttribute('aria-expanded', String(o)); }
@@ -56,7 +118,7 @@
     var li = e.target.closest('li[data-n]'); if (!li) return;
     e.preventDefault(); trav.value = fmt(+li.dataset.n); setOpen(false); err.textContent = '';
   });
-  comboBtn.addEventListener('mousedown', function (e) { e.preventDefault(); if (list.hidden) { trav.focus(); setOpen(true); } else setOpen(false); });
+  travComboBtn.addEventListener('mousedown', function (e) { e.preventDefault(); if (list.hidden) { trav.focus(); setOpen(true); } else setOpen(false); });
   trav.addEventListener('focus', function () { var c = count(); trav.value = isNaN(c) ? '' : c; trav.select(); setOpen(true); });
   trav.addEventListener('input', function () { trav.value = trav.value.replace(/\D/g, ''); err.textContent = ''; });
   trav.addEventListener('blur', function () { setOpen(false); var c = count(); if (c >= 1) trav.value = fmt(c); });
@@ -75,7 +137,6 @@
     track.hidden = false; empty.hidden = true; fitCards();
   }
   function validate() {
-    if (!dest.value.trim()) return 'Choose a destination.';
     if (!dIn.value) return 'Enter a valid departure date (MM/DD/YYYY).';
     if (dIn.value < today) return 'Pick a departure date from today onward.';
     if (!dOut.value) return 'Select an exact destination to calculate the return date.';
@@ -91,10 +152,37 @@
     }
     syncReturnDate();
   });
+<<<<<<< Updated upstream
   // Filter clearing: the x button, emptying the field, or "View All Packages" / "Clear filter" all bring every card back
   var clr = form.querySelector('.clearable__btn');
   function syncClear() { clr.hidden = !dest.value; }
   function clearFilter() { dest.value = ''; err.textContent = ''; syncClear(); syncReturnDate(); showCards(NATIONS); }
+=======
+
+  // Date windows apply after Check Availability. Typing a destination only narrows by name until then.
+  var dateFilterOn = false;
+  function datesMatch(nation) {
+    if (!dateFilterOn || !dIn.value || !dOut.value) return true;
+    return WINDOWS[nation].some(function (w) { return w[0] === dIn.value && w[1] === dOut.value; });
+  }
+  function currentHits() {
+    var q = dest.value.trim().toLowerCase();
+    return NATIONS.filter(function (n) {
+      return datesMatch(n) && (!q || n.toLowerCase().indexOf(q) > -1);
+    });
+  }
+  function paint(hits) {
+    if (!hits.length) {
+      cards.forEach(function (c) { c.hidden = true; });
+      track.hidden = true; empty.hidden = false;
+      return;
+    }
+    showCards(hits);
+  }
+
+  // Filter clearing: emptying the field or "View All Packages" / "Clear filter" all bring every card back
+  function clearFilter() { dateFilterOn = false; dest.value = ''; err.textContent = ''; syncClear(); filterDestOptions(); showCards(NATIONS); }
+>>>>>>> Stashed changes
   function note(msg, withClear) {
     err.textContent = msg;
     if (!withClear) return;
@@ -102,22 +190,33 @@
     b.addEventListener('click', function () { clearFilter(); dest.focus(); });
     err.appendChild(document.createTextNode(' ')); err.appendChild(b);
   }
+<<<<<<< Updated upstream
   dest.addEventListener('input', function () { err.textContent = ''; syncClear(); syncReturnDate(); if (!dest.value.trim() || !empty.hidden) showCards(NATIONS); });
+=======
+  dest.addEventListener('input', function () {
+    err.textContent = '';
+    syncClear();
+    filterDestOptions();
+    if (!dest.value.trim() && !dateFilterOn) { showCards(NATIONS); return; }
+    paint(currentHits());
+  });
+>>>>>>> Stashed changes
   clr.addEventListener('click', function () { clearFilter(); dest.focus(); });
-  document.getElementById('view-all').addEventListener('click', function () { clearFilter(); dest.focus(); });
   syncClear();
+  document.getElementById('view-all').addEventListener('click', function () { clearFilter(); dest.focus(); });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var msg = validate();
     note(msg);
     if (msg) return;
-    var q = dest.value.trim().toLowerCase();
-    var hits = NATIONS.filter(function (n) { return n.toLowerCase() === q; });
-    if (!hits.length) hits = NATIONS.filter(function (n) { return n.toLowerCase().indexOf(q) > -1; });
-    if (!hits.length) { cards.forEach(function (c) { c.hidden = true; }); track.hidden = true; empty.hidden = false; return; }
-    if (hits.length > 1) { showCards(hits); note(hits.length + ' packages match. Refine the destination or open one below.', true); return; }
-    location.href = 'form.html?' + new URLSearchParams({ nation: hits[0], depart: dIn.value, 'return': dOut.value, travelers: count() });
+    dateFilterOn = true;
+    var hits = currentHits();
+    if (!hits.length) { paint(hits); return; }
+    paint(hits);
+    if (!dest.value.trim()) note('Showing destinations available for your selected dates.', true);
+    else if (hits.length > 1) note(hits.length + ' packages match. Refine the destination or open one below.', true);
+    else note('1 package found. Click the card to view details and book.', true);
   });
 
   // size the cards so the section fills the screen height (no empty strip below them)
@@ -219,7 +318,7 @@
     count.textContent = '0/' + MAX;
   }
 
-  openBtn.addEventListener('click', function () { reset(); dlg.showModal(); });
+  openBtn.addEventListener('click', function (e) { e.preventDefault(); reset(); dlg.showModal(); });
   [].forEach.call(dlg.querySelectorAll('[data-ask-close]'), function (b) { b.addEventListener('click', function () { dlg.close(); }); });
   dlg.addEventListener('cancel', function (e) { e.preventDefault(); });
 

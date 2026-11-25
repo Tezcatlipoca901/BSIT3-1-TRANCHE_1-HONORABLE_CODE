@@ -766,12 +766,28 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 @media (max-width: 520px) { .search { grid-template-columns: 1fr; } .search__btn { justify-self: stretch; width: auto; } }
 
 /* ==========================================================
-   FAQ "Ask a Question" button + Ask Katheryne modal
+   FAQ "Ask a Question" link + Ask Katheryne modal
    (frame art: assets/inquiry-frame.png, cut from the inquiry box design so it fits any height)
    ========================================================== */
-.faqs__ask { display: flex; align-items: center; gap: 24px; margin: 28px 0 0 5px; }
+.faqs__ask { margin: 28px 0 0 5px; }
 .faqs__ask p { font-family: var(--font-ui); font-weight: 700; font-size: 20px; line-height: 28px; color: #fff; }
-.btn--ask { flex: none; width: 250px; height: 58px; font-size: 18px; }
+.faqs__ask-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+  transition: color .25s ease, text-decoration-color .25s ease;
+}
+.faqs__ask-link:hover,
+.faqs__ask-link:focus-visible {
+  color: #f3dfb0;
+  text-decoration-color: #f3dfb0;
+  outline: none;
+}
+.faqs__ask-link:active {
+  color: #e8d5a0;
+  text-decoration-color: #e8d5a0;
+}
 
 .ask {
   box-sizing: border-box; width: min(580px, calc(100vw - 20px)); max-height: calc(100svh - 20px);
@@ -846,8 +862,8 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .search__btn:active { transform: translateY(0); filter: none; }
 @media (prefers-reduced-motion: reduce) { .search__btn, .search__btn:hover { transition: none; transform: none; } }
 .clearable, .combo { position: relative; }
-.clearable input { padding-right: 38px; }
-.clearable__btn { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); width: 24px; height: 24px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .14); color: #fff; font: 600 16px/1 var(--font-body); cursor: pointer; transition: background .18s; }
+.clearable input { padding-right: 68px; }
+.clearable__btn { position: absolute; top: 50%; right: 40px; z-index: 1; transform: translateY(-50%); width: 24px; height: 24px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .14); color: #fff; font: 600 16px/1 var(--font-body); cursor: pointer; transition: background .18s; }
 .clearable__btn:hover { background: rgba(255, 255, 255, .3); }
 .clearable__btn[hidden] { display: none; }
 .combo input { padding-right: 40px; }
@@ -857,6 +873,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .combo__list { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; right: 0; max-height: 240px; margin: 0; padding: 4px; overflow-y: auto; list-style: none; border: 1px solid rgba(220, 192, 138, .45); border-radius: 6px; background: #12204a; box-shadow: 0 10px 24px rgba(0, 0, 0, .45); }
 .combo__list[hidden] { display: none; }
 .combo__list li { padding: 8px 10px; border-radius: 4px; font: 500 14px var(--font-body); color: #fff; cursor: pointer; }
+.combo__list li[hidden] { display: none; }
 .combo__list li:hover { background: rgba(255, 255, 255, .12); }
 .combo__list .combo__note { padding: 6px 10px 8px; font-size: 11px; color: #aab6cc; cursor: default; pointer-events: none; }
 .search__link { padding: 0; border: 0; background: none; color: var(--gold); font: 600 13px var(--font-body); text-decoration: underline; cursor: pointer; }

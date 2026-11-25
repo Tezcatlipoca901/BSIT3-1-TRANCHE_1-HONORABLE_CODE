@@ -85,7 +85,14 @@
       </div>
 
       <form class="search" id="search" novalidate>
-        <div class="search__field"><label for="s-dest">Destination</label><div class="clearable"><input id="s-dest" name="destination" list="s-nations" placeholder="Mondstadt, Liyue, Inazuma..." autocomplete="off"><button class="clearable__btn" type="button" aria-label="Clear destination" hidden>&times;</button></div><datalist id="s-nations"><option value="Mondstadt"><option value="Liyue"><option value="Inazuma"><option value="Sumeru"><option value="Natlan"><option value="Fontaine"><option value="Snezhnaya"></datalist></div>
+        <div class="search__field"><label for="s-dest">Destination</label>
+          <div class="clearable">
+            <input id="s-dest" name="destination" type="text" role="combobox" aria-expanded="false" aria-controls="s-dest-list" placeholder="Mondstadt, Liyue, Inazuma..." autocomplete="off">
+            <button class="combo__btn" type="button" tabindex="-1" aria-label="Show destinations"></button>
+            <button class="clearable__btn" type="button" aria-label="Clear destination" hidden>&times;</button>
+            <ul class="combo__list" id="s-dest-list" role="listbox" hidden></ul>
+          </div>
+        </div>
         <div class="search__field"><label for="s-in">Departure / Check-in</label><input id="s-in" name="depart" type="date"></div>
         <div class="search__field"><label for="s-out">Return / Check-out</label><input id="s-out" name="ret" type="date"></div>
         <div class="search__field"><label for="s-trav">Travelers</label>
@@ -213,8 +220,7 @@
         <p>Absolutely. Every journey is led by a local guide, with gentle pacing and 24/7 support, so first-time travelers can explore each nation without worrying about the details.</p>
       </details>
       <div class="faqs__ask">
-        <p>Still have a question?</p>
-        <button class="btn btn--ask" type="button" id="ask-open" aria-haspopup="dialog">Ask a Question</button>
+        <p>Still have a question? <a href="#" class="faqs__ask-link" id="ask-open" aria-haspopup="dialog">Ask a question.</a></p>
       </div>
     </div>
     <div class="guide-repeat" aria-hidden="true">
