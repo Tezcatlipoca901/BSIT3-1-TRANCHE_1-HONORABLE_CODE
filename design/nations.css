@@ -425,7 +425,7 @@ section {
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 17px;
-  color: #3b4a68;
+  color: #49556A;
   white-space: nowrap;
   transition: transform .25s ease, filter .25s ease, color .25s ease;
 }
@@ -440,6 +440,8 @@ section {
 
 .hero__btn:active {
   transform: translateY(0) scale(.98);
+  filter: brightness(.97) drop-shadow(0 0 6px rgba(220, 192, 138, .6));
+  transition-duration: .08s;
 }
 
 .hero .wrap {
@@ -1280,15 +1282,15 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 228px;
-  height: 74px;
-  background: url("../assets/button.png") center / 100% 100% no-repeat;
+  width: 230px;
+  height: 52px;
+  background: url("../assets/button-blank.png") center / 100% 100% no-repeat;
   border: none;
   border-radius: 0;
   box-shadow: none;
   font-family: var(--font-ui);
-  font-weight: 400;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 17px;
   color: #49556A;
   transition: transform .25s ease, filter .25s ease, color .25s ease;
 }
@@ -1309,6 +1311,9 @@ section {
 .cta__btn:focus-visible { outline: 0; }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero__btn,
+  .hero__btn:hover,
+  .hero__btn:active,
   .cta__btn,
   .cta__btn:hover,
   .cta__btn:active { transition: none; transform: none; }
@@ -1331,6 +1336,8 @@ section {
     height: 44px;
     margin-top: 14px;
     font-size: 14px;
+    line-height: 17px;
+    color: var(--navy);
   }
   .hero .wrap {
     height: 100%;
@@ -1796,8 +1803,8 @@ section {
   }
 
   .cta__btn {
-    width: 215px;
-    height: 43px;
+    width: 200px;
+    height: 44px;
     font-size: 14px;
     line-height: 17px;
     background: url("../assets/button-blank.png") center / 100% 100% no-repeat;
