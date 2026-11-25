@@ -1,5 +1,5 @@
 /* form.js - booking form. Reads ?nation&depart&return&travelers from home.js,
-   validates, then hands a summary (never card details) to confirmation.html. */
+   validates, then shows the confirmation modal (never card details). */
 (function () {
   'use strict';
   var NATIONS = {
@@ -59,7 +59,7 @@
   f.ret.addEventListener('change', render);
 
   function method() { return form.querySelector('input[name="pay"]:checked').value; }
-  function showPayFields() { $('card-fields').hidden = method() !== 'Credit Card'; $('paypal-fields').hidden = method() !== 'PayPal'; }
+  function showPayFields() { $('card-fields').hidden = method() !== 'Credit Card'; $('paypal-fields').hidden = method() !== 'PayPal'; $('agency-fields').hidden = method() !== 'Pay at Agency'; }
   form.addEventListener('change', function (e) { if (e.target.name === 'pay') showPayFields(); });
 
   // input masks
@@ -136,10 +136,41 @@
       name: f.name.value.trim().replace(/\s+/g, ' '), email: f.email.value.trim(),
       nation: key, dates: datesText(), travelers: trav, amount: peso(nation.p * trav), method: method()
     };
-    try { sessionStorage.setItem('wpgBooking', JSON.stringify(booking)); } catch (err) { /* confirmation falls back to sample data */ }
-    location.href = 'confirmation.html';
+    try { sessionStorage.setItem('wpgBooking', JSON.stringify(booking)); } catch (err) { /* modal falls back gracefully */ }
+    openConfModal(booking);
   });
 
   showPayFields();
   render();
+
+  function openConfModal(b) {
+    var backdrop = $('conf-backdrop');
+    var v = {
+      first: b.name.split(' ')[0],
+      email: b.email,
+      ref: '#' + b.ref,
+      amount: b.amount,
+      nation: b.nation,
+      dates: b.dates,
+      travelers: b.travelers + (b.travelers === 1 ? ' Traveler' : ' Travelers'),
+      method: b.method
+    };
+    [].forEach.call(backdrop.querySelectorAll('[data-cf]'), function (el) {
+      var key = el.getAttribute('data-cf');
+      if (v[key] != null) el.textContent = v[key];
+    });
+    backdrop.hidden = false;
+    backdrop.setAttribute('aria-hidden', 'false');
+    // Trap focus on the modal close button
+    var closeBtn = backdrop.querySelector('.conf-modal__close');
+    if (closeBtn) closeBtn.focus();
+    // Close on backdrop click (outside modal)
+    backdrop.addEventListener('click', function (e) {
+      if (e.target === backdrop) window.location.href = 'home.html#nations';
+    });
+    // Close on Escape key
+    document.addEventListener('keydown', function onEsc(e) {
+      if (e.key === 'Escape') { document.removeEventListener('keydown', onEsc); window.location.href = 'home.html#nations'; }
+    });
+  }
 })();
