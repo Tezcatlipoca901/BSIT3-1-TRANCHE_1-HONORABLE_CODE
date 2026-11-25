@@ -387,13 +387,6 @@
     fitCards();
   }
 
-  function validate() {
-    if (!selectedDepartIso) return 'Pick an available departure date.';
-    if (selectedDepartIso < today) return 'Pick a departure date from today onward.';
-    if (!exactNationMatch() && !previewNation) return 'Select an available destination card or choose a destination.';
-    return '';
-  }
-
   function datesMatch(nation) {
     if (!selectedDepartIso) return true;
     return isDateAvailableForNation(nation, selectedDepartIso);
@@ -477,17 +470,7 @@
 
   document.getElementById('view-all').addEventListener('click', function () { clearFilter(); dest.focus(); });
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var msg = validate();
-    note(msg, !!selectedDepartIso || !!dest.value.trim());
-    if (msg) return;
-    var targetNation = exactNationMatch() || previewNation;
-    var hits = currentHits();
-    if (!hits.length) { paint(hits); return; }
-    paint(hits);
-    note(targetNation + ' is available (' + fmtSlots(getSlots(targetNation, selectedDepartIso)) + '). Click the card to open its page.', true);
-  });
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
 
   // size the cards so the section fills the screen height (no empty strip below them)
   var section = document.getElementById('nations');

@@ -33,13 +33,21 @@
             <output id="t-trav" aria-live="polite">2</output>
             <button type="button" id="t-plus" aria-label="More travelers">+</button>
           </div>
+          <small class="trip__slots" id="t-slots" aria-live="polite"></small>
         </div>
       </section>
 
       <h3 class="step"><b>1</b>Select travel dates</h3>
       <div class="grid">
-        <div class="fld"><label for="f-depart">Departure / Check-in Date <i>*</i></label><input id="f-depart" name="depart" type="date"><small class="err"></small></div>
-        <div class="fld"><label for="f-return">Return / Check-out Date <i>*</i></label><input id="f-return" name="ret" type="date" readonly><small class="err"></small></div>
+        <div class="fld"><label for="f-depart">Departure / Check-in Date <i>*</i></label>
+          <div class="dpick">
+            <input id="f-depart" name="depart" type="text" placeholder="MM/DD/YYYY" readonly autocomplete="off" aria-haspopup="dialog" aria-expanded="false">
+            <button class="dpick__btn" type="button" tabindex="-1" aria-label="Open departure calendar"></button>
+            <div class="dpick__pop" id="f-dpick" role="dialog" aria-label="Select departure date" hidden></div>
+          </div>
+          <small class="err"></small>
+        </div>
+        <div class="fld"><label for="f-return">Return / Check-out Date <i>*</i></label><input id="f-return" name="ret" type="text" placeholder="MM/DD/YYYY" readonly autocomplete="off"><small class="err"></small></div>
       </div>
 
       <h3 class="step"><b>2</b>Traveler's details</h3>
